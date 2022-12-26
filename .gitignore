@@ -1,0 +1,7 @@
+*.pyc
+.idea
+.git
+/.template/
+.igorsimb_ru
+.env
+db.sqlite3

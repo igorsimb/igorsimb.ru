@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block title %}Igor Simbirtsev's Personal Portfolio Page{% endblock title %}
+
+{% block content %}
+
+    {% include "core/partials/header.html" %}
+    {% include "core/partials/hero.html" %}
+
+    <main id="main">
+
+        {% include "core/partials/about.html" %}
+        {% include "core/partials/skills.html" %}
+{#        {% include "core/partials/portfolio.html" %}#}
+{#        {% include "core/partials/services.html" %}#}
+        {% include "core/partials/contact.html" %}
+
+    </main>
+
+    {% include "core/partials/footer.html" %}
+
+{% endblock content %}
