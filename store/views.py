@@ -26,12 +26,14 @@ def index(request):
     categories = Category.objects.filter(is_popular=True)
 
     carousel = Carousel.objects.all()
+    carousel_items_enabled = Carousel.objects.filter(is_enabled=True)
     context = {'items': items,
                'order': order,
                'products': products,
                'categories': categories,
                'cartItems': cartItems,
                'carousel': carousel,
+               'carousel_items_enabled': carousel_items_enabled,
                }
     return render(request, 'store/index.html', context)
 
