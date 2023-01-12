@@ -1,0 +1,25 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+    Благодарим за покупку!
+{% endblock title %}
+
+{% block content %}
+
+<section class="page-wrapper success-msg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="block text-center">
+        	<i class="bg-info tf-ion-android-checkmark-circle"></i>
+          <h1 class="text-center my-2">Благодарим за покупку!</h1>
+          <h3>Электронный чек был выслал на ваш электронную почту.</h3>
+          <a href="{% url 'store:shop' %}" class="btn btn-main mt-20">Вернуться к товарам</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

@@ -49,10 +49,16 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'widget_tweaks',
+    'mathfilters',
+    'django_quill',
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "rangefilter",
 
     # Local
     'core.apps.CoreConfig',
     'accounts.apps.AccountsConfig',
+    'store.apps.StoreConfig',
 ]
 
 MIDDLEWARE = [
@@ -153,8 +159,8 @@ INTERNAL_IPS = [
 
 # django-allauth config
 SITE_ID = 1
-LOGIN_REDIRECT_URL = 'index'
-ACCOUNT_LOGOUT_REDIRECT = 'index'
+LOGIN_REDIRECT_URL = 'core:index'
+ACCOUNT_LOGOUT_REDIRECT = 'core:index'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',

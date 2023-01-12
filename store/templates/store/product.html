@@ -1,0 +1,99 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+Store Page
+{% endblock title %}
+
+{% block content %}
+
+
+<!-- Main Menu Section -->
+
+<section class="single-product">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb" style="font-size:1.2rem">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'store:shop' %}">Товары</a></li>
+                    <li class="breadcrumb-item active text-muted" aria-current="page">{{ product.name }}</li>
+                  </ol>
+                </nav>
+			</div>
+		</div>
+		<div class="row mt-20">
+			<div class="col-md-5">
+				<div class="single-product-slider">
+					<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+						<div class='carousel-outer'>
+							<!-- me art lab slider -->
+							<div class='carousel-inner '>
+								<div class='item active'>
+									<img src='{{ product.imageURL }}' alt='' data-zoom-image="{{ product.imageURL }}" />
+								</div>
+                                {% for image in product.images.all %}
+								<div class='item'>
+									<img src='{{ image }}' alt='' data-zoom-image="{{ image }}" />
+								</div>
+								{% endfor %}
+								
+							</div>
+							
+							<!-- sag sol -->
+							<a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+								<i class="tf-ion-ios-arrow-left"></i>
+							</a>
+							<a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+								<i class="tf-ion-ios-arrow-right"></i>
+							</a>
+						</div>
+						
+						<!-- thumb -->
+						<ol class='carousel-indicators mCustomScrollbar meartlab'>
+							<li data-target='#carousel-custom' data-slide-to='0' class='active'>
+								<img src='{{ product.imageURL }}' alt='' />
+							</li>
+                            {% for image in product.images.all %}
+							<li data-target='#carousel-custom' data-slide-to='1'>
+								<img src='{{ image }}' alt='' />
+							</li>
+                            {% endfor %}
+						</ol>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7">
+				<div class="single-product-details">
+					<h2>{{ product.name }}</h2>
+					<p class="product-price">{{ product.price }} руб.</p>
+					
+					<p class="product-description mt-20">
+                            {{ product.description.html|safe }}
+                    </p>
+
+					<div class="product-category">
+						<span>Категории:</span>
+						<ul>
+                            {% for category in product.category.all %}
+                                <li><a href="{% url 'category' category.id %}">{{ category }}</a></li>
+                            {% endfor %}
+						</ul>
+					</div>
+					<a href="#" data-product="{{ product.id }}" data-action="add" class="update-cart btn btn-main mt-4" title="Добавить товар в корзину">Добавить</a>
+				</div>
+			</div>
+		</div>
+
+        <!-- Reviews  -->
+{#        {% include "store/partials/product_reviews.html" %}#}
+
+	</div>
+</section>
+
+    <!-- Related Products -->
+{#    {% include "store/partials/related_products.html" %}#}
+
+
+{% endblock content %}

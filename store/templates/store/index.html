@@ -1,0 +1,147 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+    Store Page
+{% endblock title %}
+
+{% block content %}
+
+
+{% for item in carousel %}
+{% if item.is_enabled %}
+    <div class="hero-slider">
+        <div class="slider-item th-fullpage hero-area"
+             style="background-image: url({{ item.banner.url }});">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 text-center">
+                        <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">{{ item.title }}</p>
+                        {% if item.description %}
+                        <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">{{ item.description }}</h1>
+                        {% endif %}
+                        <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn"
+                           href="{{ item.get_absolute_url }}">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endfor %}
+
+{% if categories %}
+<section class="product-category section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title text-center">
+                    <h2>Популярные Категории</h2>
+
+                </div>
+            </div>
+            {% for category in categories %}
+                <div class="col-md-6 {% if not forloop.counter|divisibleby:2 %} {% endif %}">
+
+                    <div class="category-box">
+                        <a href="{% url 'category' category.id %}">
+                            <img src="{{ category.imageURL }}" alt="{{ category.name }}">
+                            <div class="content">
+                                    <h2 class="fs-1 text-white">{{ category.name }}</h2>
+                                    <p class="fs-4 text-white">{{ category.short_description }}</p>
+                                <div class="card-title-gradient">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# If any product is marked as "is_popular" #}
+{% if products %}
+    <section class="products section bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="title text-center">
+                    <h2>Популярные Товары</h2>
+                </div>
+            </div>
+            <div class="row">
+
+                {% for product in products %}
+                    <div class="col-md-4">
+                        <div class="product-item d-flex flex-column justify-content-between">
+                            <div class="product-thumb" style="max-height:45vh;">
+                                {#                        <span class="bage">Акция</span>#}
+                                <img class="rounded" style="object-fit:cover; height:35vh"
+                                     src="{{ product.imageURL }}"
+                                     alt="{{ product.name }}"/>
+                                <div class="preview-meta">
+                                    <ul>
+                                        <li>
+                            <span data-toggle="modal" data-target="#product-modal-{{ product.id }}">
+                                <i class="tf-ion-ios-search-strong"></i>
+                            </span>
+                                        </li>
+
+                                        <li>
+                                            <a data-product="{{ product.id }}" data-action="add"
+                                               class="update-cart"><i class="tf-ion-android-cart"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4><a href="{% url 'product' product.pk %}">{{ product.name }}</a></h4>
+                                <p class="price">{{ product.price }} руб.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal product-modal fade" id="product-modal-{{ product.id }}">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="tf-ion-close"></i>
+                        </button>
+                        <div class="modal-dialog " role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-8 col-sm-6 col-xs-12">
+                                            <div class="modal-image">
+                                                <img class="img-responsive"
+                                                     src="{{ product.imageURL }}" alt="{{ product.name }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="product-short-details">
+                                                <h2 class="product-title">{{ product.name }}</h2>
+                                                <p class="product-price">{{ product.price }} руб.</p>
+                                                <p class="product-short-description">
+                                                    {{ product.description.html|safe|truncatewords:10 }}
+                                                </p>
+                                                <a href="#" data-product="{{ product.id }}" data-action="add"
+                                                   class="update-cart btn btn-main"
+                                                   title="Добавить товар в корзину">Добавить</a>
+                                                <a href="{% url 'product' product.pk %}"
+                                                   class="btn btn-transparent">К описанию товара</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal -->
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+
+{% endblock content %}

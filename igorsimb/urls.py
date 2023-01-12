@@ -10,6 +10,7 @@ urlpatterns = [
 
     # Local apps
     path('', include('core.urls')),
+    path('store/', include('store.urls')),
 
     # Third-party apps
     path('__debug__/', include('debug_toolbar.urls')),

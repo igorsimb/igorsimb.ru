@@ -16,6 +16,12 @@ User = get_user_model()
     # 1.2 In urls.py - check all the links. Need to switch them to accounts/blabla urls (see igorsimb)
     # 1.3 Add all additional fields to User Model from ez2task to igorsimb
 # 2. Embed Tortiki
+#     2.1 Create app and copy "store" files ✔
+#     2.2 Take urls from ecommerce and include them into this project
+#     2.3 install requirements from store ✔
+#     2.4. in urls, do app_name = 'store/igorsimb/etc'
+#     2.5 in all links refer to the corresponding app, e.g. {% url 'igorsimb:index' %}
+#         source: https://docs.djangoproject.com/en/4.1/intro/tutorial03/#namespacing-url-names
 # 3. Embed Blog
 
 class IndexView(TemplateView):

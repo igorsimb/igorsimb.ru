@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+{% load static %}
+{% load mathfilters %}
+<html>
+<head>
+    <title>{% block title %}{% endblock title %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'store/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'store/css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'store/css/custom.css' %}">
+
+
+    {#  Template links  #}
+    <!-- Themefisher Icon font -->
+    <link rel="stylesheet" href="{% static 'store/plugins/themefisher-font/style.css' %}">
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="{% static 'store/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'store/plugins/bootstrap/css/bootstrap.min__new.css' %}">
+
+    <!-- Animate css -->
+    <link rel="stylesheet" href="{% static 'store/plugins/animate/animate.css' %}">
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="{% static 'store/plugins/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'store/plugins/slick/slick-theme.css' %}">
+
+    <!-- Bootstrap 5.2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'store/css/style.css' %}">
+
+
+    <!-- Mobile Specific Metas
+  ================================================== -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Online Store">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="author" content="Online Store">
+    <meta name="generator" content="Online Store">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png"/>
+
+
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+
+        function getToken(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        var csrftoken = getToken('csrftoken')
+
+        function getCookie(name) {
+            // Split cookie string and get all individual name=value pairs in an array
+            var cookieArr = document.cookie.split(";");
+
+            // Loop through the array elements
+            for (var i = 0; i < cookieArr.length; i++) {
+                var cookiePair = cookieArr[i].split("=");
+
+                /* Removing whitespace at the beginning of the cookie name
+                and compare it with the given string */
+                if (name === cookiePair[0].trim()) {
+                    // Decode the cookie value and return
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+
+            // Return null if not found
+            return null;
+        }
+
+        var cart = JSON.parse(getCookie('cart'))
+
+        if (cart == undefined) {
+            cart = {}
+            console.log('Cart Created!', cart)
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+        }
+        console.log('Cart:', cart)
+
+    </script>
+
+    <!-- Alpine Plugins -->
+    <script defer src="https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
+    <!--     Alpine.js -->
+    {#    <script src="https://unpkg.com/alpinejs" defer></script>#}
+    <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+
+</head>
+<body id="body" class="d-flex flex-column min-vh-100">
+
+<!-- Start Top Header Bar -->
+<section class="top-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div class="contact-number">
+                    <i class="tf-ion-ios-telephone"></i>
+                    <span>+7(909) 123-45-67</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <!-- Site Logo -->
+                <div class="logo text-center">
+                    <a href="{% url 'store:index' %}">
+                        <!-- replace logo here -->
+                        <svg width="210px" height="29px" viewBox="0 0 220 29" version="1.1"
+                             xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                               font-size="40"
+                               font-family="AustinBold, Austin" font-weight="bold">
+                                <g id="Group" transform="translate(-108.000000, -297.000000)" fill="#000000">
+                                    <text id="AVIATO">
+                                        <tspan x="108.94" y="325">ТОРТИКИ</tspan>
+                                    </text>
+                                </g>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <!-- Cart -->
+                <ul class="top-menu text-right list-inline">
+                    <li class="dropdown cart-nav dropdown-slide">
+                        {# removed data-toggle="dropdown" from <a>#}
+                        <a href="{% url 'store:cart' %}" class="position-relative" data-hover="dropdown"><i
+                                class="tf-ion-android-cart"></i>Корзина
+                            {% if cartItems > 0 %}
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-light">
+                                {{ cartItems }}
+                                <span class="visually-hidden">товары в корзине</span>
+                            </span>
+                            {% endif %}
+                        </a>
+                        {% if cartItems > 0 %}
+                            <div class="dropdown-menu cart-dropdown">
+                                <!-- Cart Item -->
+                                {% for item in items %}
+                                    <div class="media">
+                                        <a class="pull-left" href="#!">
+                                            <img class="media-object" src="{{ item.product.imageURL }}"
+                                                 alt="{{ item.product.name }}"/>
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a href="#!">{{ item.product.name }}</a></h4>
+                                            <div class="cart-price">
+                                                {% if item.quantity > 1 %}
+                                                    <span>{{ item.quantity }} x</span>
+                                                {% endif %}
+                                                <span>{{ item.product.price|floatformat:2 }} руб.</span>
+                                            </div>
+                                            <h5>
+                                                {% if item.quantity > 1 %}
+                                                    <strong>
+                                                        {% with quantity=item.quantity price=item.product.price %}
+                                                            {{ quantity|mul:price }} руб.
+                                                        {% endwith %}
+                                                    </strong>
+                                                {% endif %}
+
+                                            </h5>
+                                        </div>
+                                        <a href="#!" class="remove update-cart"
+                                           data-product={{ item.product.id }} data-action="delete" title="Удалить"><i
+                                                class="tf-ion-close"></i></a>
+                                    </div><!-- / Cart Item -->
+                                {% endfor %}
+
+                                <div class="cart-summary">
+                                    <span>Общая сумма</span>
+                                    <span class="total-price">{{ order.get_cart_total|floatformat:2 }} руб.</span>
+                                </div>
+                                <ul class="text-center cart-buttons">
+                                    <li><a href="{% url 'store:cart' %}" class="btn btn-small">В корзину</a></li>
+                                    <li><a href="{% url 'store:checkout' %}"
+                                           class="btn btn-small btn-solid-border">Оформить</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                    </li><!-- / Cart -->
+                    {% if user.is_authenticated %}
+                        <li>
+                            <span class="fs-3">{{ request.user }}</span><a class="fs-5" href="
+{% url 'account_logout' %}">
+                            (Выйти)</a>
+                        </li>
+
+                    {% else %}
+                        <li>
+                            <a href="{% url 'account_login' %}" class="btn btn-main btn-small btn-round text-light ms-5"
+                               style="text-transform: capitalize;">Войти</a>
+                        </li>
+                    {% endif %}
+
+                    <!-- Search -->
+                    <li class="dropdown search dropdown-slide">
+                        {#                    removed  data-toggle="dropdown" from <a> tag, it broke navbar on click #}
+                        <a href="#!" class="dropdown-toggle" data-hover="dropdown"><i
+                                class="tf-ion-ios-search-strong"></i> Поиск</a>
+                        <ul class="dropdown-menu search-dropdown">
+                            <li>
+                                <form action="{% url 'store:search_results' %}" method="get">
+                                    <input type="search" name="q" class="form-control" placeholder="Поиск..."
+                                           aria-label="Поиск...">
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- / Search -->
+
+
+                </ul><!-- / .nav .navbar-nav .navbar-right -->
+            </div>
+        </div>
+    </div>
+</section><!-- End Top Header Bar -->
+
+
+<!-- Main Menu Section -->
+<section class="menu">
+    <nav class="navbar navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <h2 class="menu-title">Навигация</h2>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Навигация</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div><!-- / .navbar-header -->
+
+            <!-- Navbar Links -->
+            <div id="navbar" class="navbar-collapse collapse text-center">
+                <ul class="nav navbar-nav">
+
+                    <!-- Home -->
+                    <li class="dropdown">
+                        <a href="{% url 'store:index' %}">Главная</a>
+                    </li><!-- / Home -->
+
+                    <!-- Elements -->
+                    <li class="dropdown dropdown-slide">
+                        <a href="{% url 'store:shop' %}">Товары</a>
+                    </li>
+
+                    <!-- Pages, Contact -->
+                    <li class="dropdown dropdown-slide">
+                        <a href="{% url 'store:contact' %}">Контакты</a>
+                    </li>
+
+                    <!-- Blog, About us -->
+                    <li class="dropdown dropdown-slide">
+                        <a href="{% url 'store:about' %}">О нас</a>
+                    </li>
+
+                </ul><!-- / .nav .navbar-nav -->
+
+            </div>
+            <!--/.navbar-collapse -->
+        </div><!-- / .container -->
+    </nav>
+</section>
+
+
+{% block content %}{% endblock content %}
+
+<footer class="footer section text-center mt-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <ul class="social-media">
+                    {#                    <li>#}
+                    {#                        <a href="#">#}
+                    {#                            <i class="tf-ion-social-instagram"></i>#}
+                    {#                        </a>#}
+                    {#                    </li>#}
+                    {#                    <li>#}
+                    {#                        <a href="#">#}
+                    {#                            <i class="tf-ion-social-twitter"></i>#}
+                    {#                        </a>#}
+                    {#                    </li>#}
+                    <li>
+                        <a href="#">
+                            <ion-icon name="logo-vk" style="color:#555555;font-size:2rem;"></ion-icon>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2 d-flex align-items-start  justify-content-end" style="font-size:1.2rem">
+                <span class="copyright-text text-dark">Разработка: <a href="https://igorsimb.com" class="link-secondary"
+                                                                      target="_blank">Igorsimb</a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="{% static 'store/js/cart.js' %}"></script>
+
+
+{# Template Scripts #}
+
+<!-- Main jQuery -->
+<script src="{% static 'store/plugins/jquery/dist/jquery.min.js' %}"></script>
+
+<!-- Bootstrap 3.1 -->
+<script src="{% static 'store/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+<!-- Bootstrap Touchpin -->
+<script src="{% static 'store/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js' %}"></script>
+
+<!-- Instagram Feed Js -->
+<script src="{% static 'store/plugins/instafeed/instafeed.min.js' %}"></script>
+<!-- Video Lightbox Plugin -->
+<script src="{% static 'store/plugins/ekko-lightbox/dist/ekko-lightbox.min.js' %}"></script>
+<!-- Count Down Js -->
+<script src="{% static 'store/plugins/syo-timer/build/jquery.syotimer.min.js' %}"></script>
+
+<!-- slick Carousel -->
+<script src="{% static 'store/plugins/slick/slick.min.js' %}"></script>
+<script src="{% static 'store/plugins/slick/slick-animation.min.js' %}"></script>
+
+<!-- Google Mapl -->
+{#<script src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw' %}"></script>#}
+{#<script type="{% static 'text/javascript" src="plugins/google-map/gmap.js' %}"></script>#}
+
+<!-- Bootstrap 5.2 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+<script src="{% static 'store/js/script.js' %}"></script>
+
+<!-- ionic icons -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
