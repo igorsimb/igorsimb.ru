@@ -77,7 +77,7 @@ Store Page
 						<span>Категории:</span>
 						<ul>
                             {% for category in product.category.all %}
-                                <li><a href="{% url 'category' category.id %}">{{ category }}</a></li>
+                                <li><a href="{% url 'store:category' category.id %}">{{ category }}</a></li>
                             {% endfor %}
 						</ul>
 					</div>

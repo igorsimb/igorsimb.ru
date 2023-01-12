@@ -16,7 +16,7 @@ STATUSES = (
 
 class Category(models.Model):
     name = models.CharField('Название', max_length=100, null=True, blank=True)
-    image = models.ImageField("Изображение", null=True, blank=True)
+    image = models.ImageField("Изображение", null=True, blank=True, upload_to="store/category/")
     short_description = models.CharField('Краткое описание', max_length=140, help_text='Макс. длина: 140 символов. '
                                                                                        'Если не заполнено, то первые 140 символов Полного описания (без обрезания слов)',
                                          null=True, blank=True)
@@ -33,7 +33,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("category", args=[str(self.id)])
+        return reverse("store:category", args=[str(self.id)])
 
     def save(self, *args, **kwargs):
         if not self.short_description:
@@ -56,7 +56,7 @@ class Product(models.Model):
                                                                            '&#60;u>'))
     category = models.ManyToManyField(Category, verbose_name="категории")
     price = models.DecimalField("Цена", max_digits=7, decimal_places=2)
-    image = models.ImageField("Главное Изображение", null=True, blank=True)
+    image = models.ImageField("Главное Изображение", null=True, blank=True, upload_to='store/product/')
     active = models.BooleanField("Опубликовать", default=True,
                                  help_text="Только опубликованные товары будут отображены на сайте")
     is_popular = models.BooleanField("Популярно", default=False,
@@ -67,7 +67,7 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("product", args=[str(self.id)])
+        return reverse("store:product", args=[str(self.id)])
 
     @property
     def imageURL(self):
@@ -86,7 +86,7 @@ class Product(models.Model):
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField('Доп. Изображения',
-                              help_text="Будут отображены на странице описания товара")
+                              help_text="Будут отображены на странице описания товара", upload_to="store/product/")
 
     def __str__(self):
         return self.image.url
@@ -200,7 +200,7 @@ class Carousel(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True,
                                 verbose_name="Товар",
                                 help_text="Возможна либо категория, либо товар")
-    banner = models.ImageField("Баннер", blank=True, null=True)
+    banner = models.ImageField("Баннер", blank=True, null=True, upload_to="store/banner/")
     title = models.CharField("Заголовок", max_length=100)
     description = models.CharField("Краткое описание (необязательно)", max_length=255, blank=True, null=True)
     is_enabled = models.BooleanField("Включено", default=True,

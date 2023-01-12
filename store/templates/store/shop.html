@@ -58,7 +58,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingOne">
                                     <h4 class="panel-title">
-                                        <a href="{% url 'category' category.id %}">
+                                        <a href="{% url 'store:category' category.id %}">
 
 {#                                            Feature: sub-categories drop-down#}
 {#                                        <a role="button" data-toggle="collapse" data-parent="#accordion"#}
@@ -115,7 +115,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h4><a href="{% url 'product' product.pk %}">{{ product }}</a></h4>
+                                    <h4><a href="{% url 'store:product' product.pk %}">{{ product }}</a></h4>
                                     <p class="price">{{ product.price|floatformat:2 }} руб.</p>
                                 </div>
                             </div>
@@ -147,7 +147,7 @@
                                                     <a href="#" data-product="{{ product.id }}" data-action="add"
                                                        class="update-cart btn btn-main"
                                                        title="Добавить товар в корзину">Добавить</a>
-                                                    <a href="{% url 'product' product.pk %}"
+                                                    <a href="{% url 'store:product' product.pk %}"
                                                        class="btn btn-transparent">К описанию товара</a>
                                                 </div>
                                             </div>
