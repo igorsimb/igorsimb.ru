@@ -1,0 +1,124 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Igor Simbirtsev's Personal Portfolio Page{% endblock title %}
+
+{% block content %}
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>EZ2Task</h2>
+                    <ol>
+                        <li><a href="{% url 'core:index' %}">Home</a></li>
+                        <li>EZ2Task</li>
+                    </ol>
+                </div>
+
+            </div>
+        </section><!-- End Breadcrumbs -->
+
+        <!-- ======= Portfolio Details Section ======= -->
+        <section id="portfolio-details" class="portfolio-details">
+            <div class="container">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-8">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+
+                                <div class="swiper-slide">
+                                    <img src="{% static 'core/img/portfolio/EZ2TASK_thumbnail.jpg' %}" alt="">
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <img src="{% static 'core/img/portfolio/ez2task_screen1.png' %}" alt="">
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <img src="{% static 'core/img/portfolio/ez2task_screen2.png' %}" alt="">
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <img src="{% static 'core/img/portfolio/ez2task_screen3.png' %}" alt="">
+                                </div>
+
+                                 <div class="swiper-slide">
+                                    <img src="{% static 'core/img/portfolio/ez2task_screen4.png' %}" alt="">
+                                </div>
+
+                                 <div class="swiper-slide">
+                                    <img src="{% static 'core/img/portfolio/ez2task_screen5.png' %}" alt="">
+                                </div>
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="portfolio-info">
+                            <h3>Project information</h3>
+                            <ul>
+                                <li><strong>Name</strong>: EZ2Task</li>
+                                <li><strong>Category</strong>: Task management</li>
+                                <li><strong>Project URL</strong>:
+                                    <a href="https://www.ez2task.com" target="_blank">ez2task.com
+                                        <i class="bx bx-link-external small"></i>
+                                    </a>
+                                    <span class="text-muted small d-block">Note that project is hosted on a free service,
+                                        so it
+                                        make take around 15 seconds to spin up on the first load</span>
+                                </li>
+                                <li><strong><i class="bx bxl-github"></i> Github</strong>: <a
+                                        href="https://github.com/igorsimb/ez2task" target="_blank">igorsimb/ez2task
+                                        <i class="bx bx-link-external small"></i>
+                                    </a></li>
+                                <li><strong>Technologies</strong>:
+                                Python, Django, Bootstrap 5, VueJS 3, ChartJS, ListJS, CKEditor, PostgreSQL</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="portfolio-description">
+                        <h2>Task and project management app</h2>
+                        <p>
+                             It supports one as well as groups of users working on the same projects. Users can also have different access levels.
+                        </p>
+                        <p>
+                            Application is used to set up tasks and managing business projects. Main functions
+                            include:
+                        </p>
+                        <ul>
+                            <li>Registration and authentication</li>
+                            <li>Creating tasks and projects</li>
+                            <li>User settings</li>
+                            <li>Creating a company</li>
+                            <li>Company tasks and user management</li>
+                            <li>Dashboard</li>
+                            </ul>
+
+                        <div class="d-flex justify-content-start align-items-center">
+                            <a class="btn btn-danger pill rounded-pill px-4 ms-1 me-0" href="https://ez2task.com/"
+                               role="button" title="ez2task.com" target="_blank">Visit Project</a>
+                            <a class="fs-1 ms-3 link-dark" href="https://github.com/igorsimb/ez2task"
+                               style='color:#000' title="github.com/igorsimb/ez2task" target="_blank">
+                                <i class="bx bxl-github fs-1"></i>
+                            </a>
+                        </div>
+                </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Portfolio Details Section -->
+
+    </main>
+
+    {% include "core/partials/footer.html" %}
+
+{% endblock content %}
