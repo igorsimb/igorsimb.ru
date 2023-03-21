@@ -1,0 +1,43 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+Войти
+{% endblock title %}
+
+{% block content %}
+
+
+<section class="signin-page account">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="block text-center">
+{#          <a class="logo" href="{% url 'index' %}">#}
+{#            <img src="images/logo.png" alt="">#}
+{#          </a>#}
+          <h2 class="text-center mt-0 pt-0">Добро пожаловать!</h2>
+          <form method="POST" class="text-left clearfix">
+              {% csrf_token %}
+{#              {{ form }}#}
+            <div class="form-group">
+                {{form.username}}
+            </div>
+            <div class="form-group">
+                {{form.password}}
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-main text-center">Войти</button>
+            </div>
+          </form>
+            <div class="mt-3">
+                <a class="ms-2 link-secondary" href="{% url 'password_reset' %}">Забыли пароль?</a>
+            </div>
+          <p class="mt-20">Нет аккаунта? <a href="{% url 'register' %}">Создать</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

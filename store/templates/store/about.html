@@ -1,0 +1,41 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+    Связаться с нами
+{% endblock title %}
+
+{% block content %}
+
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">О нас</h1>
+					<ol class="breadcrumb">
+						<li><a href="{% url 'index' %}">Главная</a></li>
+						<li class="active">о нас</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="about section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<img class="img-responsive" src="{% static 'images/about/cake-1.jpg' %}">
+			</div>
+			<div class="col-md-6">
+				<h2 class="mt-40">О нашем магазине</h2>
+				<p>Мы искренне верим, что лучшие события в жизни не должны доставлять много хлопот, поэтому есть место,
+где вы можете заказать вкусные тортики с удобной доставкой и дружелюбным сервисом. Мы всегда вам рады!</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock content %}

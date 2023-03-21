@@ -1,0 +1,83 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+    Корзина
+{% endblock title %}
+
+{% block content %}
+
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">Корзина</h1>
+					<ol class="breadcrumb">
+						<li><a href="{% url 'index' %}">Главная</a></li>
+						<li class="active">корзина</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="page-wrapper">
+  <div class="cart shopping">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="block">
+            <div class="product-list">
+              <form method="post">
+                <table class="table" style="font-size: 1.3rem">
+                  <thead>
+                    <tr>
+                      <th class="">Товар</th>
+                      <th class="">Цена</th>
+                      <th class="">Количество</th>
+                      <th class="">Действия</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for item in items %}
+                    <tr class="">
+                      <td class="">
+                        <div class="product-info">
+                          <img width="80" src="{{ item.product.imageURL }}" alt="{{ item.product.name }}" />
+                          <a href="#!">{{ item.product.name }}</a>
+                        </div>
+                      </td>
+                      <td class="">{{ item.product.price|floatformat:2 }} руб.</td>
+                      <td class="">
+                          {{ item.quantity }}
+                          <div class="quantity">
+                            <img data-product={{ item.product.id }} data-action="add" class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
+
+                            <img data-product={{ item.product.id }} data-action="remove" class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
+                        </div>
+                      </td>
+                      <td class="">
+                        <a id='remove-item' data-product={{ item.product.id }} data-action="delete" class="product-remove chg-quantity update-cart" href="#!">Удалить</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+
+                  </tbody>
+                </table>
+              <div class="d-flex justify-content-between my-4">
+                <div class="h4 font-weight-bold">Общее кол-во: <span class="font-weight-normal">{{ order.get_cart_items }}</span></div>
+                  <div class="h4 font-weight-bold">Общая сумма: <span class="font-weight-normal">{{ order.get_cart_total|floatformat:2 }} руб.</span></div>
+              </div>
+                <a href="{% url 'checkout' %}" class="btn btn-main pull-right text-light">Оформить</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

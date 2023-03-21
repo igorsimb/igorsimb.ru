@@ -1,10 +1,20 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 
 
 class CustomUser(AbstractUser):
-    pass
+    email = models.EmailField(_('Email'), unique=True)
+    name = models.CharField("Имя", max_length=255, null=True, blank=True,
+                            help_text="Может отличаться от имени в разделе 'Клиенты'")
+    phone_number = models.CharField("Телефон", max_length=15, null=True, blank=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return f'{self.name}' if self.name else f'{self.email}'
 
 
 class Customer(models.Model):

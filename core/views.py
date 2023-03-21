@@ -36,7 +36,7 @@ class IndexView(TemplateView):
                 subject, str_msg,
                 email, ['igor.simbirtsev@gmail.com'],
             )
-            return redirect('index')
+            return redirect('main')
         else:
             HttpResponse(_('Something went wrong. Please try again.'))
 
