@@ -1,0 +1,22 @@
+.parallax-outer {
+    transform-style: preserve-3d;
+    /* commented out to make data-aos effects work in skills_list */
+    /*transform: perspective(3000px);*/
+}
+
+.parallax-inner {
+    transform: translateZ(20px);
+}
+
+.skill-card {
+    background-color: #fff;
+    border: 1px solid rgba(214, 214, 214, 0.8);
+    margin-bottom: 30px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.15s ease-in-out;
+}
+
+.letter-spacing-closer {
+  letter-spacing: -0.5px;
+}

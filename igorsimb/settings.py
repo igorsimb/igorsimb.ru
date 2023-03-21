@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     # Local
     'core.apps.CoreConfig',
     'accounts.apps.AccountsConfig',
+    'store',
+    'store_users',
 ]
 
 MIDDLEWARE = [
@@ -158,6 +160,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static/'
+# STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_DIR = [BASE_DIR / 'static']
 
 MEDIA_ROOT = BASE_DIR / 'static/images'
 MEDIA_URL = '/media/'
@@ -176,8 +180,8 @@ INTERNAL_IPS = [
 
 # django-allauth config
 SITE_ID = 1
-LOGIN_REDIRECT_URL = 'core:index'
-ACCOUNT_LOGOUT_REDIRECT = 'core:index'
+LOGIN_REDIRECT_URL = 'core:main'
+ACCOUNT_LOGOUT_REDIRECT = 'core:main'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -199,3 +203,30 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 # Translation
 LOCALE_PATHS = (BASE_DIR / 'locale/',)
+
+
+# Crispy forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Quill
+QUILL_CONFIGS = {
+    'default': {
+        'theme': 'snow',
+        'modules': {
+            'syntax': True,
+            'toolbar': [
+                [
+                    {'font': []},
+                    {'header': []},
+                    {'align': []},
+                    'bold', 'italic', 'underline', 'strike', 'blockquote',
+                    {'color': []},
+                    {'background': []},
+                ],
+                ['code-block', 'link'],
+                ['clean'],
+            ]
+        }
+    }
+}
