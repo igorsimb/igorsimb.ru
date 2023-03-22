@@ -201,7 +201,7 @@ class Carousel(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True,
                                 verbose_name="Товар",
                                 help_text="Возможна либо категория, либо товар")
-    banner = models.ImageField("Баннер", blank=True, null=True)
+    banner = models.ImageField("Баннер", upload_to="carousel/", blank=True, null=True)
     title = models.CharField("Заголовок", max_length=100)
     description = models.CharField("Краткое описание (необязательно)", max_length=255, blank=True, null=True)
     is_enabled = models.BooleanField("Включено", default=True,
