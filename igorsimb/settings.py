@@ -28,6 +28,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DJANGO_DEBUG', default=False)
+DEPLOYED = env.bool('DEPLOYED', default=True)
 
 ALLOWED_HOSTS = ['igorsimb.ru', 'www.igorsimb.ru', 'localhost']
 
@@ -98,7 +99,7 @@ WSGI_APPLICATION = 'igorsimb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if DEBUG:
+if not DEPLOYED:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

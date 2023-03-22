@@ -17,7 +17,7 @@ STATUSES = (
 
 class Category(models.Model):
     name = models.CharField('Название', max_length=100, null=True, blank=True)
-    image = models.ImageField("Изображение", null=True, blank=True)
+    image = models.ImageField("Изображение", upload_to="categories/", null=True, blank=True)
     short_description = models.CharField('Краткое описание', max_length=140, help_text='Макс. длина: 140 символов. '
                                                                                        'Если не заполнено, то первые 140 символов Полного описания (без обрезания слов)',
                                          null=True, blank=True)
@@ -57,7 +57,7 @@ class Product(models.Model):
                                                                            '&#60;u>'))
     category = models.ManyToManyField(Category, verbose_name="категории")
     price = models.DecimalField("Цена", max_digits=7, decimal_places=2)
-    image = models.ImageField("Главное Изображение", null=True, blank=True)
+    image = models.ImageField("Главное Изображение", upload_to="products/", null=True, blank=True)
     active = models.BooleanField("Опубликовать", default=True,
                                  help_text="Только опубликованные товары будут отображены на сайте")
     is_popular = models.BooleanField("Популярно", default=False,
@@ -86,7 +86,7 @@ class Product(models.Model):
 # in view: image_list = product.images.all()
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField('Доп. Изображения',
+    image = models.ImageField('Доп. Изображения', upload_to="products/",
                               help_text="Будут отображены на странице описания товара")
 
     def __str__(self):
