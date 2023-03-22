@@ -18,7 +18,9 @@
 {% if item.is_enabled %}
 
     <div class="slider-item th-fullpage hero-area"
-         style="background-image: url({{ item.banner.url }});">
+         {% if item.banner.url %}
+            style="background-image: url({{ item.banner.url }});">
+         {% endif %}
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 text-center">
