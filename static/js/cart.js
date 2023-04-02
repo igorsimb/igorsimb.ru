@@ -70,7 +70,7 @@ function addCookieItem(productId, action) {
 function updateUserOrder(productId, action) {
     console.log('User is authenticated, sending data...')
 
-    var url = '/update_item/'
+    var url = '/store/update-item/'
 
     // fetch API: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
     fetch(url, {

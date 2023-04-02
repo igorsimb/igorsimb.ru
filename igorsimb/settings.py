@@ -29,6 +29,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DJANGO_DEBUG', default=False)
 DEPLOYED = env.bool('DEPLOYED', default=True)
+LOCAL_DEVELOPMENT = env.bool('LOCAL_DEVELOPMENT', default=False)
 
 ALLOWED_HOSTS = ['igorsimb.ru', 'www.igorsimb.ru', 'localhost']
 
@@ -99,7 +100,7 @@ WSGI_APPLICATION = 'igorsimb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if not DEPLOYED:
+if LOCAL_DEVELOPMENT:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -159,10 +160,13 @@ USE_TZ = True
 # STATICFILES_DIRS = BASE_DIR / 'static',
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATIC_URL = '/static/'
-STATIC_ROOT = 'static/'
-# STATICFILES_DIRS = [BASE_DIR / 'static']
+if LOCAL_DEVELOPMENT:
+    STATICFILES_DIRS = [BASE_DIR / 'static']
+else:
+    STATIC_ROOT = 'static/'
+
 STATIC_DIR = [BASE_DIR / 'static']
+STATIC_URL = '/static/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'

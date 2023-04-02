@@ -17,7 +17,7 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('category/<int:category_id>/', CategoryView.as_view(), name='category'),
 
-    path('update_item/', updateItem, name='update_item'),
+    path('update-item/', updateItem, name='update_item'),
     path('process-order/', processOrder, name='process_order'),
     path('search/', SearchResultsListView.as_view(), name='search_results'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
