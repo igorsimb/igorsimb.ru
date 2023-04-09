@@ -138,7 +138,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-4 col-xs-12 col-sm-4">
+            <div class="col-md-4 col-md-offset-8 col-xs-12 col-sm-4">
                 <!-- Cart -->
                 <ul class="top-menu text-right list-inline">
                     <li class="dropdown cart-nav dropdown-slide">
@@ -201,24 +201,35 @@
 
                     </li><!-- / Cart -->
                     {% if user.is_authenticated %}
-                        <li>
-                            <span class="fs-3">{{ request.user }}</span><a class="fs-5" href="
+                        {% if user.email == 'demo@admin.com' %}
+                            <li>
+                                <span class="fs-3">{{ request.user }}</span>
+                                <a class="fs-5" href="{% url 'admin:index' %}" target="_blank">(Админ-панель
+                            <i class="fs-5 text-muted tf-ion-android-open"></i>
+                            </a>|
+                            <a class="fs-5" href="{% url 'logout' %}">Выйти)</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <span class="fs-3">{{ request.user }}</span><a class="fs-5" href="
 {% url 'logout' %}">(Выйти)</a>
-                        </li>
+                            </li>
+                        {% endif %}
 
-                    {% else %}
-                        <li>
-                            <a href="{% url 'login' %}" class="btn btn-main btn-small btn-round text-light ms-5"
-                               style="text-transform: capitalize;">Войти</a> или
-                            <a href="{% url 'demo_login' %}" class="btn btn-main bg-success btn-small btn-round
+                        {% else %}
+                            <li>
+                                <a href="{% url 'login' %}" class="btn btn-main btn-small btn-round text-light ms-5"
+                                   style="text-transform: capitalize;">Войти</a> или
+                                <a href="{% url 'demo_login' %}" class="btn btn-main bg-success btn-small btn-round
                             text-light"
-                               style="text-transform: capitalize;">Демо-админ</a>
+                                   style="text-transform: capitalize;">Демо-админ</a>
 
-                        </li>
-{#                        <li>#}
-{#                            <a href="{% url 'demo_login' %}" class="btn btn-main btn-small btn-round text-light ms-5"#}
-{#                               style="text-transform: capitalize;">Демо-админ</a>#}
-{#                        </li>#}
+                            </li>
+                            {#                        <li>#}
+                            {#                            <a href="{% url 'demo_login' %}" class="btn btn-main btn-small btn-round text-light ms-5"#}
+                            {#                               style="text-transform: capitalize;">Демо-админ</a>#}
+                            {#                        </li>#}
+
                     {% endif %}
 
                     <!-- Search -->
