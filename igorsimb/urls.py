@@ -20,3 +20,6 @@ urlpatterns = [
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )
+
+admin.site.site_header = 'Админ-панель'
+admin.site.index_title = 'Администрирование сайта'
