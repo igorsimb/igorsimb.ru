@@ -1,9 +1,12 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
+from environs import Env
 
 from django.contrib.auth import login, authenticate, logout
-
 from store_users.forms import RegisterForm
+
+env = Env()
+env.read_env()
 
 
 def logout_view(request):
@@ -38,3 +41,9 @@ def registration_view(request):
 
     context = {'form': form}
     return render(request, 'users/register.html', context)
+
+
+def demo_user_login_view(request):
+    demo_user = authenticate(email=env('DEMO_ADMIN_LOGIN'), password=env('DEMO_ADMIN_PASSWORD'))
+    login(request, demo_user)
+    return redirect('index')

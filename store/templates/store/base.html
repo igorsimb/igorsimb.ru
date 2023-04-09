@@ -209,8 +209,16 @@
                     {% else %}
                         <li>
                             <a href="{% url 'login' %}" class="btn btn-main btn-small btn-round text-light ms-5"
-                               style="text-transform: capitalize;">Войти</a>
+                               style="text-transform: capitalize;">Войти</a> или
+                            <a href="{% url 'demo_login' %}" class="btn btn-main bg-success btn-small btn-round
+                            text-light"
+                               style="text-transform: capitalize;">Демо-админ</a>
+
                         </li>
+{#                        <li>#}
+{#                            <a href="{% url 'demo_login' %}" class="btn btn-main btn-small btn-round text-light ms-5"#}
+{#                               style="text-transform: capitalize;">Демо-админ</a>#}
+{#                        </li>#}
                     {% endif %}
 
                     <!-- Search -->

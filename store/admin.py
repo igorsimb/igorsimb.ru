@@ -1,9 +1,11 @@
 from django import forms
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from django.forms import ModelForm
 from django.utils.html import format_html
 from rangefilter.filters import DateRangeFilter
 
+from accounts.models import CustomUser
 from .models import Customer, Product, Order, OrderItem, ShippingAddress, ProductImage, Category, Carousel
 
 
@@ -163,8 +165,6 @@ class OrderAdmin(admin.ModelAdmin):
     search_help_text = "Имя или e-mail покупателя"
 
 
-
-
 class CarouselForm(ModelForm):
     def clean(self):
         cleaned_data = super(CarouselForm, self).clean()
@@ -194,7 +194,15 @@ class ShippingAddressAdmin(admin.ModelAdmin):
     list_display = ('address', 'customer', 'date_added')
 
 
-admin.site.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    # Hide superuser for non-superusers
+    def get_queryset(self, request):
+        if request.user.is_superuser:
+            return CustomUser.objects.all()
+        return CustomUser.objects.filter(is_superuser=False)
+
+
+admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Order, OrderAdmin)
