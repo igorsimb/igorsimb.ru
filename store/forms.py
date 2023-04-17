@@ -34,6 +34,7 @@ class OrderCreateForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
         'id': 'name',
+        'name': 'name',
     }))
     phone_number = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',

@@ -92,21 +92,22 @@ def cart(request):
     context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'store/cart.html', context)
 
-
 def checkout(request):
     data = cartData(request)
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
     form = OrderCreateForm()
-    customer, _ = Customer.objects.get_or_create(user=request.user.id)
+    if request.user.is_authenticated:
+        customer, _ = Customer.objects.get_or_create(user=request.user.id)
+        print(f"{customer=}")
 
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
         if form.is_valid() and cartItems > 0:
             name = form.cleaned_data.get('name')
             phone_number = form.cleaned_data.get('phone_number')
-            # email = form.cleaned_data.get('email')
+            email = form.cleaned_data.get('email')
             address = form.cleaned_data.get('address')
             zipcode = form.cleaned_data.get('zipcode')
             city = form.cleaned_data.get('city')
@@ -139,7 +140,7 @@ def checkout(request):
 
             order.save()
             return redirect('success')
-        messages.warning(request, 'Оформление не удалось. Возможно, ваша корзина пуста.')
+        # messages.warning(request, 'Оформление не удалось. Возможно, ваша корзина пуста.')
         return redirect('checkout')
 
     context = {'items': items, 'order': order, 'cartItems': cartItems, 'green': 'GREEN', 'form': form}
@@ -262,7 +263,7 @@ def updateItem(request):
 
     return JsonResponse('Item was added', safe=False)
 
-
+# @csrf_exempt
 def processOrder(request):
     data = json.loads(request.body)
 

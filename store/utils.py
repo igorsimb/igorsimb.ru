@@ -76,21 +76,21 @@ def guestOrder(request, data):
     """
 
     print('User is not logged in')
-    print(f"IGOR {request.user=}")
+    print(f"{request.user=}")
     print('COOKIES', request.COOKIES)
     name = data['form']['name']
-    print(f"IGOR {name=}")
+    print(f"{name=}")
     phone = data['form']['phone']
-    print(f"IGOR {phone=}")
+    print(f"{phone=}")
     email = data['form']['email']
-    print(f"IGOR {email=}")
+    print(f"{email=}")
 
     address = data['form']['address']
-    print(f"IGOR {address=}")
+    print(f"{address=}")
     zipcode = data['form']['zipcode']
-    print(f"IGOR {zipcode=}")
+    print(f"{zipcode=}")
     city = data['form']['city']
-    print(f"IGOR {city=}")
+    print(f"{city=}")
 
     cookieData = cookieCart(request)
     items = cookieData['items']

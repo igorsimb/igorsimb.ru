@@ -84,6 +84,7 @@
 
 
 <script>
+
       function formatPhoneNumber(value) {
         if (!value) return value;
         const phoneNumber = value.replace(/[^\d]/g, '');
@@ -108,17 +109,31 @@
     var shipping = '{{ order.shipping }}'
     var total = '{{ order.get_cart_total }}'
 
-    // Hide "Submit" button and appear "Make Payment" form
-    var form = document.getElementById('form')
+    function generateCSRFToken() {
+      let token = '';
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      const length = 32;
+      for (let i = 0; i < length; i++) {
+        token += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      return token;
+    }
 
-    csrftoken = form.getElementsByTagName('input')[0].value
-    console.log('Newtoken:', form.getElementsByTagName('input'[0].value))
+    {# generateCSRFToken() functions with these 3 lines if it stops working #}
+    {#var form = document.getElementById('form')#}
+    {#csrftoken = form.getElementsByTagName('input')[0].value#}
+    {#console.log('Newtoken:', form.getElementsByTagName('input'[0].value))#}
 
 
-    form.addEventListener('submit', function (e) {
-        e.preventDefault()
-        console.log('Form Submitted...')
-    })
+
+    csrftoken = generateCSRFToken()
+    console.log('Newtoken:', csrftoken)
+
+
+    {#form.addEventListener('submit', function (e) {#}
+    {#    e.preventDefault()#}
+    {#    console.log('Form Submitted...')#}
+    {#})#}
 
     document.getElementById('make-payment').addEventListener('click', function (e) {
         console.log("Make payment click by " + user)
@@ -127,7 +142,6 @@
 
     function submitFormData() {
         console.log('Payment button clicked')
-
 
         // setting up initial values for User and shipping info
         var userFormData = {
@@ -149,29 +163,40 @@
 
 
         if(user == 'AnonymousUser'){
-            console.log("USER IS: " + user)
+            console.log("USER: " + user)
             userFormData.name = form.name.value
-            userFormData.phone = form.phone.value
-            console.log("PHONE IS: " + userFormData.phone)
-            userFormData.email = form.email.value
+            userFormData.name = document.getElementById("name").value
+            console.log("NAME: " + userFormData.name)
+            {#userFormData.phone = form.phone.value#}
+            userFormData.phone = document.getElementById("phone").value
+            console.log("PHONE: " + userFormData.phone)
+            {#userFormData.email = form.email.value#}
+            userFormData.email = document.getElementById("email").value
+            console.log("EMAIL: " + userFormData.email)
 
-            userFormData.address = form.address.value
-            userFormData.zipcode = parseInt(form.zipcode.value)
-            userFormData.city = form.city.value
+            userFormData.address = document.getElementById("address").value
+            console.log("ADDRESS: " + userFormData.address)
 
-            shippingInfo.phone = form.phone.value
-            console.log("SHIPPING PHONE IS: " + shippingInfo.phone)
-            shippingInfo.address = form.address.value
-            shippingInfo.zipcode = form.zipcode.value
-            shippingInfo.city = form.city.value
+            {#userFormData.address = form.address.value#}
+            userFormData.zipcode = parseInt(document.getElementById("zipcode").value)
+            console.log("ZIPCODE: " + userFormData.zipcode)
+
+            userFormData.city = document.getElementById("city").value
+            console.log("CITY: " + userFormData.city)
+
+
+            shippingInfo.phone = document.getElementById("phone").value
+            shippingInfo.address = document.getElementById("address").value
+            shippingInfo.zipcode = document.getElementById("zipcode").value
+            shippingInfo.city = document.getElementById("city").value
         }
 
-        var url = '/process_order/'
+        var url = '/store/process-order/'
         fetch(url, {
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
-                'X-CSRFToken':csrftoken,
+                'X-CSRFToken': '{{ csrf_token }}',
             },
             body:JSON.stringify({'form':userFormData, 'shipping':shippingInfo}),
         })

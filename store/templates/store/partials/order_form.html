@@ -9,9 +9,9 @@
                 </div>
             {% endfor %}
           {% endif %}
-    {% if user.is_authenticated %}
-    <form method="POST" class="checkout-form">
+    <form method="POST" class="checkout-form" id="form">
         {% csrf_token %}
+    {% if user.is_authenticated %}
         <div class="form-group">
             <label for="name">ФИО <a title="Обязательно к заполнению">*</a></label>
             {{ form.name }}
@@ -72,8 +72,9 @@
 
 <script>
     function fillInfo() {
-        document.getElementById("name").value = "Админ"
+        document.getElementById("name").value = "Вася Пупкин"
         document.getElementById("phone").value = "(905) 123-45-67"
+        document.getElementById("email").value = "v.pupkin@gmail.com"
         document.getElementById("address").value = "Тест Адрес, дом 6, кв. 9"
         document.getElementById("zipcode").value = "55555"
         document.getElementById("city").value = "Sin City"
