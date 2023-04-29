@@ -20,3 +20,9 @@
 .letter-spacing-closer {
   letter-spacing: -0.5px;
 }
+
+.portfolio-img-thumbnail {
+    /*max-height: 380px;*/
+    /*max-width: 630px;*/
+    aspect-ratio: 1.08/1;
+}

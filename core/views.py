@@ -44,4 +44,8 @@ class IndexView(TemplateView):
 
 
 class Ez2TaskView(TemplateView):
-    template_name = 'core/projects/ez2task.html'
+    template_name = 'core/projects/ez2task_project.html'
+
+
+class StoreProjectView(TemplateView):
+    template_name = 'core/projects/store_project.html'

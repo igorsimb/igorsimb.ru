@@ -1,0 +1,132 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Igor Simbirtsev's Personal Portfolio Page{% endblock title %}
+
+{% block content %}
+
+    <main id="main1">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Tortiki Online Store</h2>
+                    <ol>
+                        <li><a href="{% url 'core:main' %}">Home</a></li>
+                        <li>Tortiki</li>
+                    </ol>
+                </div>
+
+            </div>
+        </section><!-- End Breadcrumbs -->
+
+        <!-- ======= Portfolio Details Section ======= -->
+        <section id="portfolio-details" class="portfolio-details">
+            <div class="container">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-8">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+
+                                <div class="swiper-slide">
+                                    <img src="{% static 'core/img/portfolio/tortiki/tortiki_logo.jpeg' %}" alt="">
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <img src="{% static 'core/img/portfolio/ez2task_screen1.png' %}" alt="">
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <img src="{% static 'core/img/portfolio/ez2task_screen2.png' %}" alt="">
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <img src="{% static 'core/img/portfolio/ez2task_screen3.png' %}" alt="">
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <img src="{% static 'core/img/portfolio/ez2task_screen4.png' %}" alt="">
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <img src="{% static 'core/img/portfolio/ez2task_screen5.png' %}" alt="">
+                                </div>
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="portfolio-info">
+                            <h3>Project information</h3>
+                            <ul>
+                                <li><strong>Name</strong>: Tortiki</li>
+                                <li><strong>Category</strong>: E-commerce</li>
+                                <li><strong>Project URL</strong>:
+                                    <a href="{% url 'index' %}" target="_blank">igorsimb.ru/store
+                                        <i class="bx bx-link-external small"></i>
+                                    </a>
+                                </li>
+                                <li><strong><i class="bx bxl-github"></i> Github</strong>: <a
+                                        href="https://github.com/igorsimb/igorsimb.ru/tree/master/store"
+                                        target="_blank">
+                                    github.com/igorsimb/igorsimb.ru/tree/master/store
+                                    <i class="bx bx-link-external small"></i>
+                                </a></li>
+                                <li><strong>Technologies</strong>:
+                                    Python, Django, HTML, CSS, JavaScript, Bootstrap 5, HTMX
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="portfolio-description">
+                        <h2>An e-commerce store</h2>
+                        <p>
+                            Demo-admin available. Demo-admin can view orders, users, addresses as well as add new
+                            items, categories, decide on popular items/categories that are featured on the main store
+                            page.
+                        </p>
+                        <p>
+                            A beautiful e-commerce application that cells delicious cakes. Main features
+                            include:
+                        </p>
+                        <ul>
+                            <li>Registration and authentication</li>
+                            <li>Unfinished orders are saved to cookies for unregistered users</li>
+                            <li>Demo-admin with access to its own admin-panel</li>
+                            <li>Demo-admin can manage all aspects of the store, including:
+                                <ul>
+                                    <li>View, edit and delete orders, items, categories</li>
+                                    <li>Manage carousel (i.e. choose items/categories and text for it)</li>
+                                    <li>Choose featured items/categories that are shown on the main store page</li>
+                                </ul>
+                            </li>
+                            <li>Shopping cart</li>
+                            <li>Search feature</li>
+                        </ul>
+
+                        <div class="d-flex justify-content-start align-items-center">
+                            <a class="btn btn-danger pill rounded-pill px-4 ms-1 me-0" href="{% url 'index' %}"
+                               role="button" title="ez2task.com" target="_blank">Visit Project</a>
+                            <a class="fs-1 ms-3 link-dark" href="https://github.com/igorsimb/igorsimb.ru/tree/master/store"
+                               style='color:#000' title="github.com/igorsimb/ez2task" target="_blank">
+                                <i class="bx bxl-github fs-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Portfolio Details Section -->
+
+    </main>
+
+    {% include "core/partials/footer.html" %}
+
+{% endblock content %}

@@ -31,7 +31,7 @@ DEBUG = env.bool('DJANGO_DEBUG', default=False)
 DEPLOYED = env.bool('DEPLOYED', default=True)
 LOCAL_DEVELOPMENT = env.bool('LOCAL_DEVELOPMENT', default=False)
 
-ALLOWED_HOSTS = ['igorsimb.ru', 'www.igorsimb.ru', 'localhost']
+ALLOWED_HOSTS = ['igorsimb.ru', 'www.igorsimb.ru', 'localhost', '127.0.0.1']
 
 
 # Application definition
