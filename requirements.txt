@@ -2,6 +2,7 @@ asgiref==3.8.1
 certifi==2024.8.30
 cffi==1.17.1
 charset-normalizer==3.4.0
+colorclass==2.2.2
 crispy-bootstrap5==2024.10
 cryptography==43.0.1
 defusedxml==0.7.1
@@ -17,6 +18,7 @@ django-extensions==3.2.3
 django-mathfilters==1.0.0
 django-quill-editor==0.1.42
 django-widget-tweaks==1.5.0
+docopt==0.6.2
 environs==11.0.0
 gunicorn==23.0.0
 idna==3.10
@@ -24,7 +26,8 @@ MarkupSafe==3.0.1
 marshmallow==3.22.0
 oauthlib==3.2.2
 packaging==24.1
-Pillow==10.4.0
+pillow==10.4.0
+pip-upgrader==1.4.15
 psycopg2-binary==2.9.9
 pycparser==2.22
 PyJWT==2.9.0
@@ -36,6 +39,7 @@ requests==2.32.3
 requests-oauthlib==2.0.0
 setuptools==75.1.0
 sqlparse==0.5.1
+terminaltables==3.1.10
 typing_extensions==4.12.2
 tzdata==2024.2
 urllib3==2.2.3
