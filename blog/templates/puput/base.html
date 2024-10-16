@@ -1,0 +1,210 @@
+{% load static i18n wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags wagtailuserbar puput_tags %}
+{#{% url 'entry_page_serve_slug' blog_page.year blog_page.month blog_page.slug as blog_entry_page_url %}#}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>
+        {% block title %}
+            {{ blog_page.title }}{% if blog_page.description %} | {{ blog_page.description }}{% endif %}
+        {% endblock title %}
+    </title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="title" content="
+            {% block meta_title %}{% if blog_page.seo_title %}{{ blog_page.seo_title }}{% else %}{{ blog_page.title }}{% endif %}{% endblock meta_title %}"/>
+    <meta name="description"
+          content="{% block meta_description %}{{ blog_page.search_description }}{% endblock meta_description %}"/>
+    {% block social_share %}{% endblock social_share %}
+    <link rel="canonical" href="{% block canonical %}{% canonical_url %}{% endblock canonical %}"/>
+
+
+    <link href="{% static 'core/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+
+    {% block css %}
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+              rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'puput/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'puput/css/puput.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/custom_blog.css' %}"/>
+
+        <style>
+            :root {
+                --main-color: {{blog_page.main_color}};
+            }
+
+            body {
+                font-family: "Open Sans", sans-serif;
+            }
+
+            .custom_sidebar {
+                height: 100vh;
+                width: 300px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                padding-top: 20px;
+                background: #040b14;
+                overflow-y: auto;
+            }
+
+            .main-content {
+                margin-left: 300px;
+            }
+
+            .blog-header {
+                background: var(--main-color);
+                padding: 20px 0;
+                color: white;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+<nav class="custom_sidebar d-flex flex-column align-items-center">
+    <div class="d-flex flex-column align-items-center">
+        {% if blog_page.header_image %}
+            {% image blog_page.header_image fill-150x150 as header_image %}
+            <img src="{{ header_image.url }}" alt="{{ blog_page.header_image.title }}"
+                 class="img-fluid rounded-circle mb-3">
+        {% endif %}
+        <h1 class="text-light"><a href="{% pageurl blog_page %}" class="text-decoration-none">{{ blog_page.title }}</a>
+        </h1>
+        <div class="social-links mt-3 text-center">
+            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+        </div>
+    </div>
+
+    <nav class="nav-menu mt-auto">
+        <ul class="nav flex-column">
+            <li><a href="{% url 'core:main' %}" class="nav-link scrollto active">
+                <i class="bx bx-home"></i> <span>Home</span></a>
+            </li>
+            <li class="nav-item"><a class="nav-link scrollto" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link scrollto" href="#categories">Categories</a></li>
+            <li class="nav-item"><a class="nav-link scrollto" href="#tags">Tags</a></li>
+            <li class="nav-item"><a class="nav-link scrollto" href="#archive">Archive</a></li>
+        </ul>
+    </nav>
+</nav>
+
+<main class="main-content">
+    {% wagtailuserbar %}
+
+    {#        <header class="blog-header text-center">#}
+    {#            <div class="container">#}
+    {#                <h1 class="blog-title">{{ blog_page.title }} remove me!</h1>#}
+    {#                {% if blog_page.description %}#}
+    {#                    <p class="lead">{{ blog_page.description }}</p>#}
+    {#                {% endif %}#}
+    {#            </div>#}
+    {#        </header>#}
+
+    <div class="container mt-4">
+        <div class="row">
+            {% if request.path == "/blog/" %}
+                <div class="col-lg-8"> {# leaves room for side panel on the main blog page #}
+            {% else %}
+                <div class="col-lg-12">
+            {% endif %}
+            {% block content %}{% endblock content %}
+            {% block extra_content %}{% endblock extra_content %}
+            </div>
+
+            {# SIDE PANEL START #}
+
+            {% if request.path == "/blog/" %} {# only show side panel on the main blog page #}
+                <div class="col-lg-4">
+                    <div class="blog_sidebar">
+                        <div class="mb-4">
+                            <a href="{% feeds_url blog_page %}" target="_blank" class="btn btn-outline-primary"
+                               title="RSS">
+                                <i class="fa fa-rss-square"></i> {% trans 'Feed RSS' %}
+                            </a>
+                        </div>
+
+                        <form name="search_form" class="mb-4" method="get"
+                              action="{% routablepageurl blog_page 'entries_search' %}">
+                            <div class="input-group">
+                                <input type="search" name="q" class="form-control" placeholder="{% trans 'Search' %}">
+                                <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+
+                        {% if blog_page.display_last_entries %}
+                            <div class="card mb-4">
+                                <div class="card-header">{% trans 'Last Entries' %}</div>
+                                <div class="card-body">
+                                    <ul class="sidebar bg-transparent border-0 p-0 m-0">
+                                        {% recent_entries blog_page.num_last_entries %}
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if blog_page.display_popular_entries %}
+                            <div class="card mb-4">
+                                <div class="card-header">{% trans 'Popular Entries' %}</div>
+                                <div class="card-body">
+                                    <ul class="sidebar bg-transparent border-0 p-0 m-0">
+                                        {% popular_entries blog_page.num_popular_entries %}
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if blog_page.display_categories %}
+                            <div class="card mb-4">
+                                <div class="card-header">{% trans 'Categories' %}</div>
+                                <div class="card-body">
+                                    <ul class="sidebar bg-transparent border-0 p-0 m-0">
+                                        {% categories_list %}
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if blog_page.display_tags %}
+                            <div class="card mb-4">
+                                <div class="card-header">{% trans 'Tags' %}</div>
+                                <div class="card-body">
+                                    <ul class="sidebar bg-transparent border-0 p-0 m-0">
+                                        {% tags_list %}
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if blog_page.display_archive %}
+                            <div class="card mb-4">
+                                <div class="card-header">{% trans 'Archive' %}</div>
+                                <div class="card-body">
+                                    {% archives_list %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {# SIDE PANEL END #}
+
+            </div>
+        </div>
+
+        {#        <footer class="bg-light text-center text-lg-start mt-4">#}
+        {#            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">#}
+        {#                Powered by#}
+        {#                <a href="http://www.djangoproject.com" class="text-dark" rel="nofollow">Django</a>,#}
+        {#                <a href="http://www.wagtail.io" class="text-dark" rel="nofollow">Wagtail</a> and#}
+        {#                <a href="http://github.com/APSL/puput" class="text-dark" rel="nofollow">Puput</a>#}
+        {#            </div>#}
+        {#        </footer>#}
+</main>
+
+{% block js %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'puput/js/jquery.min.js' %}"></script>
+    <script src="{% static 'puput/js/puput.js' %}"></script>
+{% endblock js %}
+</body>
+</html>

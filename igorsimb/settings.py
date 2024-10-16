@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "rangefilter",
     # Local
+    "blog",
     "core.apps.CoreConfig",
     "accounts.apps.AccountsConfig",
     "store",
