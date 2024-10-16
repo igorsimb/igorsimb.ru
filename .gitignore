@@ -2,6 +2,7 @@
 .idea
 .git
 /.template/
+/media/
 .igorsimb_ru
 .env
 db.sqlite3

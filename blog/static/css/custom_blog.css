@@ -1,0 +1,95 @@
+/*li.tag a {*/
+/*    color: red;*/
+/*    background-color: yellow;*/
+/*}*/
+
+ul.links {
+    margin: 0px 0 25px 0;
+    border-bottom: 0;
+    padding: 5px 0;
+}
+
+ul.links li {
+    font-size: 12px;
+    margin-right: 13px;
+    font-weight: 300;
+    color: #666666;
+    display: inline-block;
+}
+
+ul.links li i {
+    color: var(--main-color);
+}
+
+ul.links li a {
+    color: #666666;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+ul.links li ul {
+    display: inline;
+    padding: 0;
+}
+
+ul.sidebar li {
+    margin: 0 4px 10px 0;
+    list-style: none;
+}
+
+ul.sidebar li.tag {
+    display: inline-block;
+    background-color: var(--main-color);
+    padding: 1px 10px 3px 10px;
+    font-weight: bold;
+}
+
+ul.sidebar li.tag a {
+    color: #FFF;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+ul.sidebar li a {
+    font-size: 14px;
+    font-weight: 400;
+    color: #3e3e3e;
+    text-decoration: none;
+}
+
+ul.sidebar ul li i {
+    color: var(--main-color);
+}
+
+ul.sidebar li > ul {
+    padding-left: 0;
+}
+
+ul.sidebar ul li > ul li {
+    padding-left: 20px;
+}
+
+.page-content h2.post_title a {
+    text-decoration: none;
+}
+
+.page-content,
+.blog_grid {
+    background: #fff; /* background color for the blog post container */
+    border: 1px solid #e5e5e5;
+}
+
+
+.blog_grid .article .social-share:after {
+    background: transparent; /* removes the ugly line above the blog title on main page  */
+}
+
+.page-content .social-share-all:before {
+    background: transparent; /* removes the ugly line above the blog title on entry_page.html  */
+}
+
+
+.blog_grid h2 {
+    text-align: center;
+    margin-top: 10px;
+}
