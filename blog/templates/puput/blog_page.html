@@ -51,14 +51,16 @@
         {% endif %}
         {% for entry in entries %}
             {% entry_url entry blog_page as post_url %}
-            <article class="box page-content blog_grid">
+            <article class="box page-content blog_grid shadow shadow-sm">
                 {% include 'puput/entry_page_header.html' %}
                 <section>
                     {% if entry.header_image %}
+                        <a href="{{ post_url }}">
                         <span class="img-responsive">
                             {% image entry.header_image fill-800x240 as header_image %}
                             <img alt="{{ entry.header_image.title }}" src="{{ header_image.url }}">
                         </span>
+                        </a>
                     {% endif %}
                     {% include 'puput/entry_links.html' %}
                 </section>

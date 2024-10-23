@@ -42,7 +42,7 @@
 {% endblock social_share %}
 
 {% block content %}
-    <article class="box page-content"
+    <article class="box page-content shadow shadow-sm"
              {% if self.id %}data-entry-page-update-comments-url="{% url 'entry_page_update_comments' self.id %}{% endif %}">
         {% include 'puput/entry_page_header.html' with entry=self %}
         <section>

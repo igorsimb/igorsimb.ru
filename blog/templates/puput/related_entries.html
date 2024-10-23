@@ -10,13 +10,15 @@
                 {% for related_entry in entry.related|slice:':4' %}
                     <div class="col-md-3">
                         <section class="box feature">
-                            <div class="image-related">
-                                {% image related_entry.header_image fill-800x240 as header_image %}
-                                <img alt="{{ related_entry.header_image.title }}" src="{{ header_image.url }}">
-                            </div>
-                            <h3>
-                                <a href="{% entry_url related_entry blog_page %}">{{ related_entry.title }}</a>
-                            </h3>
+                            <a href="{% entry_url related_entry blog_page %}">
+                                <div class="image-related">
+                                    {% image related_entry.header_image fill-800x240 as header_image %}
+                                    <img alt="{{ related_entry.header_image.title }}" src="{{ header_image.url }}">
+                                </div>
+                                <h3>
+                                    {{ related_entry.title }}
+                                </h3>
+                            </a>
                             <p>
                                 {{ related_entry.body|richtext|truncatewords:10 }}
                             </p>
