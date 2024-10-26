@@ -39,10 +39,16 @@ ul.sidebar li {
 
 ul.sidebar li.tag {
     display: inline-block;
-    background-color: var(--main-color);
+    background-color: var(--bs-secondary);
     padding: 1px 10px 3px 10px;
     font-weight: bold;
+    border-radius: 3px;
 }
+
+ul.sidebar li.tag:hover {
+    background-color: rgba(33, 37, 41, 1); /* --bs-secondary-color with changed alpha from 0.75 to 1 */
+}
+
 
 ul.sidebar li.tag a {
     color: #FFF;
