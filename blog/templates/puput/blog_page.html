@@ -72,11 +72,11 @@
                     {% endif %}
                     <div class="row">
                         {% canonical_url entry as share_url %}
-                        <ul class="social-share col-md-9">
+                        <ul class="social-share col-md-8">
                             {% include 'puput/share_links.html' with share_url=share_url entry=entry only %}
                         </ul>
-                        <div class="col-md-3">
-                            <a class="blog_btn continue" href="{{ post_url }}">{% trans 'Continue reading' %} &raquo;</a>
+                        <div class="col-md-4">
+                            <a class="blog_btn continue" href="{{ post_url }}" >{% trans 'Continue reading' %} &raquo;</a>
                         </div>
                     </div>
                 </section>
