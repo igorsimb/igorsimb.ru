@@ -8,10 +8,10 @@
     <div class="d-flex flex-column">
 
         <div class="profile">
-            <a href="#hero" class="nav-link scrollto">
+            <a href="{% url 'core:main' %}#hero" class="nav-link scrollto">
                 <img src="{% static 'core/img/profile-img.jpg' %}" alt="" class="img-fluid rounded-circle">
             </a>
-            <h1 class="text-light"><a href="#hero" class="nav-link scrollto">Igor Simbirtsev</a></h1>
+            <h1 class="text-light"><a href="{% url 'core:main' %}#hero" class="nav-link scrollto">Igor Simbirtsev</a></h1>
             <div class="social-links mt-3 text-center">
                 <a href="https://github.com/igorsimb" class="github" target="_blank">
                     <i class="bx bxl-github"></i>
@@ -27,17 +27,17 @@
 
         <nav id="navbar" class="nav-menu navbar">
             <ul>
-                <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a>
+                <li><a href="{% url 'core:main' %}#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a>
                 </li>
-                <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-                <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-wrench"></i>
+                <li><a href="{% url 'core:main' %}#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+                <li><a href="{% url 'core:main' %}#skills" class="nav-link scrollto"><i class="bx bx-wrench"></i>
                     <span>Skills</span></a>
                 </li>
-                <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i>
+                <li><a href="{% url 'core:main' %}#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i>
                     <span>Portfolio</span></a></li>
 {#                <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a>#}
 {#                </li>#}
-                <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a>
+                <li><a href="{% url 'core:main' %}#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a>
                 </li>
             </ul>
         </nav><!-- .nav-menu -->
