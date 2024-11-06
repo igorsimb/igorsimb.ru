@@ -99,3 +99,13 @@ ul.sidebar ul li > ul li {
     text-align: center;
     margin-top: 10px;
 }
+
+.codehilite {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: Consolas, Monaco, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
