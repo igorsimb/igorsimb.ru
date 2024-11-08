@@ -7,6 +7,34 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
 
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) {
+                    return;
+                }
+            }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(98862332, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/98862332" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -205,9 +233,9 @@
                             <li>
                                 <span class="fs-3">{{ request.user }}</span>
                                 <a class="fs-5" href="{% url 'admin:index' %}" target="_blank">(Админ-панель
-                            <i class="fs-5 text-muted tf-ion-android-open"></i>
-                            </a>|
-                            <a class="fs-5" href="{% url 'logout' %}">Выйти)</a>
+                                    <i class="fs-5 text-muted tf-ion-android-open"></i>
+                                </a>|
+                                <a class="fs-5" href="{% url 'logout' %}">Выйти)</a>
                             </li>
                         {% else %}
                             <li>
@@ -216,19 +244,19 @@
                             </li>
                         {% endif %}
 
-                        {% else %}
-                            <li>
-                                <a href="{% url 'login' %}" class="btn btn-main btn-small btn-round text-light ms-5"
-                                   style="text-transform: capitalize;">Войти</a> или
-                                <a href="{% url 'demo_login' %}" class="btn btn-main bg-success btn-small btn-round
+                    {% else %}
+                        <li>
+                            <a href="{% url 'login' %}" class="btn btn-main btn-small btn-round text-light ms-5"
+                               style="text-transform: capitalize;">Войти</a> или
+                            <a href="{% url 'demo_login' %}" class="btn btn-main bg-success btn-small btn-round
                             text-light"
-                                   style="text-transform: capitalize;">Демо-админ</a>
+                               style="text-transform: capitalize;">Демо-админ</a>
 
-                            </li>
-                            {#                        <li>#}
-                            {#                            <a href="{% url 'demo_login' %}" class="btn btn-main btn-small btn-round text-light ms-5"#}
-                            {#                               style="text-transform: capitalize;">Демо-админ</a>#}
-                            {#                        </li>#}
+                        </li>
+                        {#                        <li>#}
+                        {#                            <a href="{% url 'demo_login' %}" class="btn btn-main btn-small btn-round text-light ms-5"#}
+                        {#                               style="text-transform: capitalize;">Демо-админ</a>#}
+                        {#                        </li>#}
 
                     {% endif %}
 
