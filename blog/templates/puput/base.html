@@ -13,6 +13,7 @@
 
 
 
+
             {% block meta_title %}{% if blog_page.seo_title %}{{ blog_page.seo_title }}{% else %}{{ blog_page.title }}{% endif %}{% endblock meta_title %}"/>
     <meta name="description"
           content="{% block meta_description %}{{ blog_page.search_description }}{% endblock meta_description %}"/>
@@ -49,6 +50,10 @@
 
 
     <link href="{% static 'core/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link href="{% static 'core/img/favicon.ico' %}" rel="icon">
+    <link href="{% static 'core/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
     {% block css %}
         <!-- Bootstrap icons -->
