@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+
+from django.utils.translation import gettext_lazy as _
 from environs import Env
 from puput import PUPUT_APPS
 
@@ -135,6 +137,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "ru-RU"
 
+LANGUAGES = [
+    ("ru", _("Russian")),
+    ("en", _("English")),
+]
+
 TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
@@ -143,6 +150,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = (BASE_DIR / "locale/",)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

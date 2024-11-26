@@ -1,20 +1,23 @@
 {% extends "core/base.html" %}
+{% load i18n %}
 {% load widget_tweaks %}
 
-{% block title %}Log In{% endblock title %}
+{% block title %}{% translate "Log In" %}{% endblock title %}
 
 {% block content %}
-    <h2>Log In</h2>
+    <h2>{% translate "Log In" %}</h2>
     <form method="POST">
         {% csrf_token %}
         <div class="form-floating mb-3">
             {% render_field form.login class="form-control" id="floatingEmail" %}
-            <label for="floatingEmail">Email address</label>
+            {# Translators: Label for floaitng email field #}
+            <label for="floatingEmail">{% translate "Email address" %}</label>
         </div>
         <div class="form-floating mb-3">
             {% render_field form.password class="form-control" id="floatingPassword" %}
-            <label for="floatingPassword">Password</label>
+            <label for="floatingPassword">{% translate "Password" %}</label>
         </div>
-        <button type="submit" class="btn btn-success">Log in</button>
+        {# Translators: Label for Log in button #}
+        <button type="submit" class="btn btn-success">{% translate "Log in" %}</button>
     </form>
 {% endblock content %}

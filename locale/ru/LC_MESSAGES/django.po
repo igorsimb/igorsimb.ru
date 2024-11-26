@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
+# Translation for igorsimb.ru website.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# FIRST AUTHOR <igor@igorsimb.ru>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-02 11:53+0300\n"
+"POT-Creation-Date: 2024-11-26 19:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,13 +16,556 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
-#: .\core\templates\core\index.html:14
-msgid "This is a text to translate"
-msgstr "Это текст на перевод"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+#: .\accounts\models.py:8 .\core\forms.py:7
+msgid "Email"
+msgstr "Email"
 
-#: .\core\views.py:13
-msgid "Hello"
-msgstr "Здрасьте"
+#: .\accounts\templates\account\login.html:5
+#: .\accounts\templates\account\login.html:8
+msgid "Log In"
+msgstr "Войти"
+
+#. Translators: Label for floaitng email field
+#: .\accounts\templates\account\login.html:14
+#: .\accounts\templates\account\signup.html:14
+msgid "Email address"
+msgstr "Адрес Email"
+
+#: .\accounts\templates\account\login.html:18
+#: .\accounts\templates\account\signup.html:18
+msgid "Password"
+msgstr "Пароль"
+
+#. Translators: Label for Log in button
+#: .\accounts\templates\account\login.html:21
+msgid "Log in"
+msgstr "Войти"
+
+#. Translators: Button text to log out
+#: .\accounts\templates\account\logout.html:3
+#: .\accounts\templates\account\logout.html:11
+msgid "Log Out"
+msgstr "Выйти"
+
+#: .\accounts\templates\account\signup.html:5
+msgid "Sign Up"
+msgstr "Регистрация"
+
+#: .\accounts\templates\account\signup.html:22
+msgid "Password (again)"
+msgstr "Пароль (повторно)"
+
+#. Translators: Label for Sign up button
+#: .\accounts\templates\account\signup.html:25
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
+#: .\core\forms.py:6 .\core\templates\core\projects\ez2task_project.html:69
+#: .\core\templates\core\projects\mp_monitor_project.html:60
+#: .\core\templates\core\projects\store_project.html:82
+msgid "Name"
+msgstr "Имя"
+
+#: .\core\forms.py:8 .\core\templates\core\partials\contact.html:68
+msgid "Subject"
+msgstr "Тема"
+
+#: .\core\forms.py:9 .\core\templates\core\partials\contact.html:72
+msgid "Message"
+msgstr "Сообщение"
+
+#: .\core\templates\core\index.html:4
+msgid "Igor Simbirtsev's Personal Portfolio Page"
+msgstr "Персональная страница портфолио Игоря Симбирцева"
+
+#: .\core\templates\core\partials\about.html:9
+msgid "I'm Igor Simbirtsev, a Full Stack Web Developer"
+msgstr "Я Игорь Симбирцев, Full Stack веб-разработчик"
+
+#: .\core\templates\core\partials\about.html:10
+msgid ""
+"I am a web developer based in Russia and I build websites to help bring "
+"companies' ideas to life. With many years of experience working in startups, "
+"I help convert a vision and an idea into meaningful and useful software "
+"products. Having the ability to transform requirements into useful "
+"applications helps me prioritize tasks, iterate fast and deliver faster. "
+"Let's see if we can work together on your next project."
+msgstr ""
+"Я веб-разработчик из России, создаю сайты, чтобы воплощать идеи компаний в жизнь. "
+"Многолетний опыт работы в стартапах позволяет мне превращать видение и идеи "
+"в полезные и значимые программные продукты. Умение преобразовывать требования "
+"в полезные приложения помогает мне расставлять приоритеты, быстро итеративно "
+"работать и поставлять решения быстрее. Давайте посмотрим, сможем ли мы "
+"поработать вместе над вашим проектом."
+
+#: .\core\templates\core\partials\about.html:18
+msgid "Backend &amp; Full Stack Django Developer."
+msgstr "Backend и Full Stack разработчик на Django."
+
+#: .\core\templates\core\partials\about.html:20
+msgid ""
+"I use Django Rest Framework for creating backend APIs. For full stack "
+"appliations I utilize libraries like <strong>HTMX</strong> and "
+"<strong>AlpineJS</strong> to make websites fast and interactive."
+msgstr ""
+"Я использую Django Rest Framework для создания API для бэкенда. Для "
+"разработки Full Stack приложений я применяю библиотеки такие как "
+"<strong>HTMX</strong> и <strong>AlpineJS</strong>, чтобы сделать сайты быстрыми и интерактивными."
+
+#: .\core\templates\core\partials\about.html:26
+msgid "Name:"
+msgstr "Имя"
+
+#. Translators: Hero section's main text
+#: .\core\templates\core\partials\about.html:26
+#: .\core\templates\core\partials\header.html:15
+#: .\core\templates\core\partials\hero.html:7
+msgid "Igor Simbirtsev"
+msgstr "Игорь Симбирцев"
+
+#: .\core\templates\core\partials\about.html:29
+msgid "Age:"
+msgstr "Возраст:"
+
+#: .\core\templates\core\partials\about.html:35
+msgid "City:"
+msgstr "Город:"
+
+#: .\core\templates\core\partials\about.html:35
+#: .\core\templates\core\partials\contact.html:20
+msgid "Moscow, Russia"
+msgstr "Москва, Россия"
+
+#: .\core\templates\core\partials\about.html:42
+#: .\core\templates\core\partials\contact.html:29
+msgid "Reveal"
+msgstr "Показать"
+
+#: .\core\templates\core\partials\about.html:45
+#: .\core\templates\core\partials\contact.html:32
+msgid "Will open in a new tab"
+msgstr "Откроется в новой вкладке"
+
+#: .\core\templates\core\partials\contact.html:9
+#: .\core\templates\core\partials\header.html:45
+msgid "Contact"
+msgstr "Контакты"
+
+#: .\core\templates\core\partials\contact.html:10
+msgid "Feel free to contact me any time"
+msgstr "Свяжитесь со мной в любое время"
+
+#: .\core\templates\core\partials\contact.html:19
+msgid "Location:"
+msgstr "Расположение:"
+
+#: .\core\templates\core\partials\contact.html:25
+msgid "Email:"
+msgstr "Email:"
+
+#. Translators: Label for Contact form's Name field
+#: .\core\templates\core\partials\contact.html:58
+msgid "Your Name"
+msgstr "Ваше имя"
+
+#: .\core\templates\core\partials\contact.html:63
+msgid "Your Email"
+msgstr "Ваш Email"
+
+#: .\core\templates\core\partials\contact.html:78
+msgid "Your message has been sent. Thank you!"
+msgstr "Ваше сообщение отправлено. Спасибо!"
+
+#: .\core\templates\core\partials\contact.html:81
+msgid "Send Message"
+msgstr "Отправить сообщение"
+
+#. Translators: main nav menu's Home link
+#: .\core\templates\core\partials\header.html:33
+#: .\core\templates\core\projects\ez2task_project.html:18
+#: .\core\templates\core\projects\mp_monitor_project.html:18
+#: .\core\templates\core\projects\store_project.html:18
+msgid "Home"
+msgstr "Главная"
+
+#: .\core\templates\core\partials\header.html:36
+msgid "About"
+msgstr "Обо мне"
+
+#: .\core\templates\core\partials\header.html:38
+#: .\core\templates\core\partials\skills.html:7
+msgid "Skills"
+msgstr "Навыки"
+
+#: .\core\templates\core\partials\header.html:41
+#: .\core\templates\core\partials\portfolio.html:8
+msgid "Portfolio"
+msgstr "Портфолио"
+
+#: .\core\templates\core\partials\header.html:48
+msgid "Blog"
+msgstr "Блог"
+
+#: .\core\templates\core\partials\hero.html:8
+msgid "I'm a"
+msgstr "Я"
+
+#: .\core\templates\core\partials\hero.html:9
+msgid "Django Developer, Python Programmer"
+msgstr "разработчик Django, программист на Python"
+
+#: .\core\templates\core\partials\portfolio.html:9
+msgid ""
+"Showcasing complete functional projects demonstrates what I can bring to the "
+"table. I built these project from the ground up to demonstrate my skills in "
+"front-end, back-end, security, and database development. Contact me to get a "
+"complete code walkthrough. Also, check out my"
+msgstr ""
+"Демонстрация завершенных функциональных проектов показывает, что я могу "
+"предложить. Я создал эти проекты с нуля, чтобы продемонстрировать свои навыки "
+"во фронтенд-, бэкенд-разработке, безопасности и работе с базами данных. "
+"Свяжитесь со мной, чтобы получить полный разбор кода. Также загляните на мою"
+
+#: .\core\templates\core\partials\portfolio.html:11
+msgid "github page"
+msgstr "страницу на GitHub"
+
+#: .\core\templates\core\partials\portfolio.html:11
+msgid "to see more projects."
+msgstr "чтобы увидеть больше проектов."
+
+#. Translators: Portfolio section's title on the link to MP Monitor project page
+#: .\core\templates\core\partials\portfolio.html:34
+#: .\core\templates\core\partials\portfolio.html:45
+#: .\core\templates\core\partials\portfolio.html:57
+msgid "More Details"
+msgstr "Подробнее"
+
+#: .\core\templates\core\partials\skills.html:9
+msgid ""
+"I am a creative problem solver. I use Python, Django, SQL, Bootstrap, HTML, "
+"CSS and JavaScript. I have highlighted my key technical skills that I will "
+"bring to your project"
+msgstr ""
+"Я творчески подхожу к решению проблем. Я использую Python, Django, SQL, "
+"Bootstrap, HTML, CSS и JavaScript. Я выделил свои ключевые технические навыки, "
+"которые могу применить в вашем проекте."
+
+#: .\core\templates\core\partials\skills_list.html:15
+msgid "Python logo"
+msgstr "Логотип Python"
+
+#: .\core\templates\core\partials\skills_list.html:20
+msgid "Python Development"
+msgstr "Разработка на Python"
+
+#: .\core\templates\core\partials\skills_list.html:22
+msgid ""
+"I use Python on a daily basis to build websites. You can see examples of my "
+"work implementing Python in my projects section."
+msgstr ""
+"Я ежедневно использую Python для создания веб-сайтов. Вы можете увидеть "
+"примеры моей работы с Python в разделе проектов."
+
+#: .\core\templates\core\partials\skills_list.html:35
+msgid "Django logo"
+msgstr "Логотип Django"
+
+#: .\core\templates\core\partials\skills_list.html:40
+msgid "Django Full Stack Web Development"
+msgstr "Full Stack разработка на Django"
+
+#: .\core\templates\core\partials\skills_list.html:42
+msgid ""
+"I use one of the most popular and versatile frameworks to build websites. "
+"Django and MVC fit the bill for most projects. Visit my projects to see "
+"examples."
+msgstr ""
+"Я использую одну из самых популярных и универсальных платформ для создания "
+"веб-сайтов. Django и MVC подходят для большинства проектов. Посетите мои проекты, "
+"чтобы увидеть примеры."
+
+#: .\core\templates\core\partials\skills_list.html:55
+msgid "Front End logo"
+msgstr "Логотип Front End"
+
+#: .\core\templates\core\partials\skills_list.html:60
+msgid "Front End Development"
+msgstr "Разработка фронтенда"
+
+#: .\core\templates\core\partials\skills_list.html:62
+msgid ""
+"I use HTML, CSS and JavaScript to build attractive frontends for websites."
+msgstr ""
+"Я использую HTML, CSS и JavaScript для создания привлекательных интерфейсов для веб-сайтов."
+
+#: .\core\templates\core\partials\skills_list.html:75
+msgid "Bootstrap logo"
+msgstr "Логотип Bootstrap"
+
+#: .\core\templates\core\partials\skills_list.html:80
+msgid "Bootstrap Front End Design"
+msgstr "Дизайн фронтенда с использованием Bootstrap"
+
+#: .\core\templates\core\partials\skills_list.html:82
+msgid ""
+"The look and feel are very important elements to any project. I utilize "
+"Bootstrap 5 to bring an attractive design to your web projects."
+msgstr ""
+"Внешний вид и дизайн — это важные элементы любого проекта. Я использую "
+"Bootstrap 5 для создания привлекательного дизайна ваших веб-проектов."
+
+#: .\core\templates\core\partials\skills_list.html:95
+msgid "SQL logo"
+msgstr "Логотип SQL"
+
+#: .\core\templates\core\partials\skills_list.html:100
+msgid "Database Development"
+msgstr "Разработка баз данных"
+
+#: .\core\templates\core\partials\skills_list.html:102
+msgid ""
+"Database development is critical to most project. I am well versed in SQL "
+"development from queries to design."
+msgstr ""
+"Разработка баз данных — это ключевой элемент большинства проектов. Я хорошо "
+"знаком с SQL-разработкой, от запросов до проектирования."
+
+#: .\core\templates\core\partials\skills_list.html:115
+msgid "Docker logo"
+msgstr "Логотип Docker"
+
+#: .\core\templates\core\partials\skills_list.html:120
+msgid "Safer, faster development"
+msgstr "Более безопасная и быстрая разработка"
+
+#: .\core\templates\core\partials\skills_list.html:122
+msgid ""
+"When working as a part of a team, safety and speed are crucial. Docker helps "
+"smooth out this process."
+msgstr ""
+"При работе в команде безопасность и скорость имеют решающее значение. Docker "
+"помогает упростить этот процесс."
+
+#: .\core\templates\core\projects\ez2task_project.html:5
+msgid "EZ2Task Project"
+msgstr "Проект EZ2Task"
+
+#: .\core\templates\core\projects\ez2task_project.html:67
+#: .\core\templates\core\projects\store_project.html:80
+msgid "Project information"
+msgstr "Информация о проекте"
+
+#: .\core\templates\core\projects\ez2task_project.html:70
+#: .\core\templates\core\projects\mp_monitor_project.html:61
+#: .\core\templates\core\projects\store_project.html:83
+msgid "Category"
+msgstr "Категория"
+
+#: .\core\templates\core\projects\ez2task_project.html:70
+msgid "Task management"
+msgstr "Управление задачами"
+
+#: .\core\templates\core\projects\ez2task_project.html:71
+#: .\core\templates\core\projects\mp_monitor_project.html:62
+msgid "Project URL"
+msgstr "URL проекта"
+
+#: .\core\templates\core\projects\ez2task_project.html:76
+msgid ""
+"Note that project is hosted on a free service, so it make take around 15-30 "
+"seconds to spin up on the first load"
+msgstr ""
+"Обратите внимание, что проект размещён на бесплатном сервисе, поэтому его "
+"загрузка может занять 15-30 секунд при первом запуске."
+
+#: .\core\templates\core\projects\ez2task_project.html:83
+#: .\core\templates\core\projects\mp_monitor_project.html:73
+#: .\core\templates\core\projects\store_project.html:95
+msgid "Technologies"
+msgstr "Технологии"
+
+#: .\core\templates\core\projects\ez2task_project.html:89
+msgid "Task and project management app"
+msgstr "Приложение для управления задачами и проектами"
+
+#: .\core\templates\core\projects\ez2task_project.html:91
+msgid ""
+"It supports one as well as groups of users working on the same projects. "
+"Users can also have different access levels."
+msgstr ""
+"Приложение поддерживает как одного пользователя, так и группы, работающие над "
+"одними и теми же проектами. Пользователи могут иметь разные уровни доступа."
+
+#: .\core\templates\core\projects\ez2task_project.html:94
+msgid ""
+"Application is used to set up tasks and managing business projects. Main "
+"functions include:"
+msgstr ""
+"Приложение используется для создания задач и управления бизнес-проектами. "
+"Основные функции включают:"
+
+#: .\core\templates\core\projects\ez2task_project.html:97
+#: .\core\templates\core\projects\mp_monitor_project.html:88
+#: .\core\templates\core\projects\store_project.html:110
+msgid "Registration and authentication"
+msgstr "Регистрация и аутентификация"
+
+#: .\core\templates\core\projects\ez2task_project.html:98
+msgid "Creating tasks and projects"
+msgstr "Создание задач и проектов"
+
+#: .\core\templates\core\projects\ez2task_project.html:99
+msgid "User settings"
+msgstr "Настройки пользователя"
+
+#: .\core\templates\core\projects\ez2task_project.html:100
+msgid "Creating a company"
+msgstr "Создание компании"
+
+#: .\core\templates\core\projects\ez2task_project.html:101
+msgid "Company tasks and user management"
+msgstr "Управление задачами компании и пользователями"
+
+#: .\core\templates\core\projects\ez2task_project.html:102
+msgid "Dashboard"
+msgstr "Панель управления"
+
+#: .\core\templates\core\projects\ez2task_project.html:107
+#: .\core\templates\core\projects\mp_monitor_project.html:99
+#: .\core\templates\core\projects\store_project.html:126
+msgid "Visit Project"
+msgstr "Посетить проект"
+
+#: .\core\templates\core\projects\mp_monitor_project.html:5
+msgid "MP Monitor Project"
+msgstr "Проект MP Monitor"
+
+#: .\core\templates\core\projects\mp_monitor_project.html:61
+#: .\core\templates\core\projects\store_project.html:83
+msgid "E-commerce"
+msgstr "Электронная коммерция"
+
+#: .\core\templates\core\projects\mp_monitor_project.html:80
+msgid "MP Monitor, a beautiful price parser for Wildberries"
+msgstr "MP Monitor — удобный парсер цен для Wildberries"
+
+#: .\core\templates\core\projects\mp_monitor_project.html:82
+msgid ""
+"Monitor Wildberries prices either by hand or automatically. Ability to set a "
+"schedule for checking prices and see history of changes with a beautiful "
+"chart."
+msgstr ""
+"Отслеживайте цены на Wildberries вручную или автоматически. Возможность "
+"запланировать проверку цен и увидеть историю изменений в удобном графике."
+
+#: .\core\templates\core\projects\mp_monitor_project.html:85
+msgid "Main features include:"
+msgstr "Основные функции включают:"
+
+#: .\core\templates\core\projects\mp_monitor_project.html:89
+#: .\core\templates\core\projects\store_project.html:111
+msgid "Unfinished orders are saved to cookies for unregistered users"
+msgstr "Незавершённые заказы сохраняются в cookies для незарегистрированных пользователей"
+
+#: .\core\templates\core\projects\mp_monitor_project.html:90
+msgid "Demo functionality with one click"
+msgstr "Демо-функционал в один клик"
+
+#: .\core\templates\core\projects\mp_monitor_project.html:91
+msgid "Schedule price checking"
+msgstr "Планирование проверки цен"
+
+#: .\core\templates\core\projects\mp_monitor_project.html:92
+msgid "Modern and stylish interface"
+msgstr "Современный и стильный интерфейс"
+
+#: .\core\templates\core\projects\mp_monitor_project.html:93
+msgid "Price history chart"
+msgstr "График истории цен"
+
+#: .\core\templates\core\projects\mp_monitor_project.html:94
+msgid "Shows current average, max and min prices"
+msgstr "Показывает текущие средние, максимальные и минимальные цены"
+
+#: .\core\templates\core\projects\store_project.html:5
+msgid "Online Store Project"
+msgstr "Проект Интернет-магазин"
+
+#: .\core\templates\core\projects\store_project.html:16
+msgid "Tortiki Online Store"
+msgstr "Интернет-магазин Тортики"
+
+#: .\core\templates\core\projects\store_project.html:19
+#: .\core\templates\core\projects\store_project.html:82
+msgid "Tortiki"
+msgstr "Тортики"
+
+#: .\core\templates\core\projects\store_project.html:102
+msgid "Tortiki, a beautiful e-commerce store"
+msgstr "Тортики — красивый интернет-магазин"
+
+#: .\core\templates\core\projects\store_project.html:104
+msgid ""
+"Demo-admin available. Demo-admin can view orders, users, addresses as well "
+"as add new items, categories, decide on popular items/categories that are "
+"featured on the main store page."
+msgstr ""
+"Демо-админ доступен. Демо-админ может просматривать заказы, пользователей, "
+"адреса, а также добавлять новые товары, категории и определять популярные "
+"товары/категории, которые отображаются на главной странице магазина."
+
+#: .\core\templates\core\projects\store_project.html:107
+msgid ""
+"A beautiful e-commerce application that cells delicious cakes. Main features "
+"include:"
+msgstr ""
+"Красивое приложение для интернет-магазина, продающего вкусные торты. Основные "
+"функции включают:"
+
+#: .\core\templates\core\projects\store_project.html:112
+msgid "Demo-admin with access to its own admin-panel"
+msgstr "Демо-админ с доступом к собственной панели управления"
+
+#: .\core\templates\core\projects\store_project.html:113
+msgid "Demo-admin can manage all aspects of the store, inclu"
+msgstr "Демо-админ может управлять всеми аспектами магазина, включая"
+
+#: .\core\templates\core\projects\store_project.html:115
+msgid "View, edit and delete orders, items, categories"
+msgstr "Просмотр, редактирование и удаление заказов, товаров, категорий"
+
+#: .\core\templates\core\projects\store_project.html:116
+msgid "Manage carousel (i.e. choose items/categories and text for it)"
+msgstr "Управление каруселью (т.е. выбор товаров/категорий и текста для неё)"
+
+#: .\core\templates\core\projects\store_project.html:117
+msgid "Choose featured items/categories that are shown on the main store page"
+msgstr "Выбор рекомендуемых товаров/категорий, отображаемых на главной странице магазина"
+
+#: .\core\templates\core\projects\store_project.html:120
+msgid "Shopping cart"
+msgstr "Корзина"
+
+#: .\core\templates\core\projects\store_project.html:121
+msgid "Search feature"
+msgstr "Функция поиска"
+
+#: .\core\views.py:43
+msgid "Email has been successfully sent"
+msgstr "Электронное письмо успешно отправлено"
+
+#: .\core\views.py:46
+msgid "Something went wrong. Please try again."
+msgstr "Что-то пошло не так. Пожалуйста, попробуйте снова."
+
+#: .\igorsimb\settings.py:141
+msgid "Russian"
+msgstr "Русский"
+
+#: .\igorsimb\settings.py:142
+msgid "English"
+msgstr "Английский"

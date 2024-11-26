@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -38,7 +39,9 @@ class IndexView(TemplateView):
                 email,
                 ["igor.simbirtsev@gmail.com"],
             )
-            return redirect("main")
+
+            messages.success(self.request, _("Email has been successfully sent"))
+            return redirect("core:main")
         else:
             HttpResponse(_("Something went wrong. Please try again."))
 

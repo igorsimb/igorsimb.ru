@@ -1,15 +1,14 @@
 {% load static %}
+{% load i18n %}
 <!-- ======= Portfolio Section ======= -->
 <section id="portfolio" class="portfolio section-bg">
     <div class="container">
 
         <div class="section-title">
-            <h2>Portfolio</h2>
-            <p class="section-description">Showcasing complete functional projects demonstrates what I can bring to
-                the table. I built these project from the ground up to demonstrate my skills in front-end, back-end,
-                security, and database development. Contact me to get a complete code walkthrough. Also, check out my <a
-                        href="https://github.com/igorsimb"
-                        target="_blank">github page</a> to see more projects.</p>
+            <h2>{% translate "Portfolio" %}</h2>
+            <p class="section-description">{% translate "Showcasing complete functional projects demonstrates what I can bring to the table. I built these project from the ground up to demonstrate my skills in front-end, back-end, security, and database development. Contact me to get a complete code walkthrough. Also, check out my" %}
+                <a href="https://github.com/igorsimb"
+                        target="_blank">{% translate "github page" %}</a> {% translate "to see more projects." %}</p>
         </div>
 
         {#        <div class="row" data-aos="fade-up">#}
@@ -29,9 +28,10 @@
             <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                 <div class="portfolio-wrap">
                     <img src="{% static 'core/img/portfolio/mp_monitor/main-image.png' %}"
-                         class="img-fluid portfolio-img-thumbnail" alt="">
+                         class="img-fluid portfolio-img-thumbnail" alt="MP Monitor">
                     <div class="portfolio-links">
-                        <a href="{% url 'core:mp_monitor' %}" title="More Details"><i class="bx bx-info-circle"></i></a>
+                        {# Translators: Portfolio section's title on the link to MP Monitor project page #}
+                        <a href="{% url 'core:mp_monitor' %}" title="{% translate "More Details" %}"><i class="bx bx-info-circle"></i></a>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                     <img src="{% static 'core/img/portfolio/store/tortiki_logo.jpeg' %}"
                          class="img-fluid portfolio-img-thumbnail" alt="">
                     <div class="portfolio-links">
-                        <a href="{% url 'core:store_project' %}" title="More Details"><i class="bx
+                        <a href="{% url 'core:store_project' %}" title="{% translate "More Details" %}"><i class="bx
                         bx-info-circle"></i></a>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                     <img src="{% static 'core/img/portfolio/ez2task/ez2task_logo.jpg' %}"
                          class="img-fluid portfolio-img-thumbnail" alt="">
                     <div class="portfolio-links">
-                        <a href="{% url 'core:ez2task' %}" title="More Details"><i class="bx bx-info-circle"></i></a>
+                        <a href="{% url 'core:ez2task' %}" title="{% translate "More Details" %}"><i class="bx bx-info-circle"></i></a>
                     </div>
                 </div>
             </div>
