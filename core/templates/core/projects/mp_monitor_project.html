@@ -1,0 +1,116 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Igor Simbirtsev's Personal Portfolio Page{% endblock title %}
+
+{% block content %}
+
+    <main id="main1">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>MP Monitor Project</h2>
+                    <ol>
+                        <li><a href="{% url 'core:main' %}">Home</a></li>
+                        <li>MP Monitor</li>
+                    </ol>
+                </div>
+
+            </div>
+        </section><!-- End Breadcrumbs -->
+
+        <!-- ======= Portfolio Details Section ======= -->
+        <section id="portfolio-details" class="portfolio-details">
+            <div class="container">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-8">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+
+                                <div class="swiper-slide img-thumbnail">
+                                    <img src="{% static 'core/img/portfolio/mp_monitor/mp_monitor_screen_1.jpg' %}"
+                                         alt="">
+                                </div>
+
+                                <div class="swiper-slide img-thumbnail">
+                                    <img src="{% static 'core/img/portfolio/mp_monitor/mp_monitor_screen_2.jpg' %}"
+                                         alt="">
+                                </div>
+
+                                <div class="swiper-slide img-thumbnail">
+                                    <img src="{% static 'core/img/portfolio/mp_monitor/mp_monitor_screen_3.png' %}"
+                                         alt="">
+                                </div>
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="portfolio-info">
+                            <h3>Project information</h3>
+                            <ul>
+                                <li><strong>Name</strong>: MP Monitor</li>
+                                <li><strong>Category</strong>: E-commerce</li>
+                                <li><strong>Project URL</strong>:
+                                    <a href="https://mpmonitor.ru/" target="_blank">mpmonitor.ru
+                                        <i class="bx bx-link-external small"></i>
+                                    </a>
+                                </li>
+{#                                <li><strong><i class="bx bxl-github"></i> Github</strong>: <a#}
+{#                                        href="#"#}
+{#                                        target="_blank">#}
+{#                                    ##}
+{#                                    <i class="bx bx-link-external small"></i>#}
+{#                                </a></li>#}
+                                <li><strong>Technologies</strong>:
+                                    Python, Django, HTML, CSS, JavaScript, Bootstrap 5, HTMX, AlpineJS
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="portfolio-description">
+                        <h2>MP Monitor, a beautiful price parser for Wildberries</h2>
+                        <p>
+                            Monitor Wildberries prices either by hand or automatically. Ability to set a schedule for
+                            checking prices and see history of changes with a beautiful chart.
+                        </p>
+                        <p>
+                            Main features include:
+                        </p>
+                        <ul>
+                            <li>Registration and authentication</li>
+                            <li>Unfinished orders are saved to cookies for unregistered users</li>
+                            <li>Demo functionality with one click</li>
+                            <li>Schedule price checking</li>
+                            <li>Modern and stylish interface</li>
+                            <li>Price history chart</li>
+                            <li>Shows current average, max and min prices</li>
+                        </ul>
+
+                        <div class="d-flex justify-content-start align-items-center">
+                            <a class="btn btn-danger pill rounded-pill px-4 ms-1 me-0" href="https://mpmonitor.ru/"
+                               role="button" title="ez2task.com" target="_blank">Visit Project</a>
+                            {#                            <a class="fs-1 ms-3 link-dark" href="#"#}
+                            {#                               style='color:#000' title="#" target="_blank">#}
+                            {#                                <i class="bx bxl-github fs-1"></i>#}
+                            {#                            </a>#}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Portfolio Details Section -->
+
+    </main>
+
+    {% include "core/partials/footer.html" %}
+
+{% endblock content %}
