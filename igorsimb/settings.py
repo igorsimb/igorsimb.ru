@@ -59,8 +59,8 @@ INSTALLED_APPS += PUPUT_APPS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.locale.LocaleMiddleware",  # for translation
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -135,16 +135,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = "ru-RU"
+LANGUAGE_CODE = "en"
 
-LANGUAGES = [
-    ("ru", _("Russian")),
+WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
     ("en", _("English")),
+    ("ru", _("Russian")),
 ]
 
 TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
+WAGTAIL_I18N_ENABLED = True
 
 USE_L10N = True
 
@@ -244,3 +245,17 @@ QUILL_CONFIGS = {
 # which welcomes users upon login to the Wagtail admin.
 WAGTAIL_SITE_NAME = "Igorsimb Blog"
 WAGTAILADMIN_BASE_URL = "http://localhost:8000/" if LOCAL_DEVELOPMENT else "igorsimb.ru"
+
+# Language detection settings
+LANGUAGE_COOKIE_NAME = 'django_language'
+LANGUAGE_COOKIE_AGE = 60 * 60 * 24 * 365  # One year
+LANGUAGE_COOKIE_SECURE = not DEBUG
+
+# Browser language detection
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+# Additional language settings
+USE_ACCEPT_LANGUAGE_HEADER = True  # Enable browser language detection
+ACCEPT_LANGUAGE_HEADER = 'HTTP_ACCEPT_LANGUAGE'

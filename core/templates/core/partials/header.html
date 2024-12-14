@@ -4,6 +4,30 @@
 <i class="bi bi-list mobile-nav-toggle d-xl-none bg-dark"></i>
 {#<i class="fa fa-list mobile-nav-toggle d-xl-none"></i>#}
 
+<!-- Language Switcher -->
+<div class="language-switcher" role="navigation" aria-label="{% translate 'Language selection' %}">
+    <form action="{% url 'set_language' %}" method="post" class="language-form">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}">
+        {% get_current_language as CURRENT_LANGUAGE %}
+        
+        <div class="lang-toggle">
+            <button type="submit" name="language" value="en" title="English"
+                    class="lang-btn {% if CURRENT_LANGUAGE == 'en' %}active{% endif %}"
+                    aria-label="{% translate 'Switch to English' %}"
+                    {% if CURRENT_LANGUAGE == 'en' %}aria-current="true"{% endif %}>
+                <span class="flag-icon flag-gb"></span> EN
+            </button>
+            <button type="submit" name="language" value="ru" title="Русский"
+                    class="lang-btn {% if CURRENT_LANGUAGE == 'ru' %}active{% endif %}"
+                    aria-label="{% translate 'Switch to Russian' %}"
+                    {% if CURRENT_LANGUAGE == 'ru' %}aria-current="true"{% endif %}>
+                <span class="flag-icon flag-ru"></span> RU
+            </button>
+        </div>
+    </form>
+</div>
+
 <!-- ======= Header ======= -->
 <header id="header">
     <div class="d-flex flex-column">
