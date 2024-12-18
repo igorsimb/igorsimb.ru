@@ -12,7 +12,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("store/", include("store.urls")),
     path("", include("store_users.urls")),
-    # change {% if request.path == "/my/blog/" or request.path == "/my/blog/" %} in blog/templates/puput/base.html
+    # change {% if request.path == "/my/blog/" ... %} in blog/templates/puput/base.html and header.html
     path("my/", include("puput.urls")),
 
 ]

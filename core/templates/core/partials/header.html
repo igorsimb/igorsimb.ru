@@ -52,7 +52,8 @@
 
         <nav id="navbar" class="nav-menu navbar">
             <ul>
-                <li><a href="{% url 'core:main' %}#hero" class="nav-link scrollto active"><i class="bx bx-home"></i>
+                <li><a href="{% url 'core:main' %}#hero" class="nav-link scrollto
+                {% if request.path == '/en/' or request.path == '/ru/' %}active{% endif %}"><i class="bx bx-home"></i>
                     {# Translators: main nav menu's Home link #}
                     <span>{% translate "Home" %}</span></a>
                 </li>
@@ -68,7 +69,7 @@
                 <li><a href="{% url 'core:main' %}#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i>
                     <span>{% translate "Contact" %}</span></a>
                 </li>
-                <li><a href="/blog/" class="nav-link scrollto {% if request.path == '/blog/' %}active{% endif %}"><i class="bx bx-book-content"></i>
+                <li><a href="/my/blog/" class="nav-link scrollto {% if '/blog/' in request.path %}active{% endif %}"><i class="bx bx-book-content"></i>
                     <span>{% translate "Blog" %}</span></a>
                 </li>
             </ul>
