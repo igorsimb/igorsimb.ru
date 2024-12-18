@@ -59,8 +59,8 @@ INSTALLED_APPS += PUPUT_APPS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -137,7 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en"
 
-WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
+LANGUAGES = [
     ("en", _("English")),
     ("ru", _("Russian")),
 ]
@@ -145,7 +145,7 @@ WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
 TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
-WAGTAIL_I18N_ENABLED = True
+# WAGTAIL_I18N_ENABLED = True
 
 USE_L10N = True
 
@@ -251,11 +251,6 @@ LANGUAGE_COOKIE_NAME = 'django_language'
 LANGUAGE_COOKIE_AGE = 60 * 60 * 24 * 365  # One year
 LANGUAGE_COOKIE_SECURE = not DEBUG
 
-# Browser language detection
-LOCALE_PATHS = [
-    BASE_DIR / 'locale',
-]
-
 # Additional language settings
-USE_ACCEPT_LANGUAGE_HEADER = True  # Enable browser language detection
+USE_ACCEPT_LANGUAGE_HEADER = True  # Enable browser language detection when no django_language cookie is set.
 ACCEPT_LANGUAGE_HEADER = 'HTTP_ACCEPT_LANGUAGE'

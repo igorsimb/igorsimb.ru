@@ -97,7 +97,7 @@
 
     <div class="container mt-4">
         <div class="row">
-            {% if request.path == "/en/blog/" or request.path == "/ru/blog/" %}
+            {% if request.path == "/my/blog/" or request.path == "/my/blog/" %}
                 <div class="col-lg-8"> {# leaves room for side panel on the main blog page #}
             {% else %}
                 <div class="col-lg-12">
@@ -108,7 +108,7 @@
 
             {# SIDE PANEL START #}
 
-            {% if request.path == "/en/blog/" or request.path == "/ru/blog/" %} {# only show side panel on the main blog page #}
+            {% if request.path == "/my/blog/" or request.path == "/my/blog/" %} {# only show side panel on the main blog page #}
                 <div class="col-lg-4">
                     <div class="blog_sidebar">
                         <div class="mb-4">

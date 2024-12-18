@@ -12,6 +12,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("store/", include("store.urls")),
     path("", include("store_users.urls")),
+    # change {% if request.path == "/my/blog/" or request.path == "/my/blog/" %} in blog/templates/puput/base.html
+    path("my/", include("puput.urls")),
+
 ]
 
 # URLs that should be translated
@@ -20,8 +23,6 @@ urlpatterns += i18n_patterns(
     path("accounts/", include("allauth.urls")),
     # Local apps
     path("", include("core.urls")),
-    # Wagtail/Puput URLs - with specific prefix handling
-    path("", include("puput.urls")),
     prefix_default_language=True,
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
