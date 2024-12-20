@@ -6,15 +6,14 @@ from django.conf.urls.i18n import i18n_patterns
 
 # URLs that should NOT be translated
 urlpatterns = [
-    path('i18n/', include('django.conf.urls.i18n')),  # Language switch URL
+    path("i18n/", include("django.conf.urls.i18n")),  # Language switch URL
     path("__debug__/", include("debug_toolbar.urls")),
     # Django admin
     path("admin/", admin.site.urls),
     path("store/", include("store.urls")),
     path("", include("store_users.urls")),
-    # change {% if request.path == "/my/blog/" ... %} in blog/templates/puput/base.html and header.html
-    path("my/", include("puput.urls")),
-
+    # change {% if request.path == "/read/blog/" ... %} in blog/templates/puput/base.html and header.html
+    path("read/", include("puput.urls")),
 ]
 
 # URLs that should be translated
