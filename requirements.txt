@@ -28,15 +28,11 @@ django-el-pagination==4.0.0
 django-extensions==3.2.3
 django-filter==24.3
 django-mathfilters==1.0.0
-django-modelcluster==6.3
 django-permissionedforms==0.1
 django-quill-editor==0.1.42
-django-taggit==5.0.1
-django-treebeard==4.7.1
 django-widget-tweaks==1.5.0
 djangorestframework==3.15.2
 docopt==0.6.2
-draftjs-exporter==5.0.0
 environs==11.0.0
 et-xmlfile==1.1.0
 filetype==1.2.0
@@ -60,7 +56,6 @@ pip-upgrader==1.4.15
 platformdirs==4.3.6
 propcache==0.2.0
 psycopg2-binary==2.9.9
-puput==2.1.1
 pycparser==2.22
 PyJWT==2.9.0
 pyparsing==3.1.4
@@ -73,13 +68,10 @@ requests-oauthlib==2.0.0
 six==1.16.0
 soupsieve==2.6
 sqlparse==0.5.1
-telepath==0.3.1
 terminaltables==3.1.10
 typing_extensions==4.12.2
 tzdata==2024.2
 urllib3==2.2.3
-wagtail==6.2.2
-wagtail-markdown==0.11.1
 webencodings==0.5.1
 Werkzeug==3.0.4
 whitenoise==6.7.0

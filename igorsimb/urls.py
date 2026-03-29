@@ -12,8 +12,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("store/", include("store.urls")),
     path("", include("store_users.urls")),
-    # change {% if request.path == "/read/blog/" ... %} in blog/templates/puput/base.html and header.html
-    path("read/", include("puput.urls")),
 ]
 
 # URLs that should be translated

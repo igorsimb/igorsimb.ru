@@ -3,7 +3,6 @@ from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
 from environs import Env
-from puput import PUPUT_APPS
 
 env = Env()
 env.read_env()
@@ -48,13 +47,11 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "rangefilter",
     # Local
-    "blog",
     "core.apps.CoreConfig",
     "accounts.apps.AccountsConfig",
     "store",
     "store_users",
 ]
-INSTALLED_APPS += PUPUT_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -67,7 +64,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "allauth.account.middleware.AccountMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
 ROOT_URLCONF = "igorsimb.urls"
@@ -240,17 +236,13 @@ QUILL_CONFIGS = {
     }
 }
 
-# WAGTAIL / PUPUT settings
-# This is the human-readable name of your Wagtail install
-# which welcomes users upon login to the Wagtail admin.
-WAGTAIL_SITE_NAME = "Igorsimb Blog"
-WAGTAILADMIN_BASE_URL = "http://localhost:8000/" if LOCAL_DEVELOPMENT else "igorsimb.ru"
-
 # Language detection settings
-LANGUAGE_COOKIE_NAME = 'django_language'
+LANGUAGE_COOKIE_NAME = "django_language"
 LANGUAGE_COOKIE_AGE = 60 * 60 * 24 * 365  # One year
 LANGUAGE_COOKIE_SECURE = not DEBUG
 
 # Additional language settings
-USE_ACCEPT_LANGUAGE_HEADER = True  # Enable browser language detection when no django_language cookie is set.
-ACCEPT_LANGUAGE_HEADER = 'HTTP_ACCEPT_LANGUAGE'
+USE_ACCEPT_LANGUAGE_HEADER = (
+    True  # Enable browser language detection when no django_language cookie is set.
+)
+ACCEPT_LANGUAGE_HEADER = "HTTP_ACCEPT_LANGUAGE"
