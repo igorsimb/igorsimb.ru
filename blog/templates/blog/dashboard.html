@@ -1,0 +1,88 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% translate "Blog Dashboard" %}{% endblock title %}
+
+{% block extra_css %}
+    <link href="{% static 'blog/css/blog.css' %}" rel="stylesheet">
+{% endblock extra_css %}
+
+{% block content %}
+    {% include "core/partials/header.html" %}
+
+    <main id="main">
+        <section class="blog-shell blog-shell--workspace">
+            <div class="container" data-aos="fade-up">
+                <div class="blog-workspace-header">
+                    <div>
+                        <p class="blog-hero__eyebrow">{% translate "Authoring" %}</p>
+                        <h1>{% translate "Blog dashboard" %}</h1>
+                        <p class="blog-hero__lede">{% translate "Drafts and published posts, without the admin clutter." %}</p>
+                    </div>
+                    {% if blog_table_ready %}
+                        <a class="blog-button blog-button--primary" href="{% url 'blog:editor_create' %}">{% translate "New post" %}</a>
+                    {% endif %}
+                </div>
+
+                {% if not blog_table_ready %}
+                    <div class="blog-flash-list">
+                        <div class="blog-flash">{% translate "The blog table is not available in this database yet. Run migrations for the current blog app before using the editor." %}</div>
+                    </div>
+                {% endif %}
+
+                <div class="blog-workspace-grid">
+                    <section class="blog-panel">
+                        <div class="blog-panel__header">
+                            <h2>{% translate "Drafts" %}</h2>
+                            <span>{{ draft_posts|length }}</span>
+                        </div>
+                        {% if not blog_table_ready %}
+                            <p class="blog-panel__empty">{% translate "The blog table is not available in this database yet. Run migrations for the current blog app before using the editor." %}</p>
+                        {% else %}
+                            <div class="blog-panel__list">
+                                {% for post in draft_posts %}
+                                    <a class="blog-row" href="{% url 'blog:editor' pk=post.pk %}">
+                                        <span>
+                                            <strong>{{ post.title }}</strong>
+                                            <small>{% translate "Updated" %} {{ post.updated_at|date:"M j, Y" }}</small>
+                                        </span>
+                                        <span class="blog-badge">{% translate "Draft" %}</span>
+                                    </a>
+                                {% empty %}
+                                    <p class="blog-panel__empty">{% translate "No drafts waiting." %}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </section>
+
+                    <section class="blog-panel">
+                        <div class="blog-panel__header">
+                            <h2>{% translate "Published" %}</h2>
+                            <span>{{ published_posts|length }}</span>
+                        </div>
+                        {% if blog_table_ready %}
+                            <div class="blog-panel__list">
+                                {% for post in published_posts %}
+                                    <a class="blog-row" href="{% url 'blog:editor' pk=post.pk %}">
+                                        <span>
+                                            <strong>{{ post.title }}</strong>
+                                            <small>{% translate "Published" %} {{ post.published_at|date:"M j, Y" }}</small>
+                                        </span>
+                                        <span class="blog-badge blog-badge--published">{% translate "Live" %}</span>
+                                    </a>
+                                {% empty %}
+                                    <p class="blog-panel__empty">{% translate "Nothing published yet." %}</p>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <p class="blog-panel__empty">{% translate "Published posts will appear here after the blog tables exist and a post goes live." %}</p>
+                        {% endif %}
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {% include "core/partials/footer.html" %}
+{% endblock content %}
