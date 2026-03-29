@@ -10,6 +10,7 @@ urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
     # Django admin
     path("admin/", admin.site.urls),
+    path("blog/", include("blog.urls")),
     path("store/", include("store.urls")),
     path("", include("store_users.urls")),
 ]

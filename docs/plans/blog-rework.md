@@ -390,7 +390,10 @@ Stop after interactive authoring and wait for review.
 
 ### Goal
 
-Allow image insertion without breaking writing flow.
+Allow image insertion inside the existing editor without breaking writing flow.
+
+This phase is specifically about fast image upload and Markdown insertion from the editor.
+It is not a media-library phase and it should not expand the blog into a general asset manager.
 
 ### Expected files
 
@@ -402,23 +405,36 @@ Allow image insertion without breaking writing flow.
 
 ### Tasks
 
-- add a superuser-only upload endpoint
-- validate image type and size
-- store uploaded images under the project's media storage
-- return the uploaded image URL
-- support paste and drag-drop insertion into the editor
-- insert Markdown image syntax at the cursor automatically
+- add a superuser-only upload endpoint scoped to the blog editor workflow
+- validate image content type and file size with clear user-facing failure responses
+- store uploaded images under the existing project media storage using a predictable blog-specific location
+- return the uploaded image URL in the smallest response shape needed by the editor
+- support paste and drag-drop insertion into the editor without navigating away from the page
+- insert Markdown image syntax at the current cursor or selection automatically
+- keep the existing non-JavaScript editor flow intact; image insertion may remain JavaScript-only if the base editor still works without it
+- avoid adding any separate media browser, gallery UI, image model, or attachment management screen unless the current codebase absolutely requires one
+
+### Suggested implementation shape
+
+- keep the server side small: one upload view, one URL, and minimal validation
+- keep the client side small: extend the existing editor behavior rather than introducing a new front-end subsystem
+- prefer reusing the existing Datastar editor page instead of adding a parallel upload UI
+- if image Markdown needs a format decision, default to standard Markdown like `![alt text](url)` with a simple placeholder alt text
 
 ### Verification
 
+- write or update tests for superuser upload success before wiring the full editor behavior when practical
 - manual browser check for paste/drop flow
 - tests for upload permissions and invalid file handling
+- `".igorsimb_ru/Scripts/python.exe" manage.py test blog`
+- `".igorsimb_ru/Scripts/python.exe" manage.py check`
 
 ### Done criteria
 
 - pasted or dropped images upload successfully and insert Markdown automatically
 - invalid uploads fail clearly
 - the user stays in the editor flow
+- the implementation remains small and editor-focused
 
 ### Stop gate
 

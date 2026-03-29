@@ -1,0 +1,33 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ post.title }}{% endblock title %}
+
+{% block extra_css %}
+    <link href="{% static 'blog/css/blog.css' %}" rel="stylesheet">
+{% endblock extra_css %}
+
+{% block content %}
+    {% include "core/partials/header.html" %}
+
+    <main id="main">
+        <section class="blog-shell blog-shell--detail">
+            <div class="container" data-aos="fade-up">
+                <article class="blog-post">
+                    <p class="blog-post__meta">
+                        <a href="{% url 'blog:index' %}">{% translate "Blog" %}</a>
+                        {% if post.published_at %}
+                            <span>&middot;</span>
+                            <time datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:"M j, Y" }}</time>
+                        {% endif %}
+                    </p>
+                    <h1 class="blog-post__title">{{ post.title }}</h1>
+                    <div class="blog-post__body">{{ post.rendered_html|safe }}</div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    {% include "core/partials/footer.html" %}
+{% endblock content %}

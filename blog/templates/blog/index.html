@@ -1,0 +1,54 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% translate "Blog" %}{% endblock title %}
+
+{% block extra_css %}
+    <link href="{% static 'blog/css/blog.css' %}" rel="stylesheet">
+{% endblock extra_css %}
+
+{% block content %}
+    {% include "core/partials/header.html" %}
+
+    <main id="main">
+        <section class="blog-shell blog-shell--index">
+            <div class="container" data-aos="fade-up">
+                <div class="blog-hero">
+                    <p class="blog-hero__eyebrow">{% translate "Blog" %}</p>
+                    <h1>{% translate "Notes on Django, side projects, and technical work." %}</h1>
+                    <p class="blog-hero__lede">
+                        {% translate "Published posts live here. Drafts stay private until they are ready." %}
+                    </p>
+                    {% if request.user.is_superuser %}
+                        <div class="blog-hero__actions">
+                            <a class="blog-button blog-button--primary" href="{% url 'blog:editor_create' %}">{% translate "Write" %}</a>
+                            <a class="blog-button" href="{% url 'blog:dashboard' %}">{% translate "Dashboard" %}</a>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="blog-list">
+                    {% for post in posts %}
+                        <article class="blog-card">
+                            <p class="blog-card__meta">
+                                {% if post.published_at %}{{ post.published_at|date:"M j, Y" }}{% endif %}
+                            </p>
+                            <h2 class="blog-card__title">
+                                <a href="{% url 'blog:detail' slug=post.slug %}">{{ post.title }}</a>
+                            </h2>
+                            <div class="blog-card__body">{{ post.rendered_html|safe|truncatewords_html:40 }}</div>
+                        </article>
+                    {% empty %}
+                        <article class="blog-empty">
+                            <h2>{% translate "No published posts yet." %}</h2>
+                            <p>{% translate "Nothing is live yet. Write the first post when you have something worth keeping." %}</p>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {% include "core/partials/footer.html" %}
+{% endblock content %}

@@ -1,0 +1,180 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% if post %}{{ post.title }}{% else %}{% translate "New Post" %}{% endif %}{% endblock title %}
+
+{% block extra_css %}
+    <link href="{% static 'blog/css/blog.css' %}" rel="stylesheet">
+{% endblock extra_css %}
+
+{% block extra_js %}
+    <script type="module" src="{% static 'js/datastar.js' %}"></script>
+    <script type="module" src="{% static 'blog/js/editor-images.js' %}"></script>
+{% endblock extra_js %}
+
+{% block content %}
+    {% include "core/partials/header.html" %}
+
+    <main id="main">
+        <section class="blog-shell blog-shell--workspace blog-shell--editor"
+                 data-signals="{
+                     editorMode: 'split',
+                     navCollapsed: false,
+                     editorStartTitle: '{% translate "Start a new post" %}',
+                     previewTitle: '{% translate "Preview" %}',
+                     showSidebarLabel: '{% translate "Show sidebar" %}',
+                     hideSidebarLabel: '{% translate "Hide sidebar" %}',
+                     saveDraftLabel: '{% translate "Save draft" %}',
+                     saveChangesLabel: '{% translate "Save changes" %}',
+                     savingLabel: '{% translate "Saving..." %}',
+                     saveFailedLabel: '{% translate "Save failed." %}',
+                     csrfToken: '{{ csrf_token }}',
+                    postId: {% if post %}{{ post.pk }}{% else %}null{% endif %},
+                    postSlug: {% if post and post.slug %}'{{ post.slug|escapejs }}'{% else %}''{% endif %},
+                    editorUrl: '{% if post %}{% url 'blog:editor' pk=post.pk %}{% else %}{% url 'blog:editor_create' %}{% endif %}',
+                    publicUrl: {% if post and post.is_published %}'{% url 'blog:detail' slug=post.slug %}'{% else %}''{% endif %},
+                    editorTitle: '{{ form.title.value|default_if_none:''|escapejs }}',
+                    markdownBody: '{{ form.markdown_body.value|default_if_none:''|escapejs }}',
+                    previewHtml: '{{ preview_html|escapejs }}',
+                    isPublished: {% if post and post.is_published %}true{% else %}false{% endif %},
+                    statusLabel: '{% if post and post.is_published %}{% translate "Published" %}{% else %}{% translate "Draft" %}{% endif %}',
+                    updatedAtLabel: '{% if post %}{{ post.updated_at|date:"M d, Y H:i" }}{% endif %}',
+                    saveMessage: '',
+                    saveTone: 'idle',
+                    blogTableReady: {% if blog_table_ready %}true{% else %}false{% endif %},
+                    hasPost: {% if post %}true{% else %}false{% endif %}
+                 }"
+                 data-effect="document.body.classList.toggle('blog-nav-collapsed', $navCollapsed); $previewMount && ($previewMount.innerHTML = $previewHtml); $editorUrl && window.location.pathname !== $editorUrl && history.replaceState({}, '', $editorUrl)">
+            <div class="container blog-editor-container" data-aos="fade-up"
+                 data-on:datastar-fetch__window="evt.detail.el && evt.detail.el.id === 'blog-editor-form' && evt.detail.type === 'started' ? ($saveMessage = $savingLabel, $saveTone = 'working') : evt.detail.el && evt.detail.el.id === 'blog-editor-form' && evt.detail.type === 'error' ? ($saveMessage = $saveFailedLabel, $saveTone = 'error') : null">
+                <div class="blog-workspace-header">
+                    <div>
+                        <p class="blog-hero__eyebrow">{% translate "Editor" %}</p>
+                        <h1 data-text="$editorTitle || $editorStartTitle">{% if post %}{{ post.title }}{% else %}{% translate "Start a new post" %}{% endif %}</h1>
+                        <p class="blog-hero__lede">
+                            {% if post %}
+                                {% translate "Write in Markdown, review the rendered output, and decide when it goes live." %}
+                            {% else %}
+                                {% translate "Keep the draft rough until the structure is right, then publish when it is ready." %}
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="blog-editor-topbar__actions">
+                        <button type="button" class="blog-button" data-on:click="$navCollapsed = !$navCollapsed"
+                                data-text="$navCollapsed ? $showSidebarLabel : $hideSidebarLabel"></button>
+                        <a class="blog-button" href="{% url 'blog:dashboard' %}">{% translate "Back to dashboard" %}</a>
+                    </div>
+                </div>
+
+                <div class="blog-flash-list">
+                    <div class="blog-flash"
+                         data-show="$saveTone !== 'idle'" style="display: none;"
+                         data-class:blog-flash--working="$saveTone === 'working'"
+                         data-class:blog-flash--error="$saveTone === 'error'"
+                         data-class:blog-flash--success="$saveTone === 'success'"
+                         data-text="$saveMessage"></div>
+                    <div id="blog-editor-upload-flash" class="blog-flash" hidden></div>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="blog-flash blog-flash--success">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="blog-editor-meta">
+                    <span class="blog-badge" data-class:blog-badge--published="$isPublished" data-text="$statusLabel"></span>
+                    <small class="blog-editor-toolbar__meta" data-show="$postSlug" style="display: none;"
+                           data-text="'/' + $postSlug + '/'"></small>
+                    <small class="blog-editor-toolbar__meta" data-show="$updatedAtLabel" style="display: none;"
+                           data-text="'Updated ' + $updatedAtLabel"></small>
+                    <a class="blog-editor-meta__public" data-show="$publicUrl" style="display: none;"
+                       data-attr:href="$publicUrl" target="_blank">{% translate "Open public post" %}</a>
+                    <div class="blog-mode-switch blog-mode-switch--icons" role="tablist" aria-label="{% translate 'Editor layout mode' %}">
+                        <button type="button" class="blog-mode-switch__button blog-mode-switch__button--icon"
+                                title="{% translate 'Editor only' %}" aria-label="{% translate 'Editor only' %}"
+                                data-class="{'blog-mode-switch__button--active': $editorMode === 'editor'}"
+                                data-on:click="$editorMode = 'editor'"><i class="bx bx-edit-alt"></i></button>
+                        <button type="button" class="blog-mode-switch__button blog-mode-switch__button--icon"
+                                title="{% translate 'Editor and Preview' %}" aria-label="{% translate 'Editor and Preview' %}"
+                                data-class="{'blog-mode-switch__button--active': $editorMode === 'split'}"
+                                data-on:click="$editorMode = 'split'"><i class="bx bx-columns"></i></button>
+                        <button type="button" class="blog-mode-switch__button blog-mode-switch__button--icon"
+                                title="{% translate 'Preview only' %}" aria-label="{% translate 'Preview only' %}"
+                                data-class="{'blog-mode-switch__button--active': $editorMode === 'preview'}"
+                                data-on:click="$editorMode = 'preview'"><i class="bx bx-show-alt"></i></button>
+                    </div>
+                </div>
+
+                <div class="blog-editor-layout"
+                     data-class:blog-editor-layout--editor="$editorMode === 'editor'"
+                     data-class:blog-editor-layout--preview="$editorMode === 'preview'">
+                    <section class="blog-panel blog-panel--editor">
+                        <form method="post" id="blog-editor-form" class="blog-editor-form"
+                              data-upload-url="{% url 'blog:editor_upload_image' %}"
+                              data-indicator:saving
+                              data-on:submit__prevent="@post('{% url 'blog:editor_save' %}', {headers: {'X-CSRFToken': $csrfToken}, payload: {postId: $postId, title: $editorTitle, markdownBody: $markdownBody, action: evt.submitter ? evt.submitter.value : 'save'}})"
+                              data-on:input__debounce.1200ms="@post('{% url 'blog:editor_save' %}', {headers: {'X-CSRFToken': $csrfToken}, payload: {postId: $postId, title: $editorTitle, markdownBody: $markdownBody, action: 'autosave'}})">
+                            {% csrf_token %}
+                            <div class="blog-editor-toolbar">
+                                <span class="blog-editor-toolbar__hint" data-show="$saving" style="display: none;">{% translate "Saving..." %}</span>
+                            </div>
+
+                            <div class="blog-form-field">
+                                <label for="id_title">{% translate "Title" %}</label>
+                                <input id="id_title" name="title" type="text" class="blog-editor__input"
+                                       value="{{ form.title.value|default_if_none:'' }}" autocomplete="off"
+                                        placeholder="{% translate 'Post title' %}"
+                                       data-bind:editor-title
+                                       data-on:input__debounce.250ms="@post('{% url 'blog:editor_preview' %}', {headers: {'X-CSRFToken': $csrfToken}, payload: {title: $editorTitle, markdownBody: $markdownBody}})">
+                                {{ form.title.errors }}
+                            </div>
+
+                            <div class="blog-form-field">
+                                <label for="id_markdown_body">{% translate "Body" %}</label>
+                                <textarea id="id_markdown_body" name="markdown_body" class="blog-editor__textarea"
+                                           rows="28" spellcheck="false" placeholder="{% translate 'Write in Markdown...' %}"
+                                          data-bind:markdown-body
+                                          data-on:input__debounce.250ms="@post('{% url 'blog:editor_preview' %}', {headers: {'X-CSRFToken': $csrfToken}, payload: {title: $editorTitle, markdownBody: $markdownBody}})">{{ form.markdown_body.value|default_if_none:'' }}</textarea>
+                                {{ form.markdown_body.errors }}
+                            </div>
+
+                            <div class="blog-editor-actions">
+                                {% if blog_table_ready %}
+                                    <button class="blog-button blog-button--primary" type="submit" name="action" value="save"
+                                            data-attr:disabled="$saving">
+                                        <span data-text="$isPublished ? $saveChangesLabel : $saveDraftLabel"></span>
+                                    </button>
+                                    <button class="blog-button" type="submit" name="action" value="publish"
+                                            data-show="!$isPublished" style="display: none;"
+                                            data-attr:disabled="$saving">{% translate "Publish" %}</button>
+                                    <button class="blog-button" type="submit" name="action" value="unpublish"
+                                            data-show="$isPublished" style="display: none;"
+                                            data-attr:disabled="$saving">{% translate "Move to draft" %}</button>
+                                {% else %}
+                                    <p class="blog-panel__empty">{% translate "Run migrations for the current blog app before saving or publishing." %}</p>
+                                {% endif %}
+                            </div>
+                        </form>
+                    </section>
+
+                    <aside class="blog-panel blog-panel--preview">
+                        <div class="blog-panel__header">
+                            <h2 data-text="$editorTitle || $previewTitle">{% translate "Preview" %}</h2>
+                        </div>
+                        <div class="blog-post__body blog-preview-mount" data-ref:preview-mount>
+                            <h1 data-show="$editorTitle" style="display: none;" data-text="$editorTitle"></h1>
+                            {% if preview_html %}
+                                {{ preview_html|safe }}
+                            {% else %}
+                                <p class="blog-panel__empty">{% translate "Preview will appear here after you start writing." %}</p>
+                            {% endif %}
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {% include "core/partials/footer.html" %}
+{% endblock content %}
