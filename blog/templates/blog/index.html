@@ -17,9 +17,11 @@
                 <div class="blog-hero">
                     <p class="blog-hero__eyebrow">{% translate "Blog" %}</p>
                     <h1>{% translate "Notes on Django, side projects, and technical work." %}</h1>
-                    <p class="blog-hero__lede">
-                        {% translate "Published posts live here. Drafts stay private until they are ready." %}
-                    </p>
+                    {% if request.user.is_superuser %}
+                        <p class="blog-hero__lede">
+                            {% translate "Published posts live here. Drafts stay private until they are ready." %}
+                        </p>
+                    {% endif %}
                     {% if request.user.is_superuser %}
                         <div class="blog-hero__actions">
                             <a class="blog-button blog-button--primary" href="{% url 'blog:editor_create' %}">{% translate "Write" %}</a>

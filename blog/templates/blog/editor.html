@@ -130,12 +130,12 @@
                                 {{ form.title.errors }}
                             </div>
 
-                            <div class="blog-form-field">
+                            <div class="blog-form-field blog-form-field--body">
                                 <label for="id_markdown_body">{% translate "Body" %}</label>
                                 <textarea id="id_markdown_body" name="markdown_body" class="blog-editor__textarea"
                                            rows="28" spellcheck="false" placeholder="{% translate 'Write in Markdown...' %}"
-                                          data-bind:markdown-body
-                                          data-on:input__debounce.250ms="@post('{% url 'blog:editor_preview' %}', {headers: {'X-CSRFToken': $csrfToken}, payload: {title: $editorTitle, markdownBody: $markdownBody}})">{{ form.markdown_body.value|default_if_none:'' }}</textarea>
+                                           data-bind:markdown-body
+                                           data-on:input__debounce.250ms="@post('{% url 'blog:editor_preview' %}', {headers: {'X-CSRFToken': $csrfToken}, payload: {title: $editorTitle, markdownBody: $markdownBody}})">{{ form.markdown_body.value|default_if_none:'' }}</textarea>
                                 {{ form.markdown_body.errors }}
                             </div>
 
@@ -159,16 +159,28 @@
                     </section>
 
                     <aside class="blog-panel blog-panel--preview">
-                        <div class="blog-panel__header">
-                            <h2 data-text="$editorTitle || $previewTitle">{% translate "Preview" %}</h2>
-                        </div>
-                        <div class="blog-post__body blog-preview-mount" data-ref:preview-mount>
-                            <h1 data-show="$editorTitle" style="display: none;" data-text="$editorTitle"></h1>
-                            {% if preview_html %}
-                                {{ preview_html|safe }}
-                            {% else %}
-                                <p class="blog-panel__empty">{% translate "Preview will appear here after you start writing." %}</p>
-                            {% endif %}
+                        <div class="blog-preview-layout">
+                            <div class="blog-editor-toolbar blog-editor-toolbar--ghost" aria-hidden="true">
+                                <span class="blog-editor-toolbar__hint">.</span>
+                            </div>
+                            <div class="blog-form-field">
+                                <label>{% translate "Title" %}</label>
+                                <div class="blog-editor__input blog-editor__input--preview"
+                                     data-text="$editorTitle || $previewTitle">{% if post %}{{ post.title }}{% else %}{% translate "Preview" %}{% endif %}</div>
+                            </div>
+                            <div class="blog-form-field blog-form-field--body">
+                                <label>{% translate "Body" %}</label>
+                                <div class="blog-post__body blog-preview-mount" data-ref:preview-mount data-sync-scroll="preview">
+                                    {% if preview_html %}
+                                        {{ preview_html|safe }}
+                                    {% else %}
+                                        <p class="blog-panel__empty">{% translate "Preview will appear here after you start writing." %}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="blog-editor-actions blog-editor-actions--ghost" aria-hidden="true">
+                                <span class="blog-button">.</span>
+                            </div>
                         </div>
                     </aside>
                 </div>

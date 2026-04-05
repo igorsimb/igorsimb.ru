@@ -1,6 +1,44 @@
 const DRAG_OVER_CLASS = "blog-editor__textarea--dragover";
 const SUCCESS_FLASH_DELAY_MS = 2200;
 
+function syncScrollPosition(source, target) {
+    const maxSourceScroll = source.scrollHeight - source.clientHeight;
+    const maxTargetScroll = target.scrollHeight - target.clientHeight;
+
+    if (maxSourceScroll <= 0 || maxTargetScroll <= 0) {
+        target.scrollTop = 0;
+        return;
+    }
+
+    target.scrollTop = (source.scrollTop / maxSourceScroll) * maxTargetScroll;
+}
+
+function setupEditorPreviewScrollSync(textarea, previewMount) {
+    let syncing = false;
+
+    const sync = (source, target) => {
+        if (syncing) {
+            return;
+        }
+
+        syncing = true;
+        syncScrollPosition(source, target);
+        requestAnimationFrame(() => {
+            syncing = false;
+        });
+    };
+
+    textarea.addEventListener("scroll", () => sync(textarea, previewMount));
+    previewMount.addEventListener("scroll", () => sync(previewMount, textarea));
+
+    const observer = new MutationObserver(() => {
+        sync(textarea, previewMount);
+    });
+    observer.observe(previewMount, { childList: true, subtree: true, characterData: true });
+
+    requestAnimationFrame(() => syncScrollPosition(textarea, previewMount));
+}
+
 function clearUploadFlash(uploadFlash) {
     uploadFlash.hidden = true;
     uploadFlash.textContent = "";
@@ -52,14 +90,17 @@ async function uploadImage(file, uploadUrl, csrfToken) {
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("blog-editor-form");
     const textarea = document.getElementById("id_markdown_body");
+    const previewMount = document.querySelector("[data-sync-scroll='preview']");
     const uploadFlash = document.getElementById("blog-editor-upload-flash");
     const csrfInput = form?.querySelector("input[name='csrfmiddlewaretoken']");
     const uploadUrl = form?.dataset.uploadUrl;
     const csrfToken = csrfInput?.value;
 
-    if (!form || !textarea || !uploadFlash || !uploadUrl || !csrfToken) {
+    if (!form || !textarea || !previewMount || !uploadFlash || !uploadUrl || !csrfToken) {
         return;
     }
+
+    setupEditorPreviewScrollSync(textarea, previewMount);
 
     let flashTimerId = null;
 

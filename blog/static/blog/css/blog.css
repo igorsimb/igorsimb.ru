@@ -424,7 +424,16 @@
 
 .blog-editor-form {
     display: grid;
+    grid-template-rows: auto auto 1fr auto;
     gap: 20px;
+    height: 100%;
+}
+
+.blog-preview-layout {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 20px;
+    height: 100%;
 }
 
 .blog-editor-toolbar,
@@ -433,10 +442,17 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
+    min-height: 54px;
 }
 
 .blog-editor-toolbar {
     justify-content: space-between;
+}
+
+.blog-editor-toolbar--ghost,
+.blog-editor-actions--ghost {
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .blog-editor-toolbar__hint {
@@ -447,6 +463,11 @@
 .blog-form-field {
     display: grid;
     gap: 8px;
+    min-height: 0;
+}
+
+.blog-form-field--body {
+    grid-template-rows: auto 1fr;
 }
 
 .blog-form-field label {
@@ -464,6 +485,12 @@
     color: #f8fafc;
 }
 
+.blog-editor__input--preview {
+    display: flex;
+    align-items: center;
+    color: #cbd5e1;
+}
+
 .blog-editor__input:focus,
 .blog-editor__textarea:focus {
     outline: none;
@@ -472,8 +499,9 @@
 }
 
 .blog-editor__textarea {
-    min-height: 72vh;
-    resize: vertical;
+    height: 72vh;
+    min-height: 0;
+    resize: none;
     font-family: Consolas, Monaco, "Courier New", monospace;
     line-height: 1.7;
 }
@@ -484,7 +512,9 @@
 }
 
 .blog-preview-mount {
-    min-height: 72vh;
+    height: 72vh;
+    min-height: 0;
+    overflow-y: auto;
 }
 
 .blog-form-field ul.errorlist {
