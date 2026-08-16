@@ -3,6 +3,7 @@
 {% load i18n %}
 
 {% block title %}{{ post.title }}{% endblock title %}
+{% block meta_description %}{{ post.rendered_html|striptags|truncatewords:30 }}{% endblock meta_description %}
 
 {% block extra_css %}
     <link href="{% static 'blog/css/blog.css' %}" rel="stylesheet">

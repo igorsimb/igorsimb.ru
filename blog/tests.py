@@ -5,6 +5,7 @@ import tempfile
 
 from unittest.mock import patch
 
+from bs4 import BeautifulSoup
 from django.contrib.auth import get_user_model
 from django.db import OperationalError
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -160,6 +161,59 @@ class BlogPublicViewTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'name="next" type="hidden" value="/blog/"')
+
+    def test_detail_has_canonical_url_and_description(self):
+        response = self.client.get(
+            reverse("blog:detail", kwargs={"slug": self.published_post.slug})
+        )
+        document = BeautifulSoup(response.content, "html.parser")
+
+        self.assertEqual(
+            document.find("link", rel="canonical")["href"],
+            "https://igorsimb.ru/blog/published-post/",
+        )
+        self.assertTrue(document.find("meta", attrs={"name": "description"})["content"])
+
+    def test_sitemap_tracks_published_status_dynamically(self):
+        sitemap_url = reverse("sitemap")
+
+        response = self.client.get(sitemap_url)
+        self.assertContains(
+            response,
+            "https://igorsimb.ru/blog/published-post/",
+        )
+        self.assertNotContains(response, "https://igorsimb.ru/blog/draft-post/")
+
+        self.draft_post.status = Post.Status.PUBLISHED
+        self.draft_post.save()
+
+        response = self.client.get(sitemap_url)
+        self.assertContains(response, "https://igorsimb.ru/blog/draft-post/")
+        self.assertContains(response, self.draft_post.updated_at.date().isoformat())
+
+    def test_legacy_blog_urls_redirect_permanently(self):
+        for prefix in ("my", "read"):
+            with self.subTest(prefix=prefix, page="index"):
+                response = self.client.get(f"/{prefix}/blog/")
+                self.assertRedirects(
+                    response,
+                    reverse("blog:index"),
+                    status_code=301,
+                    fetch_redirect_response=False,
+                )
+
+            with self.subTest(prefix=prefix, page="detail"):
+                response = self.client.get(
+                    f"/{prefix}/blog/{self.published_post.slug}/"
+                )
+                self.assertRedirects(
+                    response,
+                    reverse(
+                        "blog:detail", kwargs={"slug": self.published_post.slug}
+                    ),
+                    status_code=301,
+                    fetch_redirect_response=False,
+                )
 
 
 class BlogAuthoringViewTests(TestCase):

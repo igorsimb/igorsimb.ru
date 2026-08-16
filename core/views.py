@@ -1,14 +1,27 @@
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
+from django.views.decorators.http import require_GET
 from django.views.generic import TemplateView
 
 from core.forms import ContactForm
 
 User = get_user_model()
+
+
+@require_GET
+def robots_txt(request):
+    sitemap_url = f"{settings.CANONICAL_ORIGIN.rstrip('/')}/sitemap.xml"
+    return render(
+        request,
+        "core/robots.txt",
+        {"sitemap_url": sitemap_url},
+        content_type="text/plain",
+    )
 
 
 class IndexView(TemplateView):

@@ -27,3 +27,22 @@ class IndexPageTests(TestCase):
 
     def test_language_switcher_keeps_current_page_for_i18n_routes(self):
         self.assertContains(self.response, 'name="next" type="hidden" value="/"')
+
+    def test_index_page_uses_canonical_production_url(self):
+        self.assertContains(
+            self.response,
+            '<link rel="canonical" href="https://igorsimb.ru/en/">',
+            html=True,
+        )
+
+
+class RobotsTxtTests(TestCase):
+    def test_robots_txt_allows_public_pages_and_advertises_sitemap(self):
+        response = self.client.get(reverse("robots_txt"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.headers["Content-Type"], "text/plain")
+        self.assertContains(response, "User-agent: *")
+        self.assertContains(response, "Allow: /")
+        self.assertContains(response, "Disallow: /blog/write/")
+        self.assertContains(response, "Sitemap: https://igorsimb.ru/sitemap.xml")

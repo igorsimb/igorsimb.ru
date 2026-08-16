@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /blog/dashboard/
+Disallow: /blog/write/
+
+Sitemap: {{ sitemap_url }}
