@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Homepage - Redesign Reference</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: "#f2efe8",
+            ink: "#17201d",
+            muted: "#66706b",
+            signal: "#db5b2b",
+            line: "#cfcac0"
+          },
+          fontFamily: {
+            sans: ["Arial", "Helvetica", "sans-serif"],
+            mono: ["Consolas", "Courier New", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #f2efe8;
+      background-image:
+        linear-gradient(rgba(23, 32, 29, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 32, 29, .045) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .hairline { box-shadow: inset 0 0 0 1px #cfcac0; }
+    .case-card { transition: transform 180ms ease, box-shadow 180ms ease; }
+    .case-card:hover { transform: translateY(-4px); box-shadow: 8px 8px 0 #17201d; }
+    .vertical-label { writing-mode: vertical-rl; transform: rotate(180deg); }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .case-card { transition: none; }
+    }
+  </style>
+</head>
+<body class="font-sans text-ink antialiased selection:bg-signal selection:text-white">
+  <div class="border-b border-ink bg-ink px-5 py-2 text-paper">
+    <div class="mx-auto flex max-w-[1440px] items-center justify-between font-mono text-[10px] uppercase tracking-[0.22em]">
+      <span>Homepage / Signal Ledger</span>
+      <span class="hidden sm:block">Direction: Editorial Industrial</span>
+    </div>
+  </div>
+
+  <header class="sticky top-0 z-20 border-b border-line bg-paper/95 backdrop-blur">
+    <div class="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 lg:px-10">
+      <a href="#top" class="font-mono text-sm font-bold tracking-tight">IGOR SIMBIRTSEV <span class="text-signal">/</span></a>
+      <nav aria-label="Primary navigation" class="hidden items-center gap-8 text-sm md:flex">
+        <a class="border-b border-transparent hover:border-ink" href="#work">Work</a>
+        <a class="border-b border-transparent hover:border-ink" href="#blog">Blog</a>
+        <a class="border-b border-transparent hover:border-ink" href="#about">About</a>
+        <a class="border-b border-transparent hover:border-ink" href="#contact">Contact</a>
+      </nav>
+      <div class="flex items-center gap-4 font-mono text-[11px] uppercase tracking-widest">
+        <a href="#" aria-label="Download resume" class="hidden border-b border-ink pb-1 sm:block">Resume ↓</a>
+        <div class="flex border border-ink" aria-label="Language selector">
+          <button class="bg-ink px-2 py-1 text-paper">EN</button>
+          <button class="px-2 py-1">RU</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="mx-auto grid min-h-[620px] max-w-[1440px] border-x border-line lg:grid-cols-[84px_1fr_380px]">
+      <div class="hidden border-r border-line py-12 lg:flex lg:items-end lg:justify-center">
+        <span class="vertical-label font-mono text-[10px] uppercase tracking-[0.35em] text-muted">Backend / Data / Guarded AI</span>
+      </div>
+      <div class="flex flex-col justify-between px-6 py-10 lg:px-14 lg:py-12">
+        <div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
+          <span class="h-2 w-2 rounded-full bg-signal"></span>
+          Python / Django / Data systems
+        </div>
+        <div class="py-12">
+          <p class="mb-7 font-mono text-xs uppercase tracking-[0.28em] text-signal">Senior Backend & Data Engineer</p>
+          <h1 class="max-w-5xl break-words text-[2.75rem] font-black leading-[0.95] tracking-[-0.05em] sm:text-[clamp(3.2rem,5.2vw,5.4rem)] sm:tracking-[-0.06em]">
+            I build backend systems, <span class="text-signal">data pipelines</span>, and internal tools.
+          </h1>
+          <p class="mt-8 max-w-2xl text-lg leading-8 text-muted md:text-xl">
+            I design, build, and maintain production data pipelines and internal platforms in Python and Django. I also build AI applications with explicit limits on what the model can access and execute.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#work" class="bg-ink px-6 py-4 font-mono text-xs uppercase tracking-[0.18em] text-paper hover:bg-signal">View selected work →</a>
+            <a href="#" class="border border-ink px-6 py-4 font-mono text-xs uppercase tracking-[0.18em] hover:bg-white/40">Download résumé</a>
+          </div>
+        </div>
+        <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Moscow / UTC+3 / Remote-friendly</p>
+      </div>
+
+      <aside class="border-t border-line bg-[#e7e3da] lg:border-l lg:border-t-0">
+        <div class="border-b border-line p-7">
+          <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-muted">Operating scale</span>
+        </div>
+        <dl class="divide-y divide-line">
+          <div class="p-7">
+            <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Daily ingestion</dt>
+            <dd class="mt-2 text-4xl font-black tracking-tight">10M+</dd>
+            <p class="mt-1 text-sm text-muted">rows across production pipelines</p>
+          </div>
+          <div class="p-7">
+            <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Database footprint</dt>
+            <dd class="mt-2 text-4xl font-black tracking-tight">~3.6 TB</dd>
+            <p class="mt-1 text-sm text-muted">operational analytics data</p>
+          </div>
+          <div class="p-7">
+            <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Orchestration</dt>
+            <dd class="mt-2 text-4xl font-black tracking-tight">~15</dd>
+            <p class="mt-1 text-sm text-muted">Airflow DAGs owned and supported</p>
+          </div>
+          <div class="p-7">
+            <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Engineering focus</dt>
+            <dd class="mt-2 text-2xl font-black tracking-tight">Backend & data</dd>
+            <p class="mt-1 text-sm text-muted">internal platforms and AI applications</p>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <section id="work" class="border-y border-ink bg-paper px-5 py-24 lg:px-10">
+      <div class="mx-auto max-w-[1360px]">
+        <div class="mb-12 grid gap-5 md:grid-cols-[1fr_2fr]">
+          <p class="font-mono text-xs uppercase tracking-[0.25em] text-signal">01 / Selected work</p>
+          <div>
+            <h2 class="text-4xl font-black tracking-[-0.04em] md:text-6xl">Selected engineering work.</h2>
+            <p class="mt-5 max-w-2xl text-lg leading-8 text-muted">Three case studies: production data ingestion, ownership of an internal platform, and an open-source SQL agent.</p>
+          </div>
+        </div>
+
+        <div class="grid gap-5 lg:grid-cols-3">
+          <a href="#" class="case-card group flex min-h-[460px] flex-col justify-between border border-ink bg-[#e9e5dc] p-7">
+            <div>
+              <div class="flex items-start justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                <span>Case 01 / Production</span><span>Private</span>
+              </div>
+              <div class="my-8 h-px bg-line"></div>
+              <span class="inline-block border border-ink px-2 py-1 font-mono text-[10px] uppercase tracking-widest">Data platform</span>
+              <h3 class="mt-5 text-4xl font-black leading-[1.02] tracking-[-0.045em]">Production data ingestion</h3>
+              <p class="mt-5 leading-7 text-muted">Supplier files are validated before tens of millions of rows are loaded into ClickHouse. Failures remain visible and recoverable.</p>
+            </div>
+            <div>
+              <div class="grid grid-cols-2 gap-4 border-t border-line pt-5 font-mono text-[10px] uppercase tracking-wider text-muted">
+                <span>ClickHouse / Airflow</span><span class="text-right">10M+ rows/day</span>
+              </div>
+              <p class="mt-6 font-mono text-xs uppercase tracking-widest group-hover:text-signal">Read case study →</p>
+            </div>
+          </a>
+
+          <a href="#" class="case-card group flex min-h-[460px] flex-col justify-between border border-ink bg-[#e9e5dc] p-7">
+            <div>
+              <div class="flex items-start justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                <span>Case 02 / Production</span><span>Private</span>
+              </div>
+              <div class="my-8 h-px bg-line"></div>
+              <span class="inline-block border border-ink px-2 py-1 font-mono text-[10px] uppercase tracking-widest">Internal platform</span>
+              <h3 class="mt-5 text-4xl font-black leading-[1.02] tracking-[-0.045em]">Internal platform ownership</h3>
+              <p class="mt-5 leading-7 text-muted">I develop and support internal tools used by the business, balancing feature work, automation, maintenance, and production support.</p>
+            </div>
+            <div>
+              <div class="grid grid-cols-2 gap-4 border-t border-line pt-5 font-mono text-[10px] uppercase tracking-wider text-muted">
+                <span>Django / Celery</span><span class="text-right">End-to-end owner</span>
+              </div>
+              <p class="mt-6 font-mono text-xs uppercase tracking-widest group-hover:text-signal">Read case study →</p>
+            </div>
+          </a>
+
+          <a href="#" class="case-card group flex min-h-[460px] flex-col justify-between border border-ink bg-[#e9e5dc] p-7">
+            <div>
+              <div class="flex items-start justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                <span>Case 03 / Open source</span><span>Public</span>
+              </div>
+              <div class="my-8 h-px bg-line"></div>
+              <span class="inline-block border border-ink px-2 py-1 font-mono text-[10px] uppercase tracking-widest">Guarded AI</span>
+              <h3 class="mt-5 text-4xl font-black leading-[1.02] tracking-[-0.045em]">Dux: constrained NL2SQL</h3>
+              <p class="mt-5 leading-7 text-muted">Dux lets an LLM help compose SQL, but the backend validates the exact query and owns execution and result rows.</p>
+            </div>
+            <div>
+              <div class="grid grid-cols-2 gap-4 border-t border-line pt-5 font-mono text-[10px] uppercase tracking-wider text-muted">
+                <span>LangChain / Django</span><span class="text-right">391 tests</span>
+              </div>
+              <p class="mt-6 font-mono text-xs uppercase tracking-widest group-hover:text-signal">Read case study →</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-ink px-5 py-24 text-paper lg:px-10">
+      <div class="mx-auto grid max-w-[1360px] gap-14 lg:grid-cols-[0.85fr_1.4fr]">
+        <div>
+          <p class="font-mono text-xs uppercase tracking-[0.25em] text-signal">02 / Working with AI</p>
+          <h2 class="mt-8 text-5xl font-black leading-[0.95] tracking-[-0.05em] md:text-7xl">How I work with coding agents.</h2>
+          <p class="mt-8 max-w-xl text-lg leading-8 text-[#b9c0bd]">I use coding agents for implementation and tests. I decide the approach, review every change, and ask for an explanation when I do not understand something.</p>
+        </div>
+        <ol class="border-t border-[#46504c]">
+          <li class="grid gap-4 border-b border-[#46504c] py-6 sm:grid-cols-[56px_160px_1fr]">
+            <span class="font-mono text-xs text-signal">01</span><strong>I plan</strong><span class="text-[#b9c0bd]">I define the problem, constraints, and tradeoffs.</span>
+          </li>
+          <li class="grid gap-4 border-b border-[#46504c] py-6 sm:grid-cols-[56px_160px_1fr]">
+            <span class="font-mono text-xs text-signal">02</span><strong>We brainstorm</strong><span class="text-[#b9c0bd]">Agents help me explore options before I choose an approach.</span>
+          </li>
+          <li class="grid gap-4 border-b border-[#46504c] py-6 sm:grid-cols-[56px_160px_1fr]">
+            <span class="font-mono text-xs text-signal">03</span><strong>AI implements</strong><span class="text-[#b9c0bd]">Agents write code and tests against the agreed plan.</span>
+          </li>
+          <li class="grid gap-4 border-b border-[#46504c] py-6 sm:grid-cols-[56px_160px_1fr]">
+            <span class="font-mono text-xs text-signal">04</span><strong>We review</strong><span class="text-[#b9c0bd]">A separate reviewer agent checks the implementation first. I then review every change myself and stop when I cannot explain it.</span>
+          </li>
+          <li class="grid gap-4 border-b border-[#46504c] py-6 sm:grid-cols-[56px_160px_1fr]">
+            <span class="font-mono text-xs text-signal">05</span><strong>I verify</strong><span class="text-[#b9c0bd]">I run the relevant checks and take responsibility for the result.</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="blog" class="border-b border-ink bg-paper px-5 py-24 lg:px-10">
+      <div class="mx-auto max-w-[1360px]">
+        <div class="grid gap-10 lg:grid-cols-[.7fr_1.6fr]">
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-signal">03 / Blog</p>
+            <h2 class="mt-7 text-5xl font-black tracking-[-0.05em]">Featured articles</h2>
+          </div>
+          <div class="border-t border-ink">
+            <a href="#" class="group grid gap-4 border-b border-line py-7 md:grid-cols-[110px_1fr_auto] md:items-center">
+              <span class="font-mono text-[10px] uppercase tracking-wider text-muted">Architecture</span>
+              <div>
+                <h3 class="text-2xl font-bold group-hover:text-signal">I Wanted a Flexible SQL Agent. I Didn't Want to Trust the LLM.</h3>
+                <p class="mt-2 max-w-3xl leading-6 text-muted">How Dux validates generated SQL before the query can run and keeps execution under backend control.</p>
+              </div>
+              <span class="font-mono text-sm">↗</span>
+            </a>
+            <a href="#" class="group grid gap-4 border-b border-line py-7 md:grid-cols-[110px_1fr_auto] md:items-center">
+              <span class="font-mono text-[10px] uppercase tracking-wider text-muted">Optimization</span>
+              <div>
+                <h3 class="text-2xl font-bold group-hover:text-signal">How I cut a simple "hi" from ~1300 tokens to ~72.</h3>
+                <p class="mt-2 max-w-3xl leading-6 text-muted">A deterministic fast path for simple messages reduced token use and response time.</p>
+              </div>
+              <span class="font-mono text-sm">↗</span>
+            </a>
+            <a href="#" class="group grid gap-4 border-b border-line py-7 md:grid-cols-[110px_1fr_auto] md:items-center">
+              <span class="font-mono text-[10px] uppercase tracking-wider text-muted">Opinion</span>
+              <div>
+                <h3 class="text-2xl font-bold group-hover:text-signal">TikTok-ification of software development.</h3>
+                <p class="mt-2 max-w-3xl leading-6 text-muted">My experience using coding agents without giving up understanding of the code.</p>
+              </div>
+              <span class="font-mono text-sm">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="bg-[#e7e3da] px-5 py-24 lg:px-10">
+      <div class="mx-auto grid max-w-[1360px] gap-12 lg:grid-cols-2">
+        <p class="font-mono text-xs uppercase tracking-[0.25em] text-signal">04 / About me</p>
+        <div>
+          <p class="text-3xl font-bold leading-tight tracking-[-0.025em] md:text-5xl">I moved into software development after more than a decade in people management.</p>
+          <p class="mt-8 max-w-2xl text-lg leading-8 text-muted">Before becoming a developer, I managed call center teams. That experience still helps with stakeholder communication and prioritization. My engineering work now focuses on backend systems, data pipelines, and internal platforms.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="border-t border-ink bg-signal px-5 py-20 text-white lg:px-10">
+      <div class="mx-auto flex max-w-[1360px] flex-col justify-between gap-10 md:flex-row md:items-end">
+        <div>
+          <p class="font-mono text-xs uppercase tracking-[0.25em] text-white/70">Contact</p>
+          <h2 class="mt-5 max-w-4xl text-5xl font-black leading-[.95] tracking-[-0.05em] md:text-7xl">If my experience is relevant to your team, get in touch.</h2>
+        </div>
+        <a href="mailto:igor.simbirtsev@gmail.com" class="shrink-0 border border-white bg-white px-6 py-4 font-mono text-xs uppercase tracking-widest text-signal hover:bg-ink hover:text-white">Email me →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-ink px-5 py-8 text-paper lg:px-10">
+    <div class="mx-auto flex max-w-[1360px] flex-col justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.18em] text-[#aeb8b2] sm:flex-row">
+      <span>© Igor Simbirtsev</span>
+      <span>GitHub / LinkedIn / Email</span>
+    </div>
+  </footer>
+</body>
+</html>

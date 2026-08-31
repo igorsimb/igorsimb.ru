@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog Index - Redesign Reference</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: "#f2efe8",
+            ink: "#17201d",
+            muted: "#66706b",
+            signal: "#db5b2b",
+            line: "#cfcac0"
+          },
+          fontFamily: {
+            sans: ["Arial", "Helvetica", "sans-serif"],
+            mono: ["Consolas", "Courier New", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #f2efe8;
+      background-image:
+        linear-gradient(rgba(23, 32, 29, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 32, 29, .045) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .article-row { transition: background-color 160ms ease, transform 160ms ease; }
+    .article-row:hover { background-color: #faf8f2; transform: translateX(4px); }
+    @media (prefers-reduced-motion: reduce) {
+      .article-row { transition: none; }
+      .article-row:hover { transform: none; }
+    }
+  </style>
+</head>
+<body class="font-sans text-ink antialiased selection:bg-signal selection:text-white">
+  <div class="border-b border-ink bg-ink px-5 py-2 text-paper">
+    <div class="mx-auto flex max-w-[1440px] items-center justify-between font-mono text-[10px] uppercase tracking-[0.22em]">
+      <span>Blog index / Signal Ledger</span>
+      <span class="hidden sm:block">Direction: Editorial Industrial</span>
+    </div>
+  </div>
+
+  <header class="sticky top-0 z-20 border-b border-line bg-paper/95 backdrop-blur">
+    <div class="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 lg:px-10">
+      <a href="#top" class="font-mono text-sm font-bold tracking-tight">IGOR SIMBIRTSEV <span class="text-signal">/</span> BLOG</a>
+      <nav aria-label="Primary navigation" class="hidden items-center gap-8 text-sm md:flex">
+        <a class="border-b border-transparent hover:border-ink" href="homepage.html#work">Work</a>
+        <a class="border-b border-ink" aria-current="page" href="#top">Blog</a>
+        <a class="border-b border-transparent hover:border-ink" href="homepage.html#about">About</a>
+        <a class="border-b border-transparent hover:border-ink" href="homepage.html#contact">Contact</a>
+      </nav>
+      <div class="flex items-center gap-4 font-mono text-[11px] uppercase tracking-widest">
+        <a href="#" aria-label="Download resume" class="hidden border-b border-ink pb-1 sm:block">Resume ↓</a>
+        <div class="flex border border-ink" aria-label="Language selector">
+          <button class="bg-ink px-2 py-1 text-paper">EN</button>
+          <button class="px-2 py-1">RU</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="border-b border-ink">
+      <div class="mx-auto grid max-w-[1440px] border-x border-line lg:grid-cols-[84px_1fr]">
+        <div class="hidden border-r border-line py-12 lg:flex lg:items-end lg:justify-center">
+          <span class="font-mono text-[10px] uppercase tracking-[0.35em] text-muted [writing-mode:vertical-rl] rotate-180">Technical notes / Field reports</span>
+        </div>
+        <div class="px-6 py-16 sm:py-20 lg:px-14 lg:py-24">
+          <div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
+            <span class="h-2 w-2 rounded-full bg-signal"></span>
+            Backend / Data / AI applications
+          </div>
+          <div class="mt-12 grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-end">
+            <h1 class="text-[4.5rem] font-black leading-[0.85] tracking-[-0.065em] sm:text-8xl lg:text-[9rem]">Blog.</h1>
+            <p class="max-w-2xl text-xl leading-8 text-muted lg:pb-2 lg:text-2xl lg:leading-9">
+              Articles about backend systems, data engineering, and building AI applications. Some are detailed technical write-ups; others examine a specific problem or idea.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-paper px-5 py-20 lg:px-10 lg:py-24">
+      <div class="mx-auto max-w-[1360px]">
+        <div class="mb-10 grid gap-4 border-b border-ink pb-7 md:grid-cols-[220px_1fr] md:items-end">
+          <p class="font-mono text-xs uppercase tracking-[0.25em] text-signal">Featured and recent</p>
+          <div>
+            <h2 class="text-4xl font-black tracking-[-0.04em] md:text-6xl">Articles</h2>
+          </div>
+        </div>
+
+        <div class="border-b border-ink">
+          <a href="#" class="article-row group grid gap-5 border-t border-ink bg-[#e9e5dc] px-5 py-8 sm:px-7 md:grid-cols-[150px_1fr_180px_24px] md:items-start lg:py-10">
+            <div>
+              <span class="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-signal"><span class="h-2 w-2 rounded-full bg-signal"></span>Featured</span>
+              <p class="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Aug 16, 2026</p>
+            </div>
+            <div>
+              <h3 class="max-w-4xl text-3xl font-black leading-tight tracking-[-0.035em] group-hover:text-signal md:text-4xl">I Wanted a Flexible SQL Agent. I Didn’t Want to Trust the LLM.</h3>
+              <p class="mt-4 max-w-3xl text-lg leading-7 text-muted">Dux lets the model propose SQL, while the backend decides what can run and which result rows the user can see.</p>
+            </div>
+            <div class="flex flex-wrap gap-2 font-mono text-[9px] uppercase tracking-wider text-muted">
+              <span class="border border-line px-2 py-1">Architecture</span>
+              <span class="border border-line px-2 py-1">AI</span>
+              <span class="border border-line px-2 py-1">SQL</span>
+            </div>
+            <span class="font-mono text-lg group-hover:text-signal">↗</span>
+          </a>
+
+          <a href="#" class="article-row group grid gap-5 border-t border-line px-5 py-8 sm:px-7 md:grid-cols-[150px_1fr_180px_24px] md:items-start">
+            <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Apr 19, 2026</p>
+            <div>
+              <h3 class="max-w-4xl text-2xl font-bold leading-tight tracking-[-0.025em] group-hover:text-signal md:text-3xl">TikTok-ification of software development</h3>
+              <p class="mt-3 max-w-3xl leading-7 text-muted">AI makes code cheaper, but it can also make developers less willing to slow down and understand the software they produce.</p>
+            </div>
+            <div class="flex flex-wrap gap-2 font-mono text-[9px] uppercase tracking-wider text-muted">
+              <span class="border border-line px-2 py-1">Opinion</span>
+              <span class="border border-line px-2 py-1">AI-assisted development</span>
+            </div>
+            <span class="font-mono text-lg group-hover:text-signal">↗</span>
+          </a>
+
+          <a href="#" class="article-row group grid gap-5 border-t border-line px-5 py-8 sm:px-7 md:grid-cols-[150px_1fr_180px_24px] md:items-start">
+            <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Apr 12, 2026</p>
+            <div>
+              <h3 class="max-w-4xl text-2xl font-bold leading-tight tracking-[-0.025em] group-hover:text-signal md:text-3xl">How I cut a simple “hi” from ~1300 tokens to ~72 in a LangChain agent app</h3>
+              <p class="mt-3 max-w-3xl leading-7 text-muted">A deterministic fast path stopped lightweight messages from going through the full NL2SQL workflow.</p>
+            </div>
+            <div class="flex flex-wrap gap-2 font-mono text-[9px] uppercase tracking-wider text-muted">
+              <span class="border border-line px-2 py-1">LangChain</span>
+              <span class="border border-line px-2 py-1">Optimization</span>
+            </div>
+            <span class="font-mono text-lg group-hover:text-signal">↗</span>
+          </a>
+
+          <a href="#" class="article-row group grid gap-5 border-t border-line px-5 py-8 sm:px-7 md:grid-cols-[150px_1fr_180px_24px] md:items-start">
+            <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Apr 5, 2026</p>
+            <div>
+              <h3 class="max-w-4xl text-2xl font-bold leading-tight tracking-[-0.025em] group-hover:text-signal md:text-3xl">LLMs don't remember what you just said. Your App Does</h3>
+              <p class="mt-3 max-w-3xl leading-7 text-muted">A practical explanation of model statelessness and how application code provides conversational memory.</p>
+            </div>
+            <div class="flex flex-wrap gap-2 font-mono text-[9px] uppercase tracking-wider text-muted">
+              <span class="border border-line px-2 py-1">LLM applications</span>
+              <span class="border border-line px-2 py-1">State</span>
+            </div>
+            <span class="font-mono text-lg group-hover:text-signal">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-ink px-5 py-8 text-paper lg:px-10">
+    <div class="mx-auto flex max-w-[1360px] flex-col justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.18em] text-[#aeb8b2] sm:flex-row">
+      <span>© Igor Simbirtsev</span>
+      <span>GitHub / LinkedIn / Email</span>
+    </div>
+  </footer>
+</body>
+</html>
