@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog Article - Redesign Reference</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: "#f2efe8",
+            ink: "#17201d",
+            muted: "#66706b",
+            signal: "#db5b2b",
+            line: "#cfcac0"
+          },
+          fontFamily: {
+            sans: ["Arial", "Helvetica", "sans-serif"],
+            mono: ["Consolas", "Courier New", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #f2efe8;
+      background-image:
+        linear-gradient(rgba(23, 32, 29, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 32, 29, .045) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .article-body {
+      font-size: 1.125rem;
+      line-height: 1.8;
+    }
+    .article-body > * + * { margin-top: 1.5rem; }
+    .article-body h2 {
+      margin-top: 4.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #17201d;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+    .article-body h3 {
+      margin-top: 3.25rem;
+      font-size: 1.65rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .article-body a {
+      color: #b8461f;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .article-body code {
+      border: 1px solid #cfcac0;
+      background: #e9e5dc;
+      padding: .12rem .35rem;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: .88em;
+    }
+    .article-body pre {
+      overflow-x: auto;
+      border: 1px solid #17201d;
+      background: #17201d;
+      color: #f2efe8;
+      padding: 1.5rem;
+      font-size: .9rem;
+      line-height: 1.65;
+    }
+    .article-body pre code {
+      border: 0;
+      background: transparent;
+      padding: 0;
+    }
+    .article-body ul {
+      list-style: none;
+      padding: 0;
+    }
+    .article-body li {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    .article-body li + li { margin-top: .6rem; }
+    .article-body li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .78em;
+      width: .45rem;
+      height: .45rem;
+      background: #db5b2b;
+    }
+  </style>
+</head>
+<body class="font-sans text-ink antialiased selection:bg-signal selection:text-white">
+  <div class="border-b border-ink bg-ink px-5 py-2 text-paper">
+    <div class="mx-auto flex max-w-[1440px] items-center justify-between font-mono text-[10px] uppercase tracking-[0.22em]">
+      <span>Article detail / Signal Ledger</span>
+      <span class="hidden sm:block">Long-form technical writing</span>
+    </div>
+  </div>
+
+  <header class="sticky top-0 z-20 border-b border-line bg-paper/95 backdrop-blur">
+    <div class="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 lg:px-10">
+      <a href="blog-index.html" class="font-mono text-sm font-bold tracking-tight">IGOR SIMBIRTSEV <span class="text-signal">/</span> BLOG</a>
+      <nav aria-label="Primary navigation" class="hidden items-center gap-8 text-sm md:flex">
+        <a class="border-b border-transparent hover:border-ink" href="homepage.html#work">Work</a>
+        <a class="border-b border-ink" aria-current="page" href="blog-index.html">Blog</a>
+        <a class="border-b border-transparent hover:border-ink" href="homepage.html#about">About</a>
+        <a class="border-b border-transparent hover:border-ink" href="homepage.html#contact">Contact</a>
+      </nav>
+      <div class="flex items-center gap-4 font-mono text-[11px] uppercase tracking-widest">
+        <a href="#" aria-label="Download resume" class="hidden border-b border-ink pb-1 sm:block">Resume ↓</a>
+        <div class="flex border border-ink" aria-label="Language selector">
+          <button class="bg-ink px-2 py-1 text-paper">EN</button>
+          <button class="px-2 py-1">RU</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <header class="border-b border-ink">
+        <div class="mx-auto grid max-w-[1440px] border-x border-line lg:grid-cols-[84px_1fr]">
+          <div class="hidden border-r border-line py-12 lg:flex lg:items-end lg:justify-center">
+            <span class="font-mono text-[10px] uppercase tracking-[0.35em] text-muted [writing-mode:vertical-rl] rotate-180">Architecture / Guarded AI</span>
+          </div>
+          <div class="px-5 py-14 sm:py-20 lg:px-14 lg:py-24">
+            <a href="blog-index.html" class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted hover:text-signal lg:-ml-[140px]">← All articles</a>
+            <div class="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
+              <time datetime="2026-08-16">Aug 16, 2026</time>
+              <span class="h-1 w-1 rounded-full bg-signal"></span>
+              <span>Architecture</span>
+              <span>AI</span>
+              <span>SQL</span>
+              <span class="h-1 w-1 rounded-full bg-signal"></span>
+              <a class="font-bold text-signal hover:underline" href="https://github.com/igorsimb/dux">Dux on GitHub ↗</a>
+            </div>
+            <h1 class="mt-7 max-w-6xl text-[3.25rem] font-black leading-[0.96] tracking-[-0.055em] sm:text-6xl lg:text-[5.5rem]">
+              I Wanted a Flexible SQL Agent. I Didn’t Want to Trust the LLM.
+            </h1>
+            <div class="mt-10 max-w-4xl border-l-4 border-signal bg-[#e9e5dc] px-6 py-5 sm:px-8 sm:py-7">
+              <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-signal">TL;DR</p>
+              <p class="mt-3 text-lg font-bold leading-7 sm:text-xl sm:leading-8">Dux lets the model propose the SQL each question requires. Deterministic application code validates the exact query, decides where it may run, and owns the result rows.</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="bg-paper px-5 py-16 lg:px-10 lg:py-24">
+        <div class="mx-auto max-w-[1440px]">
+          <div class="article-body max-w-[880px] min-w-0">
+            <p>I do not trust LLMs.</p>
+            <p>This is slightly inconvenient because I am building an application that asks one to write SQL against business data.</p>
+            <p>I like working with LLMs, and I am increasingly building my work around them. But they hallucinate. They invent details and make non-obvious decisions under the hood.</p>
+            <p>That is manageable when the model is helping me brainstorm a name. It becomes more uncomfortable when it is answering a business question from a database.</p>
+            <p>A plausible but incorrect answer is often worse than an obvious failure. It looks finished. It has numbers. Someone can act on it without realizing that the model joined the wrong tables or made an assumption the user never intended.</p>
+            <p>My answer became Dux with a simple premise:</p>
+            <pre><code>LLM writes SQL. Code decides if it runs.</code></pre>
+
+            <h2>A perfectly valid solution to a different problem</h2>
+            <p>Before I settled on that approach, I spoke with a developer who had already built a system for answering questions from company data.</p>
+            <p>His approach was more constrained. He knew the industry, understood the questions users asked repeatedly, and prepared the data around those questions. The model acted as a natural-language interface over a known set of capabilities.</p>
+            <p>It was controlled, predictable, and a good fit for what his company needed. The trade-off was that a new kind of question could require another development task.</p>
+            <p>I did not know the business domain well enough to anticipate every useful question. If I could not list those questions in advance, I needed to let the model construct new queries.</p>
+
+            <h2>What happens after the question</h2>
+            <p>The visible interaction looks simple. Underneath it, Dux separates what the LLM may propose from what the application will authorize.</p>
+
+            <h3>The model gets a limited view of the data</h3>
+            <p>Dux does not expose every table it can physically reach. The model sees an allowlisted catalog with source, dialect, table grain, useful columns, join relationships, and query hints.</p>
+
+            <h3>Code validates the exact query</h3>
+            <p>The proposed SQL goes through a backend-owned validation path. Dux checks that it is read-only, parses it using configured dialect candidates, resolves table references against source-specific allowlists, and applies metadata policy.</p>
+
+            <figure class="my-10 border border-ink bg-[#e9e5dc] p-4 sm:p-6">
+              <div class="overflow-x-auto">
+                <div class="grid min-w-[660px] grid-cols-[1fr_42px_1fr_42px_1fr] items-center gap-2 font-mono text-[10px] uppercase tracking-wider">
+                  <div class="border border-ink bg-paper p-4 text-center">LLM proposes SQL</div>
+                  <div class="text-center text-signal">→</div>
+                  <div class="border-2 border-signal bg-paper p-4 text-center">Code validates query</div>
+                  <div class="text-center text-signal">→</div>
+                  <div class="border border-ink bg-paper p-4 text-center">Database executes</div>
+                </div>
+              </div>
+              <figcaption class="mt-4 border-t border-line pt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">The model proposes an action. Application code authorizes that exact action.</figcaption>
+            </figure>
+
+            <h3>Validation creates a capability</h3>
+            <p>When the query passes validation, Dux stores the normalized SQL together with the source and dialect selected by the backend. It returns a short-lived, thread-bound, one-time <code>validated_id</code>.</p>
+            <pre><code>execute_validated_sql(validated_id)</code></pre>
+            <p>The execution tool does not accept another SQL string from the model. The approved query is already stored and can be consumed only once.</p>
+
+            <h3>The backend owns the visible rows</h3>
+            <p>Dux converts the SQL response into backend-owned structured table blocks. The model can write commentary and give the table a useful title. It cannot supply or modify the visible rows.</p>
+            <p>The sources of authority remain explicit:</p>
+            <ul>
+              <li>The model proposes the query.</li>
+              <li>Code decides whether that exact query may run.</li>
+              <li>The database produces the rows.</li>
+              <li>The backend preserves those rows.</li>
+              <li>The model explains them.</li>
+            </ul>
+
+            <h2>The extra complexity is real</h2>
+            <p>Dux needs source configuration, table metadata, dialect-aware parsing, candidate routing, allowlist enforcement, capability storage, expiration rules, structured result assembly, permission filtering, and tests around all of it.</p>
+            <p>That is more machinery than exposing five carefully written query functions. I think it is worth it for the problem I am trying to solve, but it is not the right trade-off for every application.</p>
+
+            <h2>What Dux is today</h2>
+            <p>Dux is working software in active development. The core path described here exists, can be run against the bundled Chinook database, and has focused deterministic tests.</p>
+            <p>What I do not have yet is evidence from independent users or production workloads. Tests give me confidence that the boundaries behave as designed. They do not prove that I designed every boundary correctly.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="border-t border-ink bg-[#e9e5dc] px-5 py-10 lg:px-10">
+        <div class="mx-auto max-w-[1440px]">
+          <div class="flex max-w-[880px] flex-col justify-between gap-6 sm:flex-row sm:items-center">
+            <a href="blog-index.html" class="font-mono text-xs uppercase tracking-[0.18em] hover:text-signal">← All articles</a>
+            <a href="#" class="max-w-lg text-left sm:text-right">
+              <span class="block font-mono text-[10px] uppercase tracking-[0.18em] text-muted">Next article</span>
+              <span class="mt-2 block text-lg font-bold hover:text-signal">TikTok-ification of software development →</span>
+            </a>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="bg-ink px-5 py-8 text-paper lg:px-10">
+    <div class="mx-auto flex max-w-[1360px] flex-col justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.18em] text-[#aeb8b2] sm:flex-row">
+      <span>© Igor Simbirtsev</span>
+      <span>GitHub / LinkedIn / Email</span>
+    </div>
+  </footer>
+</body>
+</html>
