@@ -2,6 +2,8 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /accounts/
+Disallow: /en/accounts/
+Disallow: /ru/accounts/
 Disallow: /blog/dashboard/
 Disallow: /blog/write/
 

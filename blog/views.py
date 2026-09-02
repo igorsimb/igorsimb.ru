@@ -22,7 +22,7 @@ from PIL.Image import DecompressionBombError
 
 from .forms import PostEditorForm
 from .models import Post
-from .rendering import render_markdown
+from .rendering import normalize_article_html, render_markdown
 
 
 ALLOWED_BLOG_IMAGE_CONTENT_TYPES = {
@@ -73,7 +73,11 @@ def build_blog_image_upload_path(uploaded_image, content_type):
 def build_editor_signal_patch(
     post=None, title="", markdown_body="", save_message="", save_tone="idle"
 ):
-    preview_html = post.rendered_html if post else render_markdown(markdown_body)
+    preview_html = (
+        normalize_article_html(post.rendered_html)
+        if post
+        else render_markdown(markdown_body)
+    )
     editor_url = (
         reverse("blog:editor", kwargs={"pk": post.pk})
         if post
@@ -114,7 +118,7 @@ class BlogIndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         try:
-            context["posts"] = list(Post.objects.filter(status=Post.Status.PUBLISHED))
+            context["posts"] = list(Post.objects.ordered_for_index())
         except (OperationalError, ProgrammingError):
             context["posts"] = []
 
@@ -134,6 +138,16 @@ class BlogDetailView(DetailView):
             raise Http404 from exc
         except (OperationalError, ProgrammingError) as exc:
             raise Http404 from exc
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context["next_post"] = Post.objects.next_after(self.object)
+        except (OperationalError, ProgrammingError):
+            context["next_post"] = None
+        context["article_html"] = normalize_article_html(self.object.rendered_html)
+
+        return context
 
 
 class BlogAuthorRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
@@ -207,7 +221,7 @@ class BlogEditorView(BlogAuthorRequiredMixin, TemplateView):
         form = kwargs.get("form") or PostEditorForm(instance=post)
         preview_html = kwargs.get("preview_html")
         if preview_html is None:
-            preview_html = post.rendered_html if post else ""
+            preview_html = normalize_article_html(post.rendered_html) if post else ""
 
         context["form"] = form
         context["post"] = post

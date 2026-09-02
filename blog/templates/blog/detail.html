@@ -1,34 +1,91 @@
-{% extends "core/base.html" %}
-{% load static %}
-{% load i18n %}
+{% extends "core/public_base.html" %}
+{% load static i18n %}
 
 {% block title %}{{ post.title }}{% endblock title %}
-{% block meta_description %}{{ post.rendered_html|striptags|truncatewords:30 }}{% endblock meta_description %}
+{% block meta_description %}{{ post.display_summary|default:post.title }}{% endblock meta_description %}
 
 {% block extra_css %}
     <link href="{% static 'blog/css/blog.css' %}" rel="stylesheet">
 {% endblock extra_css %}
 
 {% block content %}
-    {% include "core/partials/header.html" %}
+    <main id="main-content">
+        <article data-article-detail>
+            <header class="border-b border-ink">
+                <div class="mx-auto grid max-w-[1440px] border-x border-line lg:grid-cols-[84px_1fr]">
+                    <div class="hidden border-r border-line py-12 lg:flex lg:items-end lg:justify-center">
+                        <span class="homepage-vertical-label font-mono text-[10px] uppercase tracking-[0.35em]
+                                     text-muted">
+                            {% translate "Technical article" %}
+                        </span>
+                    </div>
+                    <div class="min-w-0 px-5 py-14 sm:py-20 lg:px-14 lg:py-24">
+                        <div class="max-w-[1120px]">
+                            <a href="{% url 'blog:index' %}"
+                               class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted hover:text-signal">
+                                ← {% translate "All articles" %}
+                            </a>
+                            <div class="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-[10px]
+                                        uppercase tracking-[0.18em] text-muted" data-article-metadata>
+                                <time datetime="{{ post.published_at|date:'c' }}">
+                                    {{ post.published_at|date:"M j, Y" }}
+                                </time>
+                                {% if post.display_tags %}
+                                    <span aria-hidden="true" class="h-1 w-1 rounded-full bg-signal"></span>
+                                    {% for tag in post.display_tags %}
+                                        <span lang="en" class="max-w-full break-all">{{ tag }}</span>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <h1 lang="en" class="mt-7 break-words text-[3.25rem] font-black leading-[0.96]
+                                       tracking-[-0.055em] sm:text-6xl lg:text-[5.5rem]">
+                                {{ post.title }}
+                            </h1>
+                            {% with editorial_summary=post.summary.strip %}
+                                {% if editorial_summary %}
+                                    <div class="mt-10 max-w-[880px] border-l-4 border-signal bg-surface px-6 py-5
+                                                sm:px-8 sm:py-7" data-article-summary>
+                                        <p lang="en" class="text-lg font-bold leading-7 sm:text-xl sm:leading-8">
+                                            {{ editorial_summary }}
+                                        </p>
+                                    </div>
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
+            </header>
 
-    <main id="main">
-        <section class="blog-shell blog-shell--detail">
-            <div class="container" data-aos="fade-up">
-                <article class="blog-post">
-                    <p class="blog-post__meta">
-                        <a href="{% url 'blog:index' %}">{% translate "Blog" %}</a>
-                        {% if post.published_at %}
-                            <span>&middot;</span>
-                            <time datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:"M j, Y" }}</time>
-                        {% endif %}
-                    </p>
-                    <h1 class="blog-post__title">{{ post.title }}</h1>
-                    <div class="blog-post__body">{{ post.rendered_html|safe }}</div>
-                </article>
+            <div id="article-body" class="scroll-mt-16 bg-paper px-5 py-16 lg:px-10 lg:py-24">
+                <div class="mx-auto max-w-[1440px]">
+                    <div lang="en" class="article-body max-w-[880px] min-w-0" data-article-body>
+                        {{ article_html|safe }}
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
 
-    {% include "core/partials/footer.html" %}
+            <footer class="border-t border-ink bg-surface px-5 py-10 lg:px-10" data-article-navigation>
+                <div class="mx-auto max-w-[1440px]">
+                    <nav class="flex max-w-[880px] flex-col justify-between gap-6 sm:flex-row sm:items-center"
+                         aria-label="{% translate 'Article navigation' %}">
+                        <a href="{% url 'blog:index' %}"
+                           class="font-mono text-xs uppercase tracking-[0.18em] hover:text-signal">
+                            ← {% translate "All articles" %}
+                        </a>
+                        {% if next_post %}
+                            <a href="{% url 'blog:detail' slug=next_post.slug %}"
+                               class="group max-w-lg text-left sm:text-right">
+                                <span class="block font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
+                                    {% translate "Next article" %}
+                                </span>
+                                <span lang="en" class="mt-2 block text-lg font-bold group-hover:text-signal">
+                                    {{ next_post.title }} →
+                                </span>
+                            </a>
+                        {% endif %}
+                    </nav>
+                </div>
+            </footer>
+        </article>
+    </main>
 {% endblock content %}

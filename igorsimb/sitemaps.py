@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap
+from django.db import OperationalError, ProgrammingError
 from django.urls import reverse
 from django.utils import translation
 
@@ -53,7 +54,12 @@ class BlogPostSitemap(CanonicalSitemap):
     priority = 0.7
 
     def items(self):
-        return Post.objects.filter(status=Post.Status.PUBLISHED).order_by("pk")
+        try:
+            return list(
+                Post.objects.filter(status=Post.Status.PUBLISHED).order_by("pk")
+            )
+        except (OperationalError, ProgrammingError):
+            return []
 
     def location(self, post):
         return reverse("blog:detail", kwargs={"slug": post.slug})

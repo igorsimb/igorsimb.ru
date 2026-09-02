@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 21:26+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2026-09-02 23:25+0300\n"
+"PO-Revision-Date: 2026-09-02 23:00+0300\n"
+"Last-Translator: Igor Simbirtsev\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +19,7 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\accounts\models.py:8 .\core\forms.py:7
+#: .\accounts\models.py:8 .\core\templates\core\partials\site_footer.html:9
 msgid "Email"
 msgstr "Email"
 
@@ -63,36 +63,48 @@ msgstr "Пароль (повторно)"
 msgid "Sign up"
 msgstr "Зарегистрироваться"
 
-#: .\blog\forms.py:18 .\blog\templates\blog\editor.html:127
+#: .\blog\forms.py:18 .\blog\templates\blog\editor.html:133
 msgid "Post title"
 msgstr "Заголовок поста"
 
-#: .\blog\forms.py:25 .\blog\templates\blog\editor.html:136
+#: .\blog\forms.py:25 .\blog\templates\blog\editor.html:145
 msgid "Write in Markdown..."
 msgstr "Пишите в Markdown..."
 
-#: .\blog\templates\blog\dashboard.html:5
+#: .\blog\templates\blog\dashboard.html:4
 msgid "Blog Dashboard"
 msgstr "Панель блога"
 
-#: .\blog\templates\blog\dashboard.html:19
+#: .\blog\templates\blog\dashboard.html:16
 msgid "Authoring"
 msgstr "Редактирование"
 
-#: .\blog\templates\blog\dashboard.html:20
+#: .\blog\templates\blog\dashboard.html:17
 msgid "Blog dashboard"
 msgstr "Панель блога"
 
-#: .\blog\templates\blog\dashboard.html:21
+#: .\blog\templates\blog\dashboard.html:19
 msgid "Drafts and published posts, without the admin clutter."
 msgstr "Черновики и опубликованные посты без лишнего шума админки."
 
-#: .\blog\templates\blog\dashboard.html:24
+#: .\blog\templates\blog\dashboard.html:22 .\blog\templates\blog\editor.html:58
+msgid "Author navigation"
+msgstr "Навигация автора"
+
+#: .\blog\templates\blog\dashboard.html:23 .\blog\templates\blog\editor.html:59
+msgid "Public blog"
+msgstr "Публичный блог"
+
+#: .\blog\templates\blog\dashboard.html:26
 msgid "New post"
 msgstr "Новый пост"
 
-#: .\blog\templates\blog\dashboard.html:30
-#: .\blog\templates\blog\dashboard.html:41
+#: .\blog\templates\blog\dashboard.html:33
+msgid "Posts by status"
+msgstr "Посты по статусу"
+
+#: .\blog\templates\blog\dashboard.html:37
+#: .\blog\templates\blog\dashboard.html:55
 msgid ""
 "The blog table is not available in this database yet. Run migrations for the "
 "current blog app before using the editor."
@@ -100,38 +112,54 @@ msgstr ""
 "Таблица блога пока недоступна в этой базе данных. Выполните миграции для "
 "текущего приложения blog перед использованием редактора."
 
-#: .\blog\templates\blog\dashboard.html:37
+#: .\blog\templates\blog\dashboard.html:46
+msgid "Working set"
+msgstr "В работе"
+
+#: .\blog\templates\blog\dashboard.html:47
 msgid "Drafts"
 msgstr "Черновики"
 
-#: .\blog\templates\blog\dashboard.html:48
+#: .\blog\templates\blog\dashboard.html:50
+msgid "Draft count"
+msgstr "Количество черновиков"
+
+#: .\blog\templates\blog\dashboard.html:63
 msgid "Updated"
 msgstr "Обновлено"
 
-#: .\blog\templates\blog\dashboard.html:50 .\blog\templates\blog\editor.html:41
-#: .\blog\views.py:100
+#: .\blog\templates\blog\dashboard.html:65 .\blog\templates\blog\editor.html:35
+#: .\blog\views.py:104
 msgid "Draft"
 msgstr "Черновик"
 
-#: .\blog\templates\blog\dashboard.html:53
+#: .\blog\templates\blog\dashboard.html:68
 msgid "No drafts waiting."
 msgstr "Черновиков пока нет."
 
-#: .\blog\templates\blog\dashboard.html:61
-#: .\blog\templates\blog\dashboard.html:70 .\blog\templates\blog\editor.html:41
-#: .\blog\views.py:100
+#: .\blog\templates\blog\dashboard.html:77
+msgid "Public record"
+msgstr "Опубликованные материалы"
+
+#: .\blog\templates\blog\dashboard.html:78
+#: .\blog\templates\blog\dashboard.html:91 .\blog\templates\blog\editor.html:35
+#: .\blog\views.py:104
 msgid "Published"
 msgstr "Опубликовано"
 
-#: .\blog\templates\blog\dashboard.html:72
+#: .\blog\templates\blog\dashboard.html:81
+msgid "Published count"
+msgstr "Количество опубликованных постов"
+
+#: .\blog\templates\blog\dashboard.html:93
 msgid "Live"
 msgstr "Опубликован"
 
-#: .\blog\templates\blog\dashboard.html:75
+#: .\blog\templates\blog\dashboard.html:96
 msgid "Nothing published yet."
 msgstr "Пока ничего не опубликовано."
 
-#: .\blog\templates\blog\dashboard.html:79
+#: .\blog\templates\blog\dashboard.html:101
 msgid ""
 "Published posts will appear here after the blog tables exist and a post goes "
 "live."
@@ -139,204 +167,494 @@ msgstr ""
 "Опубликованные посты появятся здесь после создания таблиц блога и публикации "
 "первого поста."
 
-#: .\blog\templates\blog\detail.html:19 .\blog\templates\blog\index.html:5
-#: .\blog\templates\blog\index.html:18
-#: .\core\templates\core\partials\header.html:72
-msgid "Blog"
-msgstr "Блог"
+#: .\blog\templates\blog\detail.html:19
+msgid "Technical article"
+msgstr "Техническая статья"
 
-#: .\blog\templates\blog\editor.html:5
+#: .\blog\templates\blog\detail.html:26 .\blog\templates\blog\detail.html:71
+msgid "All articles"
+msgstr "Все статьи"
+
+#: .\blog\templates\blog\detail.html:68
+msgid "Article navigation"
+msgstr "Навигация по статьям"
+
+#: .\blog\templates\blog\detail.html:77
+msgid "Next article"
+msgstr "Следующая статья"
+
+#: .\blog\templates\blog\editor.html:4
 msgid "New Post"
 msgstr "Новый пост"
 
-#: .\blog\templates\blog\editor.html:24 .\blog\templates\blog\editor.html:54
+#: .\blog\templates\blog\editor.html:20 .\blog\templates\blog\editor.html:48
 msgid "Start a new post"
 msgstr "Начните новый пост"
 
-#: .\blog\templates\blog\editor.html:25 .\blog\templates\blog\editor.html:163
+#: .\blog\templates\blog\editor.html:21 .\blog\templates\blog\editor.html:106
+#: .\blog\templates\blog\editor.html:181
 msgid "Preview"
 msgstr "Предпросмотр"
 
-#: .\blog\templates\blog\editor.html:26
-msgid "Show sidebar"
-msgstr "Показать боковую панель"
-
-#: .\blog\templates\blog\editor.html:27
-msgid "Hide sidebar"
-msgstr "Скрыть боковую панель"
-
-#: .\blog\templates\blog\editor.html:28
+#: .\blog\templates\blog\editor.html:22
 msgid "Save draft"
 msgstr "Сохранить черновик"
 
-#: .\blog\templates\blog\editor.html:29
+#: .\blog\templates\blog\editor.html:23
 msgid "Save changes"
 msgstr "Сохранить изменения"
 
-#: .\blog\templates\blog\editor.html:30 .\blog\templates\blog\editor.html:120
+#: .\blog\templates\blog\editor.html:24 .\blog\templates\blog\editor.html:116
 msgid "Saving..."
 msgstr "Сохранение..."
 
-#: .\blog\templates\blog\editor.html:31
+#: .\blog\templates\blog\editor.html:25
 msgid "Save failed."
 msgstr "Не удалось сохранить."
 
-#: .\blog\templates\blog\editor.html:53
-msgid "Editor"
-msgstr "Редактор"
+#: .\blog\templates\blog\editor.html:46
+msgid "Writing workspace"
+msgstr "Рабочее пространство"
 
-#: .\blog\templates\blog\editor.html:57
+#: .\blog\templates\blog\editor.html:52
 msgid ""
 "Write in Markdown, review the rendered output, and decide when it goes live."
-msgstr "Пишите в Markdown, проверяйте результат рендеринга и решайте, когда публиковать пост."
+msgstr ""
+"Пишите в Markdown, проверяйте результат рендеринга и решайте, когда "
+"публиковать пост."
 
-#: .\blog\templates\blog\editor.html:59
+#: .\blog\templates\blog\editor.html:54
 msgid ""
 "Keep the draft rough until the structure is right, then publish when it is "
 "ready."
-msgstr "Держите черновик в свободной форме, пока структура не станет правильной, а затем публикуйте, когда он будет готов."
+msgstr ""
+"Держите черновик в свободной форме, пока структура не станет правильной, а "
+"затем публикуйте, когда он будет готов."
 
-#: .\blog\templates\blog\editor.html:66
-msgid "Back to dashboard"
-msgstr "Назад к панели"
-
-#: .\blog\templates\blog\editor.html:92
-msgid "Open public post"
-msgstr "Открыть публичный пост"
-
-#: .\blog\templates\blog\editor.html:93
-msgid "Editor layout mode"
-msgstr "Режим отображения редактора"
-
-#: .\blog\templates\blog\editor.html:95
-msgid "Editor only"
-msgstr "Только редактор"
-
-#: .\blog\templates\blog\editor.html:99
-msgid "Editor and Preview"
-msgstr "Редактор и предпросмотр"
-
-#: .\blog\templates\blog\editor.html:103
-msgid "Preview only"
-msgstr "Только предпросмотр"
-
-#: .\blog\templates\blog\editor.html:124
-msgid "Title"
-msgstr "Заголовок"
-
-#: .\blog\templates\blog\editor.html:134
-msgid "Body"
-msgstr "Текст"
-
-#: .\blog\templates\blog\editor.html:150
-msgid "Publish"
-msgstr "Опубликовать"
-
-#: .\blog\templates\blog\editor.html:153
-msgid "Move to draft"
-msgstr "Вернуть в черновик"
-
-#: .\blog\templates\blog\editor.html:155
-msgid "Run migrations for the current blog app before saving or publishing."
-msgstr "Выполните миграции для текущего приложения blog перед сохранением или публикацией."
-
-#: .\blog\templates\blog\editor.html:170
-msgid "Preview will appear here after you start writing."
-msgstr "Предпросмотр появится здесь, как только вы начнете писать."
-
-#: .\blog\templates\blog\index.html:19
-msgid "Notes on Django, side projects, and technical work."
-msgstr "Заметки о Django, сайд-проектах и технической работе."
-
-#: .\blog\templates\blog\index.html:21
-msgid "Published posts live here. Drafts stay private until they are ready."
-msgstr "Здесь появляются опубликованные посты. Черновики остаются приватными, пока не будут готовы."
-
-#: .\blog\templates\blog\index.html:25
-msgid "Write"
-msgstr "Писать"
-
-#: .\blog\templates\blog\index.html:26
+#: .\blog\templates\blog\editor.html:60 .\blog\templates\blog\index.html:45
 #: .\core\templates\core\projects\ez2task_project.html:102
 msgid "Dashboard"
 msgstr "Панель управления"
 
-#: .\blog\templates\blog\index.html:44
-msgid "No published posts yet."
-msgstr "Опубликованных постов пока нет."
+#: .\blog\templates\blog\editor.html:82
+msgid "Post status and view controls"
+msgstr "Статус поста и режим просмотра"
 
-#: .\blog\templates\blog\index.html:45
-msgid ""
-"Nothing is live yet. Write the first post when you have something worth "
-"keeping."
+#: .\blog\templates\blog\editor.html:91
+msgid "Open public post"
+msgstr "Открыть публичный пост"
+
+#: .\blog\templates\blog\editor.html:94
+msgid "Editor layout mode"
+msgstr "Режим отображения редактора"
+
+#: .\blog\templates\blog\editor.html:98 .\blog\templates\blog\index.html:43
+msgid "Write"
+msgstr "Писать"
+
+#: .\blog\templates\blog\editor.html:102
+msgid "Split"
+msgstr "Два окна"
+
+#: .\blog\templates\blog\editor.html:115
+msgid "Markdown source"
+msgstr "Исходный текст Markdown"
+
+#: .\blog\templates\blog\editor.html:120
+msgid "Uploading image..."
+msgstr "Загрузка изображения..."
+
+#: .\blog\templates\blog\editor.html:121
+msgid "Uploading images..."
+msgstr "Загрузка изображений..."
+
+#: .\blog\templates\blog\editor.html:122
+msgid "Image inserted."
+msgstr "Изображение вставлено."
+
+#: .\blog\templates\blog\editor.html:123
+msgid "Images inserted."
+msgstr "Изображения вставлены."
+
+#: .\blog\templates\blog\editor.html:124
+msgid "Image upload failed. Refresh the page and try again."
+msgstr "Не удалось загрузить изображение. Обновите страницу и повторите попытку."
+
+#: .\blog\templates\blog\editor.html:130 .\blog\templates\blog\editor.html:178
+msgid "Title"
+msgstr "Заголовок"
+
+#: .\blog\templates\blog\editor.html:141 .\blog\templates\blog\editor.html:185
+msgid "Body"
+msgstr "Текст"
+
+#: .\blog\templates\blog\editor.html:142
+msgid "Drop or paste images into the editor"
+msgstr "Перетащите или вставьте изображения в редактор"
+
+#: .\blog\templates\blog\editor.html:159
+msgid "Publish"
+msgstr "Опубликовать"
+
+#: .\blog\templates\blog\editor.html:162
+msgid "Move to draft"
+msgstr "Вернуть в черновик"
+
+#: .\blog\templates\blog\editor.html:165
+msgid "Run migrations for the current blog app before saving or publishing."
 msgstr ""
-"Пока ничего не опубликовано. Напишите первый пост, когда у вас появится "
-"что-то действительно стоящее."
+"Выполните миграции для текущего приложения blog перед сохранением или "
+"публикацией."
 
-#: .\blog\views.py:228 .\blog\views.py:279
+#: .\blog\templates\blog\editor.html:174
+msgid "Rendered preview"
+msgstr "Предпросмотр результата"
+
+#: .\blog\templates\blog\editor.html:191
+msgid "Preview will appear here after you start writing."
+msgstr "Предпросмотр появится здесь, как только вы начнете писать."
+
+#: .\blog\templates\blog\index.html:4
+msgid "Blog - Igor Simbirtsev"
+msgstr "Блог - Игорь Симбирцев"
+
+#: .\blog\templates\blog\index.html:6
+msgid ""
+"Articles about backend systems, data engineering, and building AI "
+"applications."
+msgstr "Статьи о бэкенд-системах, инженерии данных и разработке ИИ-приложений."
+
+#: .\blog\templates\blog\index.html:19
+msgid "Technical notes / Field reports"
+msgstr "Технические заметки / Практический опыт"
+
+#: .\blog\templates\blog\index.html:25
+msgid "Backend / Data / AI applications"
+msgstr "Бэкенд / Данные / ИИ-приложения"
+
+#: .\blog\templates\blog\index.html:30
+#: .\core\templates\core\partials\header.html:72
+#: .\core\templates\core\partials\site_header.html:18
+#: .\core\templates\core\partials\site_header.html:58
+msgid "Blog"
+msgstr "Блог"
+
+#: .\blog\templates\blog\index.html:34
+msgid ""
+"Articles about backend systems, data engineering, and building AI "
+"applications. Some are detailed technical write-ups; others examine a "
+"specific problem or idea."
+msgstr ""
+"Статьи о бэкенд-системах, инженерии данных и разработке ИИ-приложений. Одни "
+"представляют собой подробные технические разборы, другие рассматривают "
+"конкретную проблему или идею."
+
+#: .\blog\templates\blog\index.html:41
+msgid "Author tools"
+msgstr "Инструменты автора"
+
+#: .\blog\templates\blog\index.html:58
+msgid "Featured and recent"
+msgstr "Избранное и новое"
+
+#: .\blog\templates\blog\index.html:61
+msgid "Articles"
+msgstr "Статьи"
+
+#: .\blog\templates\blog\index.html:77 .\core\templates\core\index.html:129
+#: .\core\templates\core\partials\site_header.html:15
+#: .\core\templates\core\partials\site_header.html:57
+msgid "Featured"
+msgstr "Избранное"
+
+#: .\blog\templates\blog\index.html:110
+msgid "No published posts yet"
+msgstr "Опубликованных постов пока нет"
+
+#: .\blog\templates\blog\index.html:112
+msgid "Technical notes and field reports will appear here once published."
+msgstr ""
+"После публикации здесь появятся технические заметки и практические разборы."
+
+#: .\blog\views.py:242 .\blog\views.py:293
 msgid "Run migrations for the current blog app before saving posts."
-msgstr "Выполните миграции для текущего приложения blog перед сохранением постов."
+msgstr ""
+"Выполните миграции для текущего приложения blog перед сохранением постов."
 
-#: .\blog\views.py:247 .\blog\views.py:306
+#: .\blog\views.py:261 .\blog\views.py:320
 msgid "Post published."
 msgstr "Пост опубликован."
 
-#: .\blog\views.py:249 .\blog\views.py:307
+#: .\blog\views.py:263 .\blog\views.py:321
 msgid "Post moved back to draft."
 msgstr "Пост возвращен в черновик."
 
-#: .\blog\views.py:251 .\blog\views.py:305 .\blog\views.py:308
+#: .\blog\views.py:265 .\blog\views.py:319 .\blog\views.py:322
 msgid "Draft saved."
 msgstr "Черновик сохранен."
 
-#: .\blog\views.py:296
+#: .\blog\views.py:310
 msgid "Add a title before saving."
 msgstr "Добавьте заголовок перед сохранением."
 
-#: .\blog\views.py:304
+#: .\blog\views.py:318
 msgid "Draft autosaved."
 msgstr "Черновик сохранен автоматически."
 
-#: .\blog\views.py:325
+#: .\blog\views.py:339
 msgid "Choose an image to upload."
 msgstr "Выберите изображение для загрузки."
 
-#: .\blog\views.py:329
+#: .\blog\views.py:343
 msgid "Upload a PNG, JPEG, GIF, or WebP image."
 msgstr "Загрузите изображение в формате PNG, JPEG, GIF или WebP."
 
-#: .\blog\views.py:335
+#: .\blog\views.py:349
 msgid "Upload an image smaller than 5 MB."
 msgstr "Загрузите изображение размером меньше 5 МБ."
 
-#: .\blog\views.py:345
+#: .\blog\views.py:359
 msgid "That file is not a valid image."
 msgstr "Этот файл не является допустимым изображением."
 
-#: .\blog\views.py:350
+#: .\blog\views.py:364
 msgid "The uploaded image format does not match the file type."
 msgstr "Формат загруженного изображения не совпадает с типом файла."
 
-#: .\core\forms.py:6 .\core\templates\core\projects\ez2task_project.html:69
-#: .\core\templates\core\projects\mp_monitor_project.html:60
-#: .\core\templates\core\projects\store_project.html:82
-msgid "Name"
-msgstr "Имя"
-
-#: .\core\forms.py:8 .\core\templates\core\partials\contact.html:68
-msgid "Subject"
-msgstr "Тема"
-
-#: .\core\forms.py:9 .\core\templates\core\partials\contact.html:72
-msgid "Message"
-msgstr "Сообщение"
+#: .\core\templates\core\base.html:2
+msgid "Portfolio and technical articles by Django developer Igor Simbirtsev."
+msgstr "Портфолио и технические статьи Django-разработчика Игоря Симбирцева."
 
 #: .\core\templates\core\index.html:4
-msgid "Igor Simbirtsev's Personal Portfolio Page"
-msgstr "Персональная страница портфолио Игоря Симбирцева"
+msgid "Igor Simbirtsev - Senior Backend & Data Engineer"
+msgstr "Игорь Симбирцев - Senior Backend & Data Engineer"
+
+#: .\core\templates\core\index.html:6
+msgid ""
+"Backend systems, data pipelines, internal platforms, and guarded AI "
+"applications."
+msgstr ""
+"Бэкенд-системы, пайплайны данных, внутренние платформы и контролируемые ИИ-"
+"приложения."
+
+#: .\core\templates\core\index.html:16
+msgid "Backend / Data / Guarded AI"
+msgstr "Бэкенд / Данные / Контролируемый ИИ"
+
+#: .\core\templates\core\index.html:22
+msgid "Python / Django / Data systems"
+msgstr "Python / Django / Системы данных"
+
+#: .\core\templates\core\index.html:26
+msgid "Senior Backend & Data Engineer"
+msgstr "Старший backend- и data-инженер"
+
+#: .\core\templates\core\index.html:30
+msgid ""
+"I build backend systems, <span class=\"text-signal\">data pipelines</span>, "
+"and internal tools"
+msgstr ""
+"Я создаю бэкенд-системы, <span class=\"text-signal\">пайплайны данных</span> "
+"и внутренние инструменты"
+
+#: .\core\templates\core\index.html:36
+msgid ""
+"I design, build, and maintain production data pipelines and internal "
+"platforms in Python and Django. I also build AI applications with explicit "
+"limits on what the model can access and execute."
+msgstr ""
+"Я проектирую, создаю и поддерживаю продакшен-пайплайны данных и внутренние "
+"платформы на Python и Django. Также я создаю ИИ-приложения с явными "
+"ограничениями на доступ и действия модели."
+
+#: .\core\templates\core\index.html:46
+msgid "View selected work"
+msgstr "Посмотреть избранные проекты"
+
+#: .\core\templates\core\index.html:52
+#: .\core\templates\core\partials\site_header.html:62
+msgid "Download resume"
+msgstr "Скачать резюме"
+
+#: .\core\templates\core\index.html:58
+msgid "Moscow / UTC+3 / Remote-friendly"
+msgstr "Москва / UTC+3 / Готов к удалённой работе"
+
+#: .\core\templates\core\index.html:63 .\core\templates\core\index.html:66
+msgid "Operating scale"
+msgstr "Масштаб систем"
+
+#: .\core\templates\core\index.html:72
+msgid "Daily ingestion"
+msgstr "Ежедневная загрузка"
+
+#: .\core\templates\core\index.html:75
+msgid "rows across production pipelines"
+msgstr "строк в продакшен-пайплайнах"
+
+#: .\core\templates\core\index.html:79
+msgid "Database footprint"
+msgstr "Объём баз данных"
+
+#: .\core\templates\core\index.html:82
+msgid "operational analytics data"
+msgstr "данных операционной аналитики"
+
+#: .\core\templates\core\index.html:86
+msgid "Orchestration"
+msgstr "Оркестрация"
+
+#: .\core\templates\core\index.html:89
+msgid "Airflow DAGs owned and supported"
+msgstr "DAG в Airflow в моей зоне ответственности"
+
+#: .\core\templates\core\index.html:93
+msgid "Engineering focus"
+msgstr "Инженерный фокус"
+
+#: .\core\templates\core\index.html:95
+msgid "Backend & data"
+msgstr "Бэкенд и данные"
+
+#: .\core\templates\core\index.html:97
+msgid "internal platforms and AI applications"
+msgstr "внутренние платформы и ИИ-приложения"
+
+#: .\core\templates\core\index.html:108
+msgid "01 / Featured"
+msgstr "01 / Избранное"
+
+#: .\core\templates\core\index.html:112
+msgid "Featured articles"
+msgstr "Избранные статьи"
+
+#: .\core\templates\core\index.html:115
+msgid "Selected writing on backend systems, data engineering, and applied AI."
+msgstr ""
+"Избранные материалы о бэкенд-системах, инженерии данных и прикладном ИИ."
+
+#: .\core\templates\core\index.html:156
+msgid "Read article"
+msgstr "Читать статью"
+
+#: .\core\templates\core\index.html:162
+msgid "No featured articles yet."
+msgstr "Избранных статей пока нет."
+
+#: .\core\templates\core\index.html:173
+msgid "02 / Working with AI"
+msgstr "02 / Работа с ИИ"
+
+#: .\core\templates\core\index.html:176
+msgid "How I work with coding agents"
+msgstr "Как я работаю с агентами для программирования"
+
+#: .\core\templates\core\index.html:179
+msgid ""
+"I use coding agents for implementation and tests. I decide the approach, "
+"review every change, and ask for an explanation when I do not understand "
+"something."
+msgstr ""
+"Я использую агентов для реализации и тестов. Я выбираю подход, проверяю "
+"каждое изменение и прошу объяснение, если чего-то не понимаю."
+
+#: .\core\templates\core\index.html:189
+msgid "I plan"
+msgstr "Я планирую"
+
+#: .\core\templates\core\index.html:191
+msgid "I define the problem, constraints, and tradeoffs."
+msgstr "Я определяю задачу, ограничения и компромиссы."
+
+#: .\core\templates\core\index.html:196
+msgid "We brainstorm"
+msgstr "Мы обсуждаем варианты"
+
+#: .\core\templates\core\index.html:198
+msgid "Agents help me explore options before I choose an approach."
+msgstr "Агенты помогают изучить варианты до того, как я выберу подход."
+
+#: .\core\templates\core\index.html:203
+msgid "AI implements"
+msgstr "ИИ реализует"
+
+#: .\core\templates\core\index.html:205
+msgid "Agents write code and tests against the agreed plan."
+msgstr "Агенты пишут код и тесты по согласованному плану."
+
+#: .\core\templates\core\index.html:210
+msgid "We review"
+msgstr "Мы проверяем"
+
+#: .\core\templates\core\index.html:212
+msgid ""
+"A separate reviewer agent checks the implementation first. I then review "
+"every change myself and stop when I cannot explain it."
+msgstr ""
+"Сначала реализацию проверяет отдельный агент-рецензент. Затем я сам проверяю "
+"каждое изменение и останавливаюсь, если не могу его объяснить."
+
+#: .\core\templates\core\index.html:220
+msgid "I verify"
+msgstr "Я подтверждаю результат"
+
+#: .\core\templates\core\index.html:222
+msgid "I run the relevant checks and take responsibility for the result."
+msgstr "Я запускаю необходимые проверки и отвечаю за результат."
+
+#: .\core\templates\core\index.html:234
+msgid "03 / Blog"
+msgstr "03 / Блог"
+
+#: .\core\templates\core\index.html:237
+msgid "Latest articles"
+msgstr "Последние статьи"
+
+#: .\core\templates\core\index.html:262
+msgid "No latest articles yet."
+msgstr "Новых статей пока нет."
+
+#: .\core\templates\core\index.html:272
+msgid "04 / About me"
+msgstr "04 / Обо мне"
+
+#: .\core\templates\core\index.html:275
+msgid ""
+"I moved into software development after more than a decade in people "
+"management."
+msgstr "Я пришёл в разработку после более чем десяти лет управления людьми."
+
+#: .\core\templates\core\index.html:280
+msgid ""
+"Before becoming a developer, I managed call center teams. That experience "
+"still helps with stakeholder communication and prioritization. My "
+"engineering work now focuses on backend systems, data pipelines, and "
+"internal platforms."
+msgstr ""
+"До перехода в разработку я управлял командами колл-центра. Этот опыт до сих "
+"пор помогает мне общаться с заинтересованными сторонами и расставлять "
+"приоритеты. Сейчас моя инженерная работа сосредоточена на бэкенд-системах, "
+"пайплайнах данных и внутренних платформах."
+
+#: .\core\templates\core\index.html:295
+#: .\core\templates\core\partials\header.html:75
+#: .\core\templates\core\partials\site_header.html:20
+#: .\core\templates\core\partials\site_header.html:60
+msgid "Contact"
+msgstr "Контакты"
+
+#: .\core\templates\core\index.html:299
+msgid "If my experience is relevant to your team, get in touch"
+msgstr "Если мой опыт подходит вашей команде, давайте обсудим сотрудничество"
+
+#: .\core\templates\core\index.html:307
+msgid "Email me"
+msgstr "Написать мне"
 
 #: .\core\templates\core\partials\about.html:8
 #: .\core\templates\core\partials\header.html:62
+#: .\core\templates\core\partials\site_header.html:19
+#: .\core\templates\core\partials\site_header.html:59
 msgid "About"
 msgstr "Обо мне"
 
@@ -395,63 +713,29 @@ msgid "City:"
 msgstr "Город:"
 
 #: .\core\templates\core\partials\about.html:35
-#: .\core\templates\core\partials\contact.html:20
 msgid "Moscow, Russia"
 msgstr "Москва, Россия"
 
 #: .\core\templates\core\partials\about.html:42
-#: .\core\templates\core\partials\contact.html:29
 msgid "Reveal"
 msgstr "Показать"
 
 #: .\core\templates\core\partials\about.html:45
-#: .\core\templates\core\partials\contact.html:32
 msgid "Will open in a new tab"
 msgstr "Откроется в новой вкладке"
 
-#: .\core\templates\core\partials\contact.html:9
-#: .\core\templates\core\partials\header.html:75
-msgid "Contact"
-msgstr "Контакты"
-
-#: .\core\templates\core\partials\contact.html:10
-msgid "Feel free to contact me any time"
-msgstr "Свяжитесь со мной в любое время"
-
-#: .\core\templates\core\partials\contact.html:19
-msgid "Location:"
-msgstr "Расположение:"
-
-#: .\core\templates\core\partials\contact.html:25
-msgid "Email:"
-msgstr "Email:"
-
-#. Translators: Label for Contact form's Name field
-#: .\core\templates\core\partials\contact.html:58
-msgid "Your Name"
-msgstr "Ваше имя"
-
-#: .\core\templates\core\partials\contact.html:63
-msgid "Your Email"
-msgstr "Ваш Email"
-
-#: .\core\templates\core\partials\contact.html:78
-msgid "Your message has been sent. Thank you!"
-msgstr "Ваше сообщение отправлено. Спасибо!"
-
-#: .\core\templates\core\partials\contact.html:81
-msgid "Send Message"
-msgstr "Отправить сообщение"
-
 #: .\core\templates\core\partials\header.html:9
+#: .\core\templates\core\partials\site_header.html:30
 msgid "Language selection"
 msgstr "Выбор языка"
 
 #: .\core\templates\core\partials\header.html:18
+#: .\core\templates\core\partials\site_header.html:37
 msgid "Switch to English"
 msgstr "Переключить на английский"
 
 #: .\core\templates\core\partials\header.html:24
+#: .\core\templates\core\partials\site_header.html:46
 msgid "Switch to Russian"
 msgstr "Переключить на русский"
 
@@ -508,6 +792,30 @@ msgstr "чтобы увидеть больше проектов."
 #: .\core\templates\core\partials\portfolio.html:57
 msgid "More Details"
 msgstr "Подробнее"
+
+#: .\core\templates\core\partials\site_footer.html:6
+msgid "Social links"
+msgstr "Ссылки на социальные сети"
+
+#: .\core\templates\core\partials\site_header.html:14
+msgid "Primary navigation"
+msgstr "Основная навигация"
+
+#: .\core\templates\core\partials\site_header.html:26
+msgid "Resume"
+msgstr "Резюме"
+
+#: .\core\templates\core\partials\site_header.html:52
+msgid "Navigation menu"
+msgstr "Меню навигации"
+
+#: .\core\templates\core\partials\site_header.html:53
+msgid "Menu"
+msgstr "Меню"
+
+#: .\core\templates\core\partials\site_header.html:54
+msgid "Mobile navigation"
+msgstr "Мобильная навигация"
 
 #: .\core\templates\core\partials\skills.html:9
 msgid ""
@@ -624,6 +932,12 @@ msgstr "Проект EZ2Task"
 #: .\core\templates\core\projects\store_project.html:80
 msgid "Project information"
 msgstr "Информация о проекте"
+
+#: .\core\templates\core\projects\ez2task_project.html:69
+#: .\core\templates\core\projects\mp_monitor_project.html:60
+#: .\core\templates\core\projects\store_project.html:82
+msgid "Name"
+msgstr "Имя"
 
 #: .\core\templates\core\projects\ez2task_project.html:70
 #: .\core\templates\core\projects\mp_monitor_project.html:61
@@ -821,19 +1135,23 @@ msgstr "Корзина"
 msgid "Search feature"
 msgstr "Функция поиска"
 
-#: .\core\views.py:43
-msgid "Email has been successfully sent"
-msgstr "Электронное письмо успешно отправлено"
+#: .\core\templates\core\public_base.html:3
+msgid ""
+"Portfolio and technical articles by Senior Backend and Data Engineer Igor "
+"Simbirtsev."
+msgstr ""
+"Портфолио и технические статьи Senior Backend and Data Engineer Игоря "
+"Симбирцева."
 
-#: .\core\views.py:46
-msgid "Something went wrong. Please try again."
-msgstr "Что-то пошло не так. Пожалуйста, попробуйте снова."
+#: .\core\templates\core\public_base.html:72
+msgid "Skip to content"
+msgstr "Перейти к содержимому"
 
-#: .\igorsimb\settings.py:138
+#: .\igorsimb\settings.py:141
 msgid "English"
 msgstr "Английский"
 
-#: .\igorsimb\settings.py:139
+#: .\igorsimb\settings.py:142
 msgid "Russian"
 msgstr "Русский"
 
@@ -848,3 +1166,151 @@ msgstr "Права доступа"
 #: .\store_users\admin.py:21
 msgid "Important dates"
 msgstr "Важные даты"
+
+#~ msgid "Subject"
+#~ msgstr "Тема"
+
+#~ msgid "Message"
+#~ msgstr "Сообщение"
+
+#~ msgid "Feel free to contact me any time"
+#~ msgstr "Свяжитесь со мной в любое время"
+
+#~ msgid "Location:"
+#~ msgstr "Расположение:"
+
+#~ msgid "Email:"
+#~ msgstr "Email:"
+
+#~ msgid "Your Name"
+#~ msgstr "Ваше имя"
+
+#~ msgid "Your Email"
+#~ msgstr "Ваш Email"
+
+#~ msgid "Your message has been sent. Thank you!"
+#~ msgstr "Ваше сообщение отправлено. Спасибо!"
+
+#~ msgid "Send Message"
+#~ msgstr "Отправить сообщение"
+
+#~ msgid "Show sidebar"
+#~ msgstr "Показать боковую панель"
+
+#~ msgid "Hide sidebar"
+#~ msgstr "Скрыть боковую панель"
+
+#~ msgid "Editor"
+#~ msgstr "Редактор"
+
+#~ msgid "Back to dashboard"
+#~ msgstr "Назад к панели"
+
+#~ msgid "Editor only"
+#~ msgstr "Только редактор"
+
+#~ msgid "Editor and Preview"
+#~ msgstr "Редактор и предпросмотр"
+
+#~ msgid "Preview only"
+#~ msgstr "Только предпросмотр"
+
+#~ msgid "Notes on Django, side projects, and technical work."
+#~ msgstr "Заметки о Django, сайд-проектах и технической работе."
+
+#~ msgid "Published posts live here. Drafts stay private until they are ready."
+#~ msgstr ""
+#~ "Здесь появляются опубликованные посты. Черновики остаются приватными, "
+#~ "пока не будут готовы."
+
+#~ msgid ""
+#~ "Nothing is live yet. Write the first post when you have something worth "
+#~ "keeping."
+#~ msgstr ""
+#~ "Пока ничего не опубликовано. Напишите первый пост, когда у вас появится "
+#~ "что-то действительно стоящее."
+
+#~ msgid "Igor Simbirtsev's Personal Portfolio Page"
+#~ msgstr "Персональная страница портфолио Игоря Симбирцева"
+
+#~ msgid "Email has been successfully sent"
+#~ msgstr "Электронное письмо успешно отправлено"
+
+#~ msgid "Something went wrong. Please try again."
+#~ msgstr "Что-то пошло не так. Пожалуйста, попробуйте снова."
+
+#~ msgid "01 / Selected work"
+#~ msgstr "01 / Избранные проекты"
+
+#~ msgid "Selected engineering work."
+#~ msgstr "Избранные инженерные проекты."
+
+#~ msgid ""
+#~ "Three case studies: production data ingestion, ownership of an internal "
+#~ "platform, and an open-source SQL agent."
+#~ msgstr ""
+#~ "Три кейса: продакшен-загрузка данных, развитие внутренней платформы и SQL-"
+#~ "агент с открытым исходным кодом."
+
+#~ msgid "Case 01 / Production"
+#~ msgstr "Кейс 01 / Продакшен"
+
+#~ msgid "Private"
+#~ msgstr "Закрытый"
+
+#~ msgid "Data platform"
+#~ msgstr "Платформа данных"
+
+#~ msgid "Production data ingestion"
+#~ msgstr "Продакшен-загрузка данных"
+
+#~ msgid ""
+#~ "Supplier files are validated before tens of millions of rows are loaded "
+#~ "into ClickHouse. Failures remain visible and recoverable."
+#~ msgstr ""
+#~ "Файлы поставщиков проходят проверку до загрузки десятков миллионов строк "
+#~ "в ClickHouse. Сбои остаются видимыми, а загрузку можно восстановить."
+
+#~ msgid "10M+ rows/day"
+#~ msgstr "10M+ строк в день"
+
+#~ msgid "Case 02 / Production"
+#~ msgstr "Кейс 02 / Продакшен"
+
+#~ msgid "Internal platform"
+#~ msgstr "Внутренняя платформа"
+
+#~ msgid "Internal platform ownership"
+#~ msgstr "Развитие внутренней платформы"
+
+#~ msgid ""
+#~ "I develop and support internal tools used by the business, balancing "
+#~ "feature work, automation, maintenance, and production support."
+#~ msgstr ""
+#~ "Я развиваю и поддерживаю внутренние инструменты для бизнеса, совмещая "
+#~ "новые функции, автоматизацию, сопровождение и поддержку продакшена."
+
+#~ msgid "End-to-end owner"
+#~ msgstr "Полная ответственность"
+
+#~ msgid "Case 03 / Open source"
+#~ msgstr "Кейс 03 / Open source"
+
+#~ msgid "Guarded AI"
+#~ msgstr "Контролируемый ИИ"
+
+#~ msgid "Dux: constrained NL2SQL"
+#~ msgstr "Dux: ограниченный NL2SQL"
+
+#~ msgid ""
+#~ "Dux lets an LLM help compose SQL, but the backend validates the exact "
+#~ "query and owns execution and result rows."
+#~ msgstr ""
+#~ "Dux позволяет LLM помогать с составлением SQL, но бэкенд проверяет точный "
+#~ "запрос и контролирует выполнение и результаты."
+
+#~ msgid "391 tests"
+#~ msgstr "391 тест"
+
+#~ msgid "No published articles yet."
+#~ msgstr "Опубликованных статей пока нет."

@@ -1,0 +1,68 @@
+{% load i18n navigation %}
+{% get_current_language as CURRENT_LANGUAGE %}
+{% language_switch_path "en" as EN_LANGUAGE_PATH %}
+{% language_switch_path "ru" as RU_LANGUAGE_PATH %}
+<header data-site-header class="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur">
+    <div class="relative mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-5 py-4 lg:px-10">
+        <a href="{% url 'core:main' %}#top"
+           class="shrink-0 font-mono text-xs font-bold tracking-tight sm:text-sm">
+            IGOR SIMBIRTSEV <span class="text-signal">/</span>{% if request.resolver_match.namespace == "blog" %}
+                <span> BLOG</span>
+            {% endif %}
+        </a>
+
+        <nav aria-label="{% translate 'Primary navigation' %}" class="hidden items-center gap-8 text-sm md:flex">
+            <a class="site-nav-link" href="{% url 'core:main' %}#work">{% translate "Featured" %}</a>
+             <a class="site-nav-link{% if request.resolver_match.namespace == 'blog' %} site-nav-link--active{% endif %}"
+                {% if request.resolver_match.namespace == "blog" and request.resolver_match.url_name == "index" %}aria-current="page"{% endif %}
+                href="{% url 'blog:index' %}">{% translate "Blog" %}</a>
+            <a class="site-nav-link" href="{% url 'core:main' %}#about">{% translate "About" %}</a>
+            <a class="site-nav-link" href="{% url 'core:main' %}#contact">{% translate "Contact" %}</a>
+        </nav>
+
+        <div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-widest sm:gap-4">
+            {% if resume_url %}
+                <a href="{{ resume_url }}" class="hidden border-b border-ink pb-1 sm:block" download>
+                    {% translate "Resume" %} ↓
+                </a>
+            {% endif %}
+
+            <div class="flex border border-ink" role="group" aria-label="{% translate 'Language selection' %}">
+                <form action="{% url 'set_language' %}" method="post">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ EN_LANGUAGE_PATH }}">
+                    <button type="submit" name="language" value="en"
+                            class="site-language-button
+                                   {% if CURRENT_LANGUAGE == 'en' %}site-language-button--active{% endif %}"
+                            aria-label="{% translate 'Switch to English' %}"
+                            {% if CURRENT_LANGUAGE == "en" %}aria-current="true"{% endif %}>EN</button>
+                </form>
+                <form action="{% url 'set_language' %}" method="post">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ RU_LANGUAGE_PATH }}">
+                    <button type="submit" name="language" value="ru"
+                            class="site-language-button
+                                   {% if CURRENT_LANGUAGE == 'ru' %}site-language-button--active{% endif %}"
+                            aria-label="{% translate 'Switch to Russian' %}"
+                            {% if CURRENT_LANGUAGE == "ru" %}aria-current="true"{% endif %}>RU</button>
+                </form>
+            </div>
+
+            <details class="site-mobile-menu md:hidden">
+                <summary aria-label="{% translate 'Navigation menu' %}"
+                         class="cursor-pointer border border-ink px-3 py-2">{% translate "Menu" %}</summary>
+                <nav aria-label="{% translate 'Mobile navigation' %}"
+                     class="absolute inset-x-5 top-full border border-ink bg-paper p-5 text-sm
+                            normal-case tracking-normal">
+                    <a href="{% url 'core:main' %}#work">{% translate "Featured" %}</a>
+                    <a href="{% url 'blog:index' %}">{% translate "Blog" %}</a>
+                    <a href="{% url 'core:main' %}#about">{% translate "About" %}</a>
+                    <a href="{% url 'core:main' %}#contact">{% translate "Contact" %}</a>
+                    {% if resume_url %}
+                        <a href="{{ resume_url }}" download>{% translate "Download resume" %}</a>
+                    {% endif %}
+                </nav>
+            </details>
+        </div>
+    </div>
+</header>

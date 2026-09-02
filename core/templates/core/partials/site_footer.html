@@ -1,0 +1,12 @@
+{% load i18n %}
+<footer data-site-footer class="bg-ink px-5 py-8 text-paper lg:px-10">
+    <div class="mx-auto flex max-w-[1360px] flex-col justify-between gap-4 font-mono text-[10px]
+                uppercase tracking-[0.18em] text-[#aeb8b2] sm:flex-row">
+        <span>© {% now "Y" %} Igor Simbirtsev</span>
+        <nav aria-label="{% translate 'Social links' %}" class="flex flex-wrap gap-x-5 gap-y-2">
+            <a href="https://github.com/igorsimb" rel="me">GitHub</a>
+            <a href="https://www.linkedin.com/in/igor-simbirtsev/">LinkedIn</a>
+            <a href="mailto:igor.simbirtsev@gmail.com">{% translate "Email" %}</a>
+        </nav>
+    </div>
+</footer>
