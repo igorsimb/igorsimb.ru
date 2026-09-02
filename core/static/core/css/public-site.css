@@ -1,0 +1,156 @@
+:root {
+    --paper: #f2efe8;
+    --ink: #17201d;
+    --muted: #66706b;
+    --signal: #db5b2b;
+    --line: #cfcac0;
+    --surface: #e9e5dc;
+    --muted-text: #56605b;
+    --signal-text: #9b3518;
+    --signal-text-dark: #ef8054;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+}
+
+body {
+    min-width: 0;
+    overflow-x: hidden;
+    background-color: var(--paper);
+    background-image:
+        linear-gradient(rgba(23, 32, 29, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 32, 29, 0.045) 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+
+.text-muted {
+    color: var(--muted-text) !important;
+}
+
+.text-signal,
+.hover\:text-signal:hover,
+.group:hover .group-hover\:text-signal {
+    color: var(--signal-text) !important;
+}
+
+.bg-ink .text-signal {
+    color: var(--signal-text-dark) !important;
+}
+
+.hover\:bg-signal:hover {
+    color: #101714 !important;
+}
+
+.article-data-text {
+    overflow-wrap: anywhere;
+}
+
+.article-tag {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+a,
+button,
+summary {
+    transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+    outline: 3px solid var(--signal);
+    outline-offset: 3px;
+}
+
+.site-metrika-pixel {
+    position: absolute;
+    left: -9999px;
+}
+
+.site-skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    padding: 0.75rem 1rem;
+    transform: translateY(-200%);
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.site-skip-link:focus {
+    transform: translateY(0);
+}
+
+.site-nav-link {
+    border-bottom: 1px solid transparent;
+}
+
+.site-nav-link:hover,
+.site-nav-link--active {
+    border-color: var(--ink);
+}
+
+.site-language-button {
+    display: block;
+    padding: 0.25rem 0.5rem;
+}
+
+.site-language-button--active {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.site-mobile-menu > summary {
+    list-style: none;
+}
+
+.site-mobile-menu > summary::-webkit-details-marker {
+    display: none;
+}
+
+.site-mobile-menu nav {
+    box-shadow: 6px 6px 0 var(--ink);
+}
+
+.site-mobile-menu nav a {
+    display: block;
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.site-mobile-menu nav a:last-child {
+    border-bottom: 0;
+}
+
+.homepage-vertical-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.homepage-case-card {
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.homepage-case-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 8px 8px 0 var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

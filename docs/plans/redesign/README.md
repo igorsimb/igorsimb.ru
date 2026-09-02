@@ -4,10 +4,15 @@
 
 ## Read in This Order
 
-1. [`redesign-brief.md`](redesign-brief.md) defines positioning, content hierarchy, language behavior, and product boundaries.
-2. [`prototypes/README.md`](prototypes/README.md) defines the visual system, responsive behavior, and exact alignment rules.
-3. [`implementation-notes.md`](implementation-notes.md) defines Django data changes, template constraints, tests, and work order.
-4. Compare implementation directly with the three final references:
+1. [`redesign-brief.md`](redesign-brief.md) defines positioning, content hierarchy, language behavior, and product
+   boundaries.
+2. [`prototypes/README.md`](prototypes/README.md) defines the visual system, responsive behavior, and exact alignment
+   rules.
+3. [`implementation-notes.md`](implementation-notes.md) defines Django data changes, template constraints, tests, and
+   work order.
+4. [`execution-plan.md`](execution-plan.md) is the checkpointed, LLM-oriented implementation procedure and records the
+   final decisions made after design approval.
+5. Compare implementation directly with the three final references:
    - [`prototypes/homepage.html`](prototypes/homepage.html)
    - [`prototypes/blog-index.html`](prototypes/blog-index.html)
    - [`prototypes/blog-article.html`](prototypes/blog-article.html)

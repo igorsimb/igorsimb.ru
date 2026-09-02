@@ -1,24 +1,312 @@
-{% extends "core/base.html" %}
+{% extends "core/public_base.html" %}
 {% load i18n %}
 
-{% block title %}{% translate "Igor Simbirtsev's Personal Portfolio Page" %}{% endblock title %}
-{% block meta_description %}{% translate "Igor Simbirtsev's Django portfolio." %}{% endblock meta_description %}
+{% block title %}{% translate "Igor Simbirtsev - Senior Backend & Data Engineer" %}{% endblock title %}
+{% block meta_description %}
+    {% translate "Backend systems, data pipelines, internal platforms, and guarded AI applications." %}
+{% endblock meta_description %}
 
 {% block content %}
+    <main id="main-content">
+        <section data-home-section="hero"
+                 class="mx-auto grid min-h-[620px] max-w-[1440px] border-x border-line
+                        lg:grid-cols-[84px_1fr_380px]">
+            <div class="hidden border-r border-line py-12 lg:flex lg:items-end lg:justify-center">
+                <span class="homepage-vertical-label font-mono text-[10px] uppercase tracking-[0.35em] text-muted">
+                    {% translate "Backend / Data / Guarded AI" %}
+                </span>
+            </div>
+            <div class="min-w-0 flex flex-col justify-between px-6 py-10 lg:px-14 lg:py-12">
+                <div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
+                    <span aria-hidden="true" class="h-2 w-2 rounded-full bg-signal"></span>
+                    {% translate "Python / Django / Data systems" %}
+                </div>
+                <div class="py-12">
+                    <p class="mb-7 font-mono text-xs uppercase tracking-[0.28em] text-signal">
+                        {% translate "Senior Backend & Data Engineer" %}
+                    </p>
+                    <h1 class="max-w-5xl break-words text-[2.75rem] font-black leading-[0.95] tracking-[-0.05em]
+                               sm:text-[clamp(3.2rem,5.2vw,5.4rem)] sm:tracking-[-0.06em]">
+                        {% blocktranslate trimmed %}
+                            I build backend systems, <span class="text-signal">data pipelines</span>,
+                            and internal tools
+                        {% endblocktranslate %}
+                    </h1>
+                    <p class="mt-8 max-w-2xl text-lg leading-8 text-muted md:text-xl">
+                        {% blocktranslate trimmed %}
+                            I design, build, and maintain production data pipelines and internal platforms in Python and
+                            Django. I also build AI applications with explicit limits on what the model can access and
+                            execute.
+                        {% endblocktranslate %}
+                    </p>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="#work"
+                           class="bg-ink px-6 py-4 font-mono text-xs uppercase tracking-[0.18em] text-paper
+                                  hover:bg-signal">
+                            {% translate "View selected work" %} →
+                        </a>
+                        {% if resume_url %}
+                            <a href="{{ resume_url }}" download
+                               class="border border-ink px-6 py-4 font-mono text-xs uppercase tracking-[0.18em]
+                                      hover:bg-white/40">
+                                {% translate "Download resume" %}
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                    {% translate "Moscow / UTC+3 / Remote-friendly" %}
+                </p>
+            </div>
 
-    {% include "core/partials/header.html" %}
-    {% include "core/partials/hero.html" %}
+            <aside class="min-w-0 border-t border-line bg-[#e7e3da] lg:border-l lg:border-t-0"
+                   aria-label="{% translate 'Operating scale' %}">
+                <div class="border-b border-line p-7">
+                    <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
+                        {% translate "Operating scale" %}
+                    </span>
+                </div>
+                <dl class="divide-y divide-line">
+                    <div class="p-7">
+                        <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                            {% translate "Daily ingestion" %}
+                        </dt>
+                        <dd class="mt-2 text-4xl font-black tracking-tight">10M+</dd>
+                        <dd class="mt-1 text-sm text-muted">{% translate "rows across production pipelines" %}</dd>
+                    </div>
+                    <div class="p-7">
+                        <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                            {% translate "Database footprint" %}
+                        </dt>
+                        <dd class="mt-2 text-4xl font-black tracking-tight">~3.6 TB</dd>
+                        <dd class="mt-1 text-sm text-muted">{% translate "operational analytics data" %}</dd>
+                    </div>
+                    <div class="p-7">
+                        <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                            {% translate "Orchestration" %}
+                        </dt>
+                        <dd class="mt-2 text-4xl font-black tracking-tight">~15</dd>
+                        <dd class="mt-1 text-sm text-muted">{% translate "Airflow DAGs owned and supported" %}</dd>
+                    </div>
+                    <div class="p-7">
+                        <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                            {% translate "Engineering focus" %}
+                        </dt>
+                        <dd class="mt-2 text-2xl font-black tracking-tight">{% translate "Backend & data" %}</dd>
+                        <dd class="mt-1 text-sm text-muted">
+                            {% translate "internal platforms and AI applications" %}
+                        </dd>
+                    </div>
+                </dl>
+            </aside>
+        </section>
 
-    <main id="main">
+        <section id="work" class="scroll-mt-16 border-y border-ink bg-paper px-5 py-24 lg:px-10">
+            <div class="mx-auto max-w-[1360px]">
+                <div class="mb-12 grid gap-5 md:grid-cols-[1fr_2fr]">
+                    <p class="font-mono text-xs uppercase tracking-[0.25em] text-signal">
+                        {% translate "01 / Featured" %}
+                    </p>
+                    <div>
+                        <h2 class="text-4xl font-black tracking-[-0.04em] md:text-6xl">
+                            {% translate "Featured articles" %}
+                        </h2>
+                        <p class="mt-5 max-w-2xl text-lg leading-8 text-muted">
+                            {% translate "Selected writing on backend systems, data engineering, and applied AI." %}
+                        </p>
+                    </div>
+                </div>
 
-        {% include "core/partials/about.html" %}
-        {% include "core/partials/skills.html" %}
-        {% include "core/partials/portfolio.html" %}
-{#        {% include "core/partials/services.html" %}#}
-        {% include "core/partials/contact.html" %}
+                <div class="grid gap-5 lg:grid-cols-3">
+                    {% for post in featured_posts %}
+                        <article>
+                            <a href="{% url 'blog:detail' slug=post.slug %}"
+                               class="homepage-case-card group flex min-h-[460px] flex-col justify-between
+                                      border border-ink bg-surface p-7">
+                                <div>
+                                    <div class="flex items-start justify-between font-mono text-[10px] uppercase
+                                                tracking-[0.2em] text-muted">
+                                        <span>{% translate "Featured" %} 0{{ forloop.counter }}</span>
+                                        <time datetime="{{ post.published_at|date:'c' }}">
+                                            {{ post.published_at|date:"M Y" }}
+                                        </time>
+                                    </div>
+                                    <div class="my-8 h-px bg-line"></div>
+                                    {% if post.display_tags %}
+                                        <span lang="en" class="article-tag inline-block border border-ink px-2 py-1
+                                                     font-mono text-[10px] uppercase tracking-widest">
+                                            {{ post.display_tags.0 }}
+                                        </span>
+                                    {% endif %}
+                                    <h3 lang="en" class="article-data-text mt-5 text-4xl font-black leading-[1.02]
+                                               tracking-[-0.045em] group-hover:text-signal">
+                                        {{ post.title }}
+                                    </h3>
+                                    <p lang="en" class="article-data-text mt-5 leading-7 text-muted">
+                                        {{ post.display_summary }}
+                                    </p>
+                                </div>
+                                <div class="grid grid-cols-[1fr_auto] gap-4 border-t border-line pt-5 font-mono
+                                            text-[10px] uppercase tracking-wider text-muted">
+                                    <span>
+                                        {% for tag in post.display_tags %}
+                                            <span lang="en" class="article-tag">{{ tag }}</span>{% if not forloop.last %} / {% endif %}
+                                        {% endfor %}
+                                    </span>
+                                    <span class="text-right">{% translate "Read article" %} →</span>
+                                </div>
+                            </a>
+                        </article>
+                    {% empty %}
+                        <p class="border border-ink bg-surface p-7 text-muted lg:col-span-3">
+                            {% translate "No featured articles yet." %}
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
 
+        <section class="bg-ink px-5 py-24 text-paper lg:px-10">
+            <div class="mx-auto grid max-w-[1360px] gap-14 lg:grid-cols-[0.85fr_1.4fr]">
+                <div class="min-w-0">
+                    <p class="font-mono text-xs uppercase tracking-[0.25em] text-signal">
+                        {% translate "02 / Working with AI" %}
+                    </p>
+                    <h2 class="mt-8 break-words text-5xl font-black leading-[0.95] tracking-[-0.05em] md:text-7xl">
+                        {% translate "How I work with coding agents" %}
+                    </h2>
+                    <p class="mt-8 max-w-xl text-lg leading-8 text-[#b9c0bd]">
+                        {% blocktranslate trimmed %}
+                            I use coding agents for implementation and tests. I decide the approach, review every
+                            change,
+                            and ask for an explanation when I do not understand something.
+                        {% endblocktranslate %}
+                    </p>
+                </div>
+                <ol class="min-w-0 border-t border-[#46504c]">
+                    <li class="grid gap-4 border-b border-[#46504c] py-6 sm:grid-cols-[56px_160px_1fr]">
+                        <span class="font-mono text-xs text-signal">01</span>
+                        <strong>{% translate "I plan" %}</strong>
+                        <span class="text-[#b9c0bd]">
+                            {% translate "I define the problem, constraints, and tradeoffs." %}
+                        </span>
+                    </li>
+                    <li class="grid gap-4 border-b border-[#46504c] py-6 sm:grid-cols-[56px_160px_1fr]">
+                        <span class="font-mono text-xs text-signal">02</span>
+                        <strong>{% translate "We brainstorm" %}</strong>
+                        <span class="text-[#b9c0bd]">
+                            {% translate "Agents help me explore options before I choose an approach." %}
+                        </span>
+                    </li>
+                    <li class="grid gap-4 border-b border-[#46504c] py-6 sm:grid-cols-[56px_160px_1fr]">
+                        <span class="font-mono text-xs text-signal">03</span>
+                        <strong>{% translate "AI implements" %}</strong>
+                        <span class="text-[#b9c0bd]">
+                            {% translate "Agents write code and tests against the agreed plan." %}
+                        </span>
+                    </li>
+                    <li class="grid gap-4 border-b border-[#46504c] py-6 sm:grid-cols-[56px_160px_1fr]">
+                        <span class="font-mono text-xs text-signal">04</span>
+                        <strong>{% translate "We review" %}</strong>
+                        <span class="text-[#b9c0bd]">
+                            {% blocktranslate trimmed %}
+                                A separate reviewer agent checks the implementation first. I then review every change
+                                myself and stop when I cannot explain it.
+                            {% endblocktranslate %}
+                        </span>
+                    </li>
+                    <li class="grid gap-4 border-b border-[#46504c] py-6 sm:grid-cols-[56px_160px_1fr]">
+                        <span class="font-mono text-xs text-signal">05</span>
+                        <strong>{% translate "I verify" %}</strong>
+                        <span class="text-[#b9c0bd]">
+                            {% translate "I run the relevant checks and take responsibility for the result." %}
+                        </span>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="blog" class="scroll-mt-16 border-b border-ink bg-paper px-5 py-24 lg:px-10">
+            <div class="mx-auto max-w-[1360px]">
+                <div class="grid gap-10 lg:grid-cols-[.7fr_1.6fr]">
+                    <div>
+                        <p class="font-mono text-xs uppercase tracking-[0.25em] text-signal">
+                            {% translate "03 / Blog" %}
+                        </p>
+                        <h2 class="mt-7 text-5xl font-black tracking-[-0.05em]">
+                            {% translate "Latest articles" %}
+                        </h2>
+                    </div>
+                    <div class="border-t border-ink">
+                        {% for post in latest_posts %}
+                            <a href="{% url 'blog:detail' slug=post.slug %}"
+                               class="group grid gap-4 border-b border-line py-7
+                                      md:grid-cols-[110px_1fr_auto] md:items-center">
+                                <span class="font-mono text-[10px] uppercase tracking-wider text-muted">
+                                    {% for tag in post.display_tags %}
+                                        <span lang="en" class="article-tag">{{ tag }}</span>{% if not forloop.last %} / {% endif %}
+                                    {% endfor %}
+                                </span>
+                                <span>
+                                    <span lang="en" class="article-data-text block text-2xl font-bold group-hover:text-signal">
+                                        {{ post.title }}
+                                    </span>
+                                    <span lang="en" class="article-data-text mt-2 block max-w-3xl leading-6 text-muted">
+                                        {{ post.display_summary }}
+                                    </span>
+                                </span>
+                                <span aria-hidden="true" class="font-mono text-sm">↗</span>
+                            </a>
+                        {% empty %}
+                            <p class="border-b border-line py-7 text-muted">
+                                {% translate "No latest articles yet." %}
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="scroll-mt-16 bg-[#e7e3da] px-5 py-24 lg:px-10">
+            <div class="mx-auto grid max-w-[1360px] gap-12 lg:grid-cols-2">
+                <p class="font-mono text-xs uppercase tracking-[0.25em] text-signal">{% translate "04 / About me" %}</p>
+                <div>
+                    <p class="text-3xl font-bold leading-tight tracking-[-0.025em] md:text-5xl">
+                        {% blocktranslate trimmed %}
+                            I moved into software development after more than a decade in people management.
+                        {% endblocktranslate %}
+                    </p>
+                    <p class="mt-8 max-w-2xl text-lg leading-8 text-muted">
+                        {% blocktranslate trimmed %}
+                            Before becoming a developer, I managed call center teams. That experience still helps with
+                            stakeholder communication and prioritization. My engineering work now focuses on backend
+                            systems, data pipelines, and internal platforms.
+                        {% endblocktranslate %}
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact"
+                 class="scroll-mt-16 border-t border-ink bg-signal px-5 py-20 text-white lg:px-10">
+            <div class="mx-auto flex max-w-[1360px] flex-col justify-between gap-10 md:flex-row md:items-end">
+                <div class="min-w-0">
+                    <p class="font-mono text-xs uppercase tracking-[0.25em] text-[#101714]">
+                        {% translate "Contact" %}
+                    </p>
+                    <h2 class="mt-5 max-w-4xl break-words text-5xl font-black leading-[.95]
+                               tracking-[-0.05em] md:text-7xl">
+                        {% blocktranslate trimmed %}
+                            If my experience is relevant to your team, get in touch
+                        {% endblocktranslate %}
+                    </h2>
+                </div>
+                <a href="mailto:igor.simbirtsev@gmail.com"
+                   class="shrink-0 border border-white bg-white px-6 py-4 font-mono text-xs uppercase tracking-widest
+                          text-signal hover:bg-ink hover:text-white">
+                    {% translate "Email me" %} →
+                </a>
+            </div>
+        </section>
     </main>
-
-    {% include "core/partials/footer.html" %}
-
 {% endblock content %}

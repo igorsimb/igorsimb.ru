@@ -18,6 +18,14 @@ ALLOWED_TAGS = list(bleach.sanitizer.ALLOWED_TAGS) + [
     "div",
     "img",
     "span",
+    "table",
+    "thead",
+    "tbody",
+    "tr",
+    "th",
+    "td",
+    "figure",
+    "figcaption",
 ]
 ALLOWED_ATTRIBUTES = {
     "a": ["href", "title", "rel"],
@@ -28,6 +36,10 @@ ALLOWED_ATTRIBUTES = {
 }
 
 
+def normalize_article_html(rendered_html: str) -> str:
+    return rendered_html.replace("<h1>", "<h2>").replace("</h1>", "</h2>")
+
+
 def render_markdown(markdown_body: str) -> str:
     escaped_markdown = escape(markdown_body or "", quote=False)
     html = markdown.markdown(
@@ -36,6 +48,7 @@ def render_markdown(markdown_body: str) -> str:
         output_format="html5",
     )
 
-    return bleach.clean(
+    sanitized_html = bleach.clean(
         html, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRIBUTES, strip=True
     )
+    return normalize_article_html(sanitized_html)

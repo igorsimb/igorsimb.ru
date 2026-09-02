@@ -1,0 +1,82 @@
+{% load static i18n %}
+{% get_current_language as CURRENT_LANGUAGE %}
+{% blocktranslate asvar default_meta_description trimmed %}
+    Portfolio and technical articles by Senior Backend and Data Engineer Igor Simbirtsev.
+{% endblocktranslate %}
+<!doctype html>
+<html lang="{{ CURRENT_LANGUAGE }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="{% block meta_description %}{{ default_meta_description }}{% endblock meta_description %}">
+    {% block robots_meta %}{% endblock robots_meta %}
+    <link rel="canonical" href="{% block canonical_href %}{{ canonical_url }}{% endblock canonical_href %}">
+
+    <link href="{% static 'core/img/favicon.ico' %}" rel="icon">
+    <link href="{% static 'core/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: "#f2efe8",
+                        ink: "#17201d",
+                        muted: "#66706b",
+                        signal: "#db5b2b",
+                        line: "#cfcac0",
+                        surface: "#e9e5dc"
+                    },
+                    fontFamily: {
+                        sans: ["Arial", "Helvetica", "sans-serif"],
+                        mono: ["Consolas", "Courier New", "monospace"]
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="{% static 'core/css/public-site.css' %}" rel="stylesheet">
+    {% block extra_css %}{% endblock extra_css %}
+
+    <title>{% block title %}{% endblock title %}</title>
+
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments);
+            };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) {
+                    return;
+                }
+            }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r;
+            a.parentNode.insertBefore(k, a);
+        })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(98862332, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+</head>
+<body id="top" class="font-sans text-ink antialiased selection:bg-signal selection:text-white">
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/98862332" class="site-metrika-pixel" alt=""></div>
+    </noscript>
+    <a class="site-skip-link" href="#main-content">{% translate "Skip to content" %}</a>
+    <a rel="me" href="https://mastodon.social/@SideProject" class="hidden">Mastodon</a>
+
+    {% include "core/partials/site_header.html" %}
+    {% block content %}{% endblock content %}
+    {% include "core/partials/site_footer.html" %}
+
+    <script src="{% static 'core/js/public-site.js' %}"></script>
+    {% block extra_js %}{% endblock extra_js %}
+</body>
+</html>

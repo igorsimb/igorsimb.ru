@@ -68,20 +68,21 @@ function insertMarkdownImage(textarea, imageUrl) {
     textarea.dispatchEvent(new Event("input", { bubbles: true }));
 }
 
-async function uploadImage(file, uploadUrl, csrfToken) {
+async function uploadImage(file, uploadUrl, csrfToken, failureMessage) {
     const payload = new FormData();
     payload.append("image", file, file.name || `pasted-image-${Date.now()}.png`);
 
     const response = await fetch(uploadUrl, {
         method: "POST",
-        headers: { "X-CSRFToken": csrfToken },
+        headers: { "Accept": "application/json", "X-CSRFToken": csrfToken },
         body: payload,
         credentials: "same-origin",
     });
 
-    const data = await response.json().catch(() => ({}));
-    if (!response.ok) {
-        throw new Error(data.error || "Image upload failed.");
+    const isJson = response.headers.get("content-type")?.includes("application/json");
+    const data = isJson ? await response.json().catch(() => ({})) : {};
+    if (response.redirected || !response.ok || !isJson || !data.imageUrl) {
+        throw new Error(data.error || failureMessage);
     }
 
     return data.imageUrl;
@@ -101,6 +102,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     setupEditorPreviewScrollSync(textarea, previewMount);
+
+    const uploadMessages = {
+        oneWorking: form.dataset.uploadOneWorking,
+        manyWorking: form.dataset.uploadManyWorking,
+        oneSuccess: form.dataset.uploadOneSuccess,
+        manySuccess: form.dataset.uploadManySuccess,
+        failed: form.dataset.uploadFailed,
+    };
 
     let flashTimerId = null;
 
@@ -122,16 +131,17 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        setFlash(imageFiles.length > 1 ? "Uploading images..." : "Uploading image...", "working");
+        setFlash(imageFiles.length > 1 ? uploadMessages.manyWorking : uploadMessages.oneWorking, "working");
 
         try {
             for (const file of imageFiles) {
-                const imageUrl = await uploadImage(file, uploadUrl, csrfToken);
+                const imageUrl = await uploadImage(file, uploadUrl, csrfToken, uploadMessages.failed);
                 insertMarkdownImage(textarea, imageUrl);
             }
-            setFlash(imageFiles.length > 1 ? "Images inserted." : "Image inserted.", "success", SUCCESS_FLASH_DELAY_MS);
+            const successMessage = imageFiles.length > 1 ? uploadMessages.manySuccess : uploadMessages.oneSuccess;
+            setFlash(successMessage, "success", SUCCESS_FLASH_DELAY_MS);
         } catch (error) {
-            setFlash(error.message || "Image upload failed.", "error");
+            setFlash(error.message || uploadMessages.failed, "error");
         }
     };
 
@@ -139,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const files = Array.from(event.clipboardData?.items || [])
             .filter((item) => item.kind === "file")
             .map((item) => item.getAsFile())
-            .filter(Boolean);
+            .filter((file) => file && file.type.startsWith("image/"));
 
         if (!files.length) {
             return;
